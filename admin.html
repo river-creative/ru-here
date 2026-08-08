@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>FIRE CONF.</title>
+<link rel="icon" type="image/png" href="/favicon.png">
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<style>
+  :root{ --bg:#141415; --card:#1f1f22; --card2:#2a2a2f; --mut:#9a9aa2; --dim:#77777e; --lt:#cfcfd4; --org:#ff5c1f; }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:#fff;font-family:'Archivo',system-ui,sans-serif;padding:26px 20px 60px;max-width:520px;margin-inline:auto;}
+  h1{font-size:22px;font-weight:800;margin:0 0 2px;display:flex;align-items:center;gap:9px;}
+  .sub{font-family:ui-monospace,monospace;font-size:10.5px;letter-spacing:1.6px;color:var(--mut);margin-bottom:22px;}
+  label{display:block;font-size:12px;font-weight:700;color:var(--lt);margin:16px 2px 6px;}
+  input,textarea{width:100%;background:var(--card);border:1.5px solid #34343a;border-radius:14px;color:#fff;
+    font-family:inherit;font-size:15px;padding:13px 14px;outline:none;}
+  input:focus,textarea:focus{border-color:var(--org);}
+  textarea{min-height:90px;resize:vertical;}
+  .row{display:flex;gap:9px;margin-top:22px;}
+  button{flex:1;border:0;border-radius:22px;padding:14px 0;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;}
+  #send{background:var(--org);color:#fff;}
+  #dry{background:none;border:1.5px solid #34343a;color:var(--lt);font-weight:600;}
+  button:active{transform:scale(.98);}
+  #out{margin-top:18px;background:var(--card);border-radius:14px;padding:13px 14px;font-family:ui-monospace,monospace;
+    font-size:12px;color:var(--mut);white-space:pre-wrap;display:none;line-height:1.6;}
+  .warn{font-size:11.5px;color:var(--dim);margin-top:26px;line-height:1.55;}
+  .ok{color:#5ecb8e;} .bad{color:#ff6b6b;}
+  #gate{background:var(--card);border-radius:16px;padding:22px 18px;text-align:center;margin-top:8px;}
+  #gate p{font-size:13px;color:var(--mut);line-height:1.55;margin:0 0 16px;}
+  #gsi{display:flex;justify-content:center;}
+  #who{display:none;font-size:12px;color:var(--mut);margin-bottom:4px;}
+  #composer,#history{display:none;}
+  .ghost{flex:0 0 auto;background:none;border:1.5px solid #34343a;color:var(--lt);font-weight:600;
+    font-size:12.5px;padding:8px 16px;border-radius:18px;}
+  .seg{display:flex;gap:6px;}
+  .seg button{flex:1;background:var(--card);border:1.5px solid #34343a;border-radius:12px;padding:9px 0 8px;
+    font-size:12.5px;color:var(--lt);font-weight:600;}
+  .seg button.on{border-color:var(--org);background:rgba(255,92,31,.10);color:#fff;}
+  .seg .cnt{display:block;font-family:ui-monospace,monospace;font-size:15px;font-weight:800;color:var(--dim);margin-top:3px;}
+  .seg button.on .cnt{color:var(--org);}
+  .hcard{background:var(--card);border-radius:14px;padding:13px 15px;margin-bottom:10px;}
+  .hcard .ht{font-weight:700;font-size:14.5px;}
+  .hcard .hb{font-size:13px;color:var(--lt);margin-top:4px;line-height:1.5;white-space:pre-wrap;}
+  .hcard .hm{font-family:ui-monospace,monospace;font-size:10.5px;color:var(--dim);margin-top:9px;line-height:1.7;}
+  #histList .empty{color:var(--mut);font-size:13px;text-align:center;padding:26px 0;}
+</style>
+</head>
+<body>
+  <div id="gate" style="margin-top:26vh;background:none;">
+    <img src="/apple-touch-icon.png" alt="" style="width:64px;height:64px;display:block;margin:0 auto 14px;">
+    <div style="font-weight:800;font-size:19px;letter-spacing:3px;color:var(--org);text-align:center;margin-bottom:26px;">FIRE CONF.</div>
+    <div id="gsi"></div>
+    <p id="gateErr" class="bad" style="display:none;margin-top:14px;text-align:center;"></p>
+  </div>
+
+  <div id="composer">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+      <h1><img src="/apple-touch-icon.png" alt="" style="width:22px;height:22px;">Send Event Alert</h1>
+      <button id="histLink" class="ghost">History</button>
+    </div>
+    <div class="sub">FIRE CONFERENCE 2026 · PUSH BROADCAST</div>
+    <div id="who"></div>
+
+    <label for="title">Title</label>
+    <input id="title" maxlength="120" placeholder="Schedule update">
+
+    <label for="body">Message</label>
+    <textarea id="body" maxlength="400" placeholder="Tonight&#8217;s evening session now starts at 7:30 PM — doors 6:30."></textarea>
+
+    <label for="url">Link (opens when tapped — optional)</label>
+    <input id="url" placeholder="/schedule" value="/">
+
+    <label>Send to (subscribed devices)</label>
+    <div class="seg" id="segGroup">
+      <button type="button" data-g="all" class="on">Everyone<span class="cnt" id="cntAll">–</span></button>
+      <button type="button" data-g="youth">Youth<span class="cnt" id="cntYouth">–</span></button>
+      <button type="button" data-g="kids">Kids<span class="cnt" id="cntKids">–</span></button>
+      <button type="button" data-g="admin">Team<span class="cnt" id="cntAdmin">–</span></button>
+    </div>
+
+    <div class="row">
+      <button id="dry">Dry run (count devices)</button>
+      <button id="send">Send to everyone</button>
+    </div>
+
+    <div id="out"></div>
+
+    <p class="warn">⚠️ “Send to everyone” pushes immediately to every subscribed device — there is no undo.
+    Use “Dry run” to check how many devices are subscribed. Sessions expire after about an hour — just sign in again.</p>
+
+    <div style="margin-top:26px;border-top:1px solid #26262b;padding-top:16px;">
+      <label>App settings</label>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--card);border:1.5px solid #34343a;border-radius:14px;padding:13px 14px;">
+        <span style="font-size:13.5px;font-weight:700;">Admin Alerts toggle
+          <span id="cfgAdmSub" style="display:block;font-size:11px;font-weight:500;color:var(--mut);margin-top:2px;">Loading…</span>
+        </span>
+        <button id="cfgAdmBtn" class="ghost" disabled>…</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="history">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
+      <h1><img src="/apple-touch-icon.png" alt="" style="width:22px;height:22px;">Message History</h1>
+      <button id="histBack" class="ghost">← Compose</button>
+    </div>
+    <div class="sub">SENT ALERTS · NEWEST FIRST</div>
+    <div id="histList"></div>
+  </div>
+
+<script>
+  /* Set after creating the OAuth client in Google Cloud Console (Web application,
+     authorized JS origins: https://map.fire.revival.com + the preview URL). */
+  var GOOGLE_CLIENT_ID='751395401871-dckb8hmlq8f9itmn5ur2dp0vpd29aa38.apps.googleusercontent.com';
+
+  var idToken=null, out=document.getElementById('out');
+
+  function denyAccess(){
+    idToken=null;
+    try{ sessionStorage.removeItem('fcAdminTok'); }catch(e){}
+    document.body.innerHTML='<div style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;'+
+      'background:var(--bg);font-family:ui-monospace,monospace;font-size:18px;font-weight:700;letter-spacing:4px;color:#ff6b6b;">NO ACCESS</div>';
+  }
+
+  function setCounts(c){
+    if(!c) return;
+    document.getElementById('cntAll').textContent=(c.all!=null?c.all:'–');
+    document.getElementById('cntYouth').textContent=(c.youth!=null?c.youth:'–');
+    document.getElementById('cntKids').textContent=(c.kids!=null?c.kids:'–');
+    document.getElementById('cntAdmin').textContent=(c.admin!=null?c.admin:'–');
+  }
+  function refreshCounts(){
+    if(!idToken) return;
+    fetch('/api/push',{method:'POST',headers:{'content-type':'application/json'},
+        body:JSON.stringify({action:'send',idToken:idToken,dryRun:true})})
+      .then(function(r){ return r.json(); })
+      .then(function(j){ if(j.ok) setCounts(j.counts); })
+      .catch(function(){});
+  }
+
+  // Verify a token against the server-side allowlist (a dryRun send doubles as the check).
+  function verifyToken(tok){
+    return fetch('/api/push',{method:'POST',headers:{'content-type':'application/json'},
+        body:JSON.stringify({action:'send',idToken:tok,dryRun:true})})
+      .then(function(r){ return r.json().then(function(j){ return {allowed:r.status===200&&j.ok, j:j}; }); });
+  }
+
+  function tokClaims(tok){
+    try{ return JSON.parse(atob(tok.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'))); }catch(e){ return null; }
+  }
+  function tokFresh(tok){
+    var c=tokClaims(tok);
+    return !!(c && c.exp && c.exp*1000 > Date.now()+60000);
+  }
+
+  /* ---- app settings: show/hide the public Admin Alerts toggle ---- */
+  var appCfg=null;
+  function renderCfg(){
+    var b=document.getElementById('cfgAdmBtn'), s=document.getElementById('cfgAdmSub');
+    if(!appCfg){ b.disabled=true; b.textContent='…'; s.textContent='Loading…'; return; }
+    var on=appCfg.adminToggle!==false;
+    b.disabled=false;
+    b.textContent=on?'Visible':'Hidden';
+    b.style.color=on?'#5ecb8e':'#ff6b6b';
+    b.style.borderColor=on?'#2c5c42':'#5c2c2c';
+    s.textContent=on
+      ?'Shown to everyone in the app under Notifications'
+      :'Hidden in the app — existing Team devices keep their alerts';
+  }
+  function loadCfg(){
+    fetch('/api/push',{method:'POST',headers:{'content-type':'application/json'},
+        body:JSON.stringify({action:'config'})})
+      .then(function(r){ return r.json(); })
+      .then(function(j){ if(j.ok){ appCfg=j.config||{}; renderCfg(); } })
+      .catch(function(){});
+  }
+  document.getElementById('cfgAdmBtn').addEventListener('click',function(){
+    if(!appCfg||!idToken) return;
+    var next=!(appCfg.adminToggle!==false);
+    var b=this; b.disabled=true;
+    fetch('/api/push',{method:'POST',headers:{'content-type':'application/json'},
+        body:JSON.stringify({action:'setConfig',idToken:idToken,config:{adminToggle:next}})})
+      .then(function(r){ return r.json().then(function(j){ return {status:r.status,j:j}; }); })
+      .then(function(res){
+        if(res.status===401){ show('Not authorized — session may have expired. Reload and sign in again.', false); renderCfg(); return; }
+        if(!res.j.ok){ show('Error: '+(res.j.error||'unknown'), false); renderCfg(); return; }
+        appCfg=res.j.config||{}; renderCfg();
+        show('✓ Admin Alerts toggle is now '+((appCfg.adminToggle!==false)?'VISIBLE':'HIDDEN')+' in the app.', true);
+      })
+      .catch(function(e){ show('Network error: '+e, false); renderCfg(); });
+  });
+
+  function enterComposer(j){
+    setCounts(j.counts);
+    loadCfg();
+    var claims=tokClaims(idToken);
+    if(claims && claims.email){
+      document.getElementById('who').textContent='Signed in as '+claims.email;
+      document.getElementById('who').style.display='block';
+    }
+    document.getElementById('gate').style.display='none';
+    document.getElementById('composer').style.display='block';
+  }
+
+  function onCred(resp){
+    idToken=resp.credential;
+    // survive page refreshes for the token's lifetime; remember this browser for silent re-sign-in
+    try{ sessionStorage.setItem('fcAdminTok', idToken); localStorage.setItem('fcAdminKnown','1'); }catch(e){}
+    verifyToken(idToken)
+      .then(function(res){ if(!res.allowed) return denyAccess(); enterComposer(res.j); })
+      .catch(denyAccess);
+  }
+
+  function initGsi(autoPrompt){
+    google.accounts.id.initialize({ client_id:GOOGLE_CLIENT_ID, callback:onCred, auto_select:true, itp_support:true });
+    google.accounts.id.renderButton(document.getElementById('gsi'), { theme:'filled_black', size:'large', text:'signin_with' });
+    // returning admin with an expired/absent token: let One Tap re-sign silently
+    if(autoPrompt) google.accounts.id.prompt();
+  }
+
+  window.onload=function(){
+    if(GOOGLE_CLIENT_ID.indexOf('PASTE')===0){
+      document.getElementById('gateErr').textContent='Unavailable.';
+      document.getElementById('gateErr').style.display='block';
+      return;
+    }
+    var saved=null, known=false;
+    try{ saved=sessionStorage.getItem('fcAdminTok'); known=localStorage.getItem('fcAdminKnown')==='1'; }catch(e){}
+    if(saved && tokFresh(saved)){
+      idToken=saved;
+      verifyToken(saved).then(function(res){
+        if(res.allowed) return enterComposer(res.j);
+        // stale/rejected stored token: back to the gate, not NO ACCESS — let One Tap retry
+        idToken=null;
+        try{ sessionStorage.removeItem('fcAdminTok'); }catch(e){}
+        initGsi(known);
+      }).catch(function(){ idToken=null; initGsi(known); });
+    } else {
+      try{ sessionStorage.removeItem('fcAdminTok'); }catch(e){}
+      initGsi(known);
+    }
+  };
+
+  var sendGroup='all';
+  var GROUP_LABEL={all:'Everyone', youth:'Youth', kids:'Kids', admin:'Team'};
+  document.getElementById('segGroup').addEventListener('click',function(ev){
+    var b=ev.target.closest('button'); if(!b) return;
+    sendGroup=b.getAttribute('data-g');
+    var bs=this.querySelectorAll('button');
+    for(var i=0;i<bs.length;i++) bs[i].className=bs[i]===b?'on':'';
+    document.getElementById('send').textContent=sendGroup==='all'?'Send to everyone':'Send to '+GROUP_LABEL[sendGroup]+' only';
+  });
+
+  function post(dryRun){
+    var payload={ action:'send', idToken:idToken, dryRun:!!dryRun, group:sendGroup,
+      title:document.getElementById('title').value.trim(),
+      body:document.getElementById('body').value.trim(),
+      url:document.getElementById('url').value.trim()||'/' };
+    if(!idToken){ show('Sign in first.', false); return; }
+    if(!dryRun && (!payload.title||!payload.body)){ show('Title and message are required.', false); return; }
+    if(!dryRun && !confirm(sendGroup==='all'
+        ?'Send this alert to ALL subscribed devices now?'
+        :'Send this alert to '+GROUP_LABEL[sendGroup]+' devices ONLY now?')) return;
+    show((dryRun?'Counting…':'Sending…'), true);
+    fetch('/api/push',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(payload)})
+      .then(function(r){ return r.json().then(function(j){ return {status:r.status, j:j}; }); })
+      .then(function(res){
+        if(res.status===401){ return show('Not authorized.', false); }
+        if(!res.j.ok) return show('Error ('+res.status+'): '+(res.j.error||'unknown'), false);
+        if(res.j.dryRun){
+          var c=res.j.counts||{};
+          setCounts(c);
+          return show('✓ '+res.j.total+' device(s) in '+GROUP_LABEL[res.j.group||'all']+'  ·  storage: '+res.j.mode, true);
+        }
+        show('✓ Sent: '+res.j.sent+' ('+GROUP_LABEL[res.j.group||'all']+')  ·  Failed: '+res.j.failed
+          +'  ·  Pruned dead: '+res.j.pruned+'  ·  Total: '+res.j.total, true);
+        refreshCounts();
+      })
+      .catch(function(e){ show('Network error: '+e, false); });
+  }
+  function show(msg, good){ out.style.display='block'; out.textContent=msg; out.className=good?'ok':'bad'; }
+  document.getElementById('dry').addEventListener('click',function(){ post(true); });
+  document.getElementById('send').addEventListener('click',function(){ post(false); });
+
+  /* ---- message history ---- */
+  var histList=document.getElementById('histList');
+
+  function fmtTime(iso){
+    try{
+      var d=new Date(iso);
+      return d.toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
+    }catch(e){ return iso||''; }
+  }
+
+  function renderHistory(entries){
+    histList.innerHTML='';
+    if(!entries.length){
+      var em=document.createElement('div'); em.className='empty'; em.textContent='No alerts sent yet.';
+      histList.appendChild(em); return;
+    }
+    entries.forEach(function(e){
+      var card=document.createElement('div'); card.className='hcard';
+      var t=document.createElement('div'); t.className='ht'; t.textContent=e.title||'(no title)';
+      var b=document.createElement('div'); b.className='hb'; b.textContent=e.body||'';
+      var m=document.createElement('div'); m.className='hm';
+      m.textContent=fmtTime(e.ts)+'  ·  '+(e.sender||'unknown')
+        +(e.group&&e.group!=='all'?'  ·  to '+(GROUP_LABEL[e.group]||e.group):'')
+        +'\n✓ '+(e.sent||0)+' sent'
+        +(e.failed?'  ·  '+e.failed+' failed':'')
+        +(e.pruned?'  ·  '+e.pruned+' pruned':'')
+        +(e.url&&e.url!=='/'?'  ·  → '+e.url:'');
+      card.appendChild(t); card.appendChild(b); card.appendChild(m);
+      histList.appendChild(card);
+    });
+  }
+
+  function openHistory(){
+    document.getElementById('composer').style.display='none';
+    document.getElementById('history').style.display='block';
+    histList.innerHTML='<div class="empty">Loading…</div>';
+    fetch('/api/push',{method:'POST',headers:{'content-type':'application/json'},
+        body:JSON.stringify({action:'history',idToken:idToken})})
+      .then(function(r){ return r.json().then(function(j){ return {status:r.status, j:j}; }); })
+      .then(function(res){
+        if(res.status===401){ histList.innerHTML='<div class="empty">Session expired — reload and sign in again.</div>'; return; }
+        if(!res.j.ok) throw new Error(res.j.error||'unknown');
+        renderHistory(res.j.entries||[]);
+      })
+      .catch(function(e){ histList.innerHTML='<div class="empty">Could not load history: '+String(e.message||e)+'</div>'; });
+  }
+
+  document.getElementById('histLink').addEventListener('click',openHistory);
+  document.getElementById('histBack').addEventListener('click',function(){
+    document.getElementById('history').style.display='none';
+    document.getElementById('composer').style.display='block';
+  });
+</script>
+</body>
+</html>
