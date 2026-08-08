@@ -1,0 +1,16 @@
+{
+  "name": "Fire Conference 2026",
+  "short_name": "FIRE CONF",
+  "description": "Fire Conference 2026 · The River at Tampa Bay — schedule, campus map, and vendors",
+  "start_url": "/?src=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#141415",
+  "theme_color": "#141415",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
