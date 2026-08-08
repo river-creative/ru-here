@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>FIRE CONF.</title>
+<title>RU App</title>
 <link rel="icon" type="image/png" href="/favicon.png">
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 <style>
@@ -75,8 +75,8 @@
     <label>Send to (subscribed devices)</label>
     <div class="seg" id="segGroup">
       <button type="button" data-g="all" class="on">Everyone<span class="cnt" id="cntAll">–</span></button>
-      <button type="button" data-g="youth">Youth<span class="cnt" id="cntYouth">–</span></button>
-      <button type="button" data-g="kids">Kids<span class="cnt" id="cntKids">–</span></button>
+      <button type="button" data-g="students">Students<span class="cnt" id="cntstudents">–</span></button>
+      <button type="button" data-g="instructors">Instructors<span class="cnt" id="cntinstructors">–</span></button>
       <button type="button" data-g="admin">Team<span class="cnt" id="cntAdmin">–</span></button>
     </div>
 
@@ -127,8 +127,8 @@
   function setCounts(c){
     if(!c) return;
     document.getElementById('cntAll').textContent=(c.all!=null?c.all:'–');
-    document.getElementById('cntYouth').textContent=(c.youth!=null?c.youth:'–');
-    document.getElementById('cntKids').textContent=(c.kids!=null?c.kids:'–');
+    document.getElementById('cnt').textContent=(c.!=null?c.:'–');
+    document.getElementById('cntinstructors').textContent=(c.instructors!=null?c.instructors:'–');
     document.getElementById('cntAdmin').textContent=(c.admin!=null?c.admin:'–');
   }
   function refreshCounts(){
@@ -244,7 +244,7 @@
   };
 
   var sendGroup='all';
-  var GROUP_LABEL={all:'Everyone', youth:'Youth', kids:'Kids', admin:'Team'};
+  var GROUP_LABEL={all:'Everyone', :'', instructors:'instructors', admin:'Team'};
   document.getElementById('segGroup').addEventListener('click',function(ev){
     var b=ev.target.closest('button'); if(!b) return;
     sendGroup=b.getAttribute('data-g');
