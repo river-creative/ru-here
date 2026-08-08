@@ -1,6 +1,6 @@
 /* FIRE CONF service worker: push notifications + light offline shell */
 const CACHE = 'fireconf-v2';
-const PRECACHE = ['/', '/newspaper.html', '/manifest.webmanifest', '/icon-192.png', '/icon-512.png', '/apple-touch-icon.png', '/cor/paper-grain.png', '/cor/p01-0.jpg'];
+const PRECACHE = ['/', '/manifest.webmanifest', '/icon-192.png', '/icon-512.png', '/apple-touch-icon.png', '/cor/paper-grain.png', '/cor/p01-0.jpg'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(PRECACHE)).then(() => self.skipWaiting()));
@@ -55,8 +55,8 @@ self.addEventListener('fetch', (e) => {
 /* ---- push ---- */
 self.addEventListener('push', (e) => {
   let data = {};
-  try { data = e.data ? e.data.json() : {}; } catch (err) { data = { title: 'FIRE CONF', body: e.data && e.data.text() }; }
-  const title = data.title || 'FIRE CONF';
+  try { data = e.data ? e.data.json() : {}; } catch (err) { data = { title: 'RU HERE', body: e.data && e.data.text() }; }
+  const title = data.title || 'RU HERE';
   e.waitUntil(self.registration.showNotification(title, {
     body: data.body || '',
     icon: data.icon || '/icon-192.png',
