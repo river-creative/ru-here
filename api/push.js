@@ -1,4 +1,4 @@
-// Single push endpoint (one function so the in-memory fallback share state):
+// Single push endpoint (one function so the in-memory fallback shares state):
 //   POST { action:"subscribe",   subscription }          -> store subscription
 //   POST { action:"unsubscribe", endpoint }              -> remove subscription
 //   POST { action:"send", key|idToken, title, body, url?, dryRun? } -> broadcast (PUSH_ADMIN_KEY / allowlist gated)
