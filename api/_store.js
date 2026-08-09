@@ -1,6 +1,6 @@
 // Subscription storage: Vercel Blob when BLOB_READ_WRITE_TOKEN is present,
 // in-memory fallback otherwise (Fluid Compute instance reuse makes this good
-// enough for smoke testing; link the Blob store for real durability).
+// enough for smoke testing; link the Blob stores for real durability).
 const crypto = require('crypto');
 
 const PREFIX = 'push-subs/';
