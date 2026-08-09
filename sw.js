@@ -1,6 +1,6 @@
-/* FIRE CONF service worker: push notifications + light offline shell */
-const CACHE = 'fireconf-v2';
-const PRECACHE = ['/', '/manifest.webmanifest', '/icon-192.png', '/icon-512.png', '/apple-touch-icon.png', '/cor/paper-grain.png', '/cor/p01-0.jpg'];
+/* RIVER UNIVERSITY service worker: push notifications + light offline shell */
+const CACHE = 'ru-here-v2';
+const PRECACHE = ['/', '/manifest.webmanifest', '/icon-192.png', '/icon-512.png', '/apple-touch-icon.png'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(PRECACHE)).then(() => self.skipWaiting()));
