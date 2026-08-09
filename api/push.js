@@ -77,7 +77,7 @@ module.exports = async (req, res) => {
       if (body.dryRun) return res.status(200).json({ ok: true, dryRun: true, group, total: targets.length, counts, mode });
       if (!body.title || !body.body) return res.status(400).json({ ok: false, error: 'title and body required' });
 
-      webpush.setVapidDetails(process.env.VAPID_SUBJECT || 'mailto:tony@kingsarmscoffee.com', pub, priv);
+      webpush.setVapidDetails(process.env.VAPID_SUBJECT || 'mailto:agarcia@revival.com', pub, priv);
       const payload = JSON.stringify({
         title: String(body.title).slice(0, 120),
         body: String(body.body).slice(0, 400),
