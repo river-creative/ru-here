@@ -60,7 +60,7 @@
       <h1><img src="/apple-touch-icon.png" alt="" style="width:22px;height:22px;">Send Event Alert</h1>
       <button id="histLink" class="ghost">History</button>
     </div>
-    <div class="sub">FIRE CONFERENCE 2026 · PUSH BROADCAST</div>
+    <div class="sub">River University 2026 · PUSH BROADCAST</div>
     <div id="who"></div>
 
     <label for="title">Title</label>
@@ -127,7 +127,7 @@
   function setCounts(c){
     if(!c) return;
     document.getElementById('cntAll').textContent=(c.all!=null?c.all:'–');
-    document.getElementById('cnt').textContent=(c.!=null?c.:'–');
+    document.getElementById('cntstudents').textContent=(c.!=null?c.students:'–');
     document.getElementById('cntinstructors').textContent=(c.instructors!=null?c.instructors:'–');
     document.getElementById('cntAdmin').textContent=(c.admin!=null?c.admin:'–');
   }
@@ -244,7 +244,7 @@
   };
 
   var sendGroup='all';
-  var GROUP_LABEL={all:'Everyone', :'', instructors:'instructors', admin:'Team'};
+  var GROUP_LABEL={all:'Everyone',students:'Students', instructors:'Instructors', admin:'Team'};
   document.getElementById('segGroup').addEventListener('click',function(ev){
     var b=ev.target.closest('button'); if(!b) return;
     sendGroup=b.getAttribute('data-g');
