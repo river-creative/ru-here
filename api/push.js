@@ -7,7 +7,7 @@ const webpush = require('web-push');
 const { saveSub, removeSub, listSubs, pruneSub, logSend, listLog, getConfig, setConfig } = require('./_store');
 
 // Everyone is implicitly in "all"; these are the opt-in extras a device may carry.
-const VALID_GROUPS = ['Students', 'Instructors', 'admin'];
+const VALID_GROUPS = ['students', 'instructors', 'admin'];
 
 function subGroups(sub) { return Array.isArray(sub.groups) ? sub.groups : []; }
 
