@@ -4,7 +4,7 @@
 //   POST { action:"send", key|idToken, title, body, url?, dryRun? } -> broadcast (PUSH_ADMIN_KEY / allowlist gated)
 //   POST { action:"history", key|idToken }                  -> log of sent broadcasts (same gate)
 const webpush = require('web-push');
-const { saveSub, removeSub, listSubs, pruneSub, logSend, listLog, getConfig, setConfig } = require('./_store');
+const { saveSub, removeSub, listSubs, pruneSub, logSend, listLog, clearLog, getConfig, setConfig } = require('./_store');
 
 // Everyone is implicitly in "all"; these are the opt-in extras a device may carry.
 const VALID_GROUPS = ['students', 'instructors', 'admin'];
@@ -117,6 +117,30 @@ module.exports = async (req, res) => {
       if (!authed) return res.status(401).json({ ok: false, error: 'unauthorized' });
       const { entries, mode } = await listLog();
       return res.status(200).json({ ok: true, entries, mode });
+    }
+
+    if (body.action === 'messages') {
+      // public read for the in-app message center: the same log `history` serves,
+      // minus the delivery telemetry (sender, sent/failed counts) that is admin-only.
+      // Group opt-in is self-service in the app, so a device simply asks for the
+      // groups it carries — this mirrors exactly what it would have received live.
+      const want = (Array.isArray(body.groups) ? body.groups : [])
+        .map((g) => String(g).toLowerCase()).filter((g) => VALID_GROUPS.includes(g));
+      const { entries, mode } = await listLog();
+      const messages = entries
+        .filter((e) => !e.group || e.group === 'all' || want.includes(e.group))
+        .slice(0, 50)
+        .map((e) => ({ ts: e.ts, title: e.title, body: e.body, url: e.url || '/' }));
+      return res.status(200).json({ ok: true, messages, mode });
+    }
+
+    if (body.action === 'clearLog') {
+      // admin-gated: wipes the broadcast history (and with it the app's message
+      // center for everyone). Used to purge test sends before going live.
+      const { authed } = await authSender(body);
+      if (!authed) return res.status(401).json({ ok: false, error: 'unauthorized' });
+      const { cleared, mode } = await clearLog();
+      return res.status(200).json({ ok: true, cleared, mode });
     }
 
     if (body.action === 'config') {

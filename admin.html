@@ -108,12 +108,16 @@
     </div>
     <div class="sub">SENT ALERTS · NEWEST FIRST</div>
     <div id="histList"></div>
+    <button id="histClear" class="ghost" style="display:none;margin-top:16px;color:#ff6b6b;border-color:#5c2c2c;">Clear history</button>
+    <p class="warn">Clearing history also empties the Messages screen in the app for everyone. Use it to purge test sends before going live.</p>
   </div>
 
 <script>
-  /* Set after creating the OAuth client in Google Cloud Console (Web application,
-     authorized JS origins: https://ru-here-five.vercel.app/ + the preview URL). */
-  var GOOGLE_CLIENT_ID='975658004630-4chremn1nnmdufd6mraehhcccf171j6a.apps.googleusercontent.com';
+  /* OAuth client lives in the "ru-here-app" Google Cloud project (Web application).
+     Authorized JS origins: app.riveruniversity.org, ru-here-omega.vercel.app,
+     ru-here-river-creative.vercel.app, ru-here-git-main-river-creative.vercel.app.
+     Must match the GOOGLE_CLIENT_ID env var — the API checks the token's aud against it. */
+  var GOOGLE_CLIENT_ID='921902263981-pj09tp5iqhnp35au52evap5hq563kqv8.apps.googleusercontent.com';
 
   var idToken=null, out=document.getElementById('out');
 
@@ -296,6 +300,7 @@
 
   function renderHistory(entries){
     histList.innerHTML='';
+    document.getElementById('histClear').style.display=entries.length?'block':'none';
     if(!entries.length){
       var em=document.createElement('div'); em.className='empty'; em.textContent='No alerts sent yet.';
       histList.appendChild(em); return;
@@ -331,6 +336,22 @@
       .catch(function(e){ histList.innerHTML='<div class="empty">Could not load history: '+String(e.message||e)+'</div>'; });
   }
 
+  document.getElementById('histClear').addEventListener('click',function(){
+    if(!idToken) return;
+    if(!confirm('Delete ALL sent-alert history? This also empties the Messages screen in the app for everyone. No undo.')) return;
+    var b=this; b.disabled=true; b.textContent='Clearing…';
+    fetch('/api/push',{method:'POST',headers:{'content-type':'application/json'},
+        body:JSON.stringify({action:'clearLog',idToken:idToken})})
+      .then(function(r){ return r.json().then(function(j){ return {status:r.status,j:j}; }); })
+      .then(function(res){
+        b.disabled=false; b.textContent='Clear history';
+        if(res.status===401){ histList.innerHTML='<div class="empty">Session expired — reload and sign in again.</div>'; return; }
+        if(!res.j.ok){ histList.innerHTML='<div class="empty">Error: '+(res.j.error||'unknown')+'</div>'; return; }
+        openHistory(); /* re-fetch: should now be empty */
+      })
+      .catch(function(e){ b.disabled=false; b.textContent='Clear history';
+        histList.innerHTML='<div class="empty">Network error: '+String(e)+'</div>'; });
+  });
   document.getElementById('histLink').addEventListener('click',openHistory);
   document.getElementById('histBack').addEventListener('click',function(){
     document.getElementById('history').style.display='none';

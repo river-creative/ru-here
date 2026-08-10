@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="utf-8" />
-<script>/* Preferencia de idioma: si el visitante eligió inglés, lo llevamos a la app en inglés. Solo se activa si no coincide, así nunca se repite en bucle. */try{if(localStorage.getItem('ru-lang')==='en'){location.replace('index.html');}}catch(e){}</script>
+<script>/* Preferencia de idioma: si el visitante eligió inglés, lo llevamos a la app en inglés. Solo se activa si no coincide, así nunca se repite en bucle. */try{if(localStorage.getItem('ru-lang')==='en'){location.replace('index.html'+location.search);}}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
 <script>
   /* On Safari, shrink the UI overlays to 75% — the canvas stays full-size so it fills the screen. */
@@ -486,6 +486,16 @@
   #shellAlerts.open{visibility:visible;transform:translateY(0);border-radius:0;
     transition:transform .48s cubic-bezier(0.32,0.72,0,1), border-radius .48s ease, visibility 0s 0s;}
   @media (prefers-reduced-motion:reduce){ #shellAlerts{transition:none;} }
+  /* ---- Messages: same sheet pattern, layers above the menu ---- */
+  #shellMessages{display:flex;z-index:77;visibility:hidden;transform:translateY(103%);
+    border-radius:24px 24px 0 0;overflow:hidden;box-shadow:0 -18px 60px rgba(0,0,0,0.55);
+    transition:transform .48s cubic-bezier(0.32,0.72,0,1), border-radius .48s ease, visibility 0s .48s;}
+  #shellMessages.open{visibility:visible;transform:translateY(0);border-radius:0;
+    transition:transform .48s cubic-bezier(0.32,0.72,0,1), border-radius .48s ease, visibility 0s 0s;}
+  @media (prefers-reduced-motion:reduce){ #shellMessages{transition:none;} }
+  #shMsgClose{width:40px;height:40px;border-radius:50%;background:var(--sh-card);border:0;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;flex:0 0 auto;color:var(--sh-lt);}
+  #shMsgClose:hover{background:var(--sh-card2);}
   /* alert toggle rows */
   .alRow{display:flex;align-items:center;justify-content:space-between;gap:14px;background:var(--sh-card);
     border-radius:16px;padding:15px 16px;margin-bottom:8px;border:0;width:100%;font-family:inherit;
@@ -826,6 +836,7 @@
         <a class="shMenuRow" id="shMenuLang" href="index.html" onclick="try{localStorage.setItem('ru-lang','en')}catch(e){}"><span>English<span style="display:block;font-weight:500;font-size:11.5px;color:var(--sh-mut);margin-top:2px;">View the app in English</span></span><span style="color:var(--sh-mut);font-size:14px;">&rarr;</span></a>
         <button class="shMenuRow" id="shMenuInstall" style="display:none;"><span>Obtener la App</span><span style="color:var(--sh-mut);font-size:14px;">&darr;</span></button>
         <button class="shMenuRow" id="shMenuAlerts"><span>Notificaciones<span id="shAlertsState" style="display:block;font-weight:500;font-size:11.5px;color:var(--sh-mut);margin-top:2px;">Verificando&hellip;</span></span><svg id="shAlertsBell" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--sh-mut);flex:0 0 auto;"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></button>
+        <button class="shMenuRow" id="shMenuMessages"><span>Mensajes<span id="shMsgState" style="display:block;font-weight:500;font-size:11.5px;color:var(--sh-mut);margin-top:2px;">Avisos del evento que has recibido</span></span><span style="display:flex;align-items:center;gap:8px;flex:0 0 auto;"><span id="shMsgDot" style="display:none;min-width:19px;height:19px;border-radius:10px;background:var(--sh-org);color:#fff;font-size:11px;font-weight:800;line-height:19px;text-align:center;padding:0 5px;">0</span><span style="color:var(--sh-mut);font-size:14px;">&rarr;</span></span></button>
         <a class="shMenuRow" href="https://www.riveruniversity.org" target="_blank" rel="noopener"><span>RiverUniversity.org</span><span style="color:var(--sh-mut);font-size:14px;">&nearr;</span></a>
         <a class="shMenuRow" href="https://events.revival.com" target="_blank" rel="noopener"><span>Próximos Eventos</span><span style="color:var(--sh-mut);font-size:14px;">&nearr;</span></a>
         <a class="shMenuRow" id="shMenuFiles" href="https://drive.google.com/drive/u/0/folders/1gnVdmztO_MPO1_8Kbk6VK4cxSTwJXdSk" target="_blank" rel="noopener"><span>Archivos Digitales</span><span style="color:var(--sh-mut);font-size:14px;">&nearr;</span></a>
@@ -917,6 +928,19 @@
     </div>
   </div>
 
+  <div id="shellMessages" class="shellScreen">
+    <div class="shHead" style="position:relative;">
+      <span class="shTitle">Mensajes</span>
+      <button id="shMsgMarkAll" style="display:none;background:none;border:1.5px solid rgba(255,255,255,0.18);color:var(--sh-lt);font-family:inherit;font-size:12px;font-weight:700;border-radius:16px;padding:7px 13px;cursor:pointer;margin-left:auto;margin-right:10px;flex:0 0 auto;">Marcar leídos</button>
+      <button id="shMsgClose" aria-label="Cerrar mensajes">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M2 2l10 10M12 2L2 12"/></svg>
+      </button>
+    </div>
+    <div class="shScroll" style="padding-top:14px;">
+      <div id="shMsgList"></div>
+    </div>
+  </div>
+
   <!-- 3a Campus map overlays (visible only in map mode) -->
   <div id="shMapTop"></div>
   <div id="shMapHead">
@@ -945,8 +969,9 @@
       <svg width="27" height="27" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.75h11.25a.75.75 0 0 1 .75.75V17.5H8.5A2.5 2.5 0 0 0 6 20V4.75A1 1 0 0 1 7 3.75z"/><path d="M6 20a2.5 2.5 0 0 0 2.5 2.5H19"/><path d="M18.25 17.5V22.5"/><path fill="currentColor" stroke="none" d="M10.5 3.75h4v6.1a.35.35 0 0 1-.57.27L12.5 8.9l-1.43 1.22a.35.35 0 0 1-.57-.27v-6.1z"/></svg>
       <span class="lbl">Currículo</span>
     </button>
-    <button class="shTab" data-tab="menu" aria-label="Menu">
+    <button class="shTab" data-tab="menu" aria-label="Menu" style="position:relative;">
       <span class="shBurger"><i></i><i></i><i></i></span>
+      <span id="shTabDot" style="display:none;position:absolute;top:5px;right:calc(50% - 15px);width:8px;height:8px;border-radius:5px;background:var(--sh-org);box-shadow:0 0 0 2px var(--sh-bg);"></span>
       <span class="lbl">Menú</span>
     </button>
   </nav>
@@ -3174,6 +3199,11 @@
     if('serviceWorker' in navigator){
       navigator.serviceWorker.addEventListener('message', function(ev){
         var d=ev.data||{};
+        if(d.newMessage){ fetchMsgs().then(function(){ if(msgsOpen) renderMsgs(false); }); }
+        if(d.openMessages){
+          /* same 250ms breather as nav: iOS can still be resuming the webview */
+          setTimeout(function(){ if(!msgsOpen) openMessages(); }, 250);
+        }
         if(d.nav && typeof d.nav==='string'){
           /* small delay: navigating synchronously while iOS is still resuming the
              page can kill the webview; replace() keeps standalone history depth-1
@@ -3286,6 +3316,104 @@
       el('shellAlerts').classList.add('open'); track('/alerts');
     }
     function closeAlerts(){ alertsOpen=false; el('shellAlerts').classList.remove('open'); }
+
+    /* ---- messages: in-app archive of the push broadcasts ----
+       Server-backed (api/push.js `messages`) so a device sees the full run of
+       alerts even if it installed late or had notifications off. Cached locally
+       so the sheet still renders offline; unread is tracked by newest-seen ts. */
+    var msgsOpen=false, msgs=[];
+    function msgsCacheRead(){ try{ var m=JSON.parse(localStorage.getItem('fc_msgs')||'[]'); return Array.isArray(m)?m:[]; }catch(e){ return []; } }
+    function msgsCacheWrite(m){ try{ localStorage.setItem('fc_msgs', JSON.stringify(m.slice(0,50))); }catch(e){} }
+    function msgsLastRead(){ try{ return localStorage.getItem('fc_msgs_read')||''; }catch(e){ return ''; } }
+    function msgsUnread(m){ var last=msgsLastRead(); var n=0;
+      for(var i=0;i<m.length;i++){ if(String(m[i].ts||'')>last) n++; } return n; }
+
+    function refreshMsgBadge(){
+      var n=msgsUnread(msgs), dot=el('shMsgDot'), tabDot=el('shTabDot');
+      if(dot){ dot.textContent=n>9?'9+':String(n); dot.style.display=n?'inline-block':'none'; }
+      if(tabDot) tabDot.style.display=n?'block':'none';
+      var ma=el('shMsgMarkAll'); if(ma) ma.style.display=n?'inline-block':'none';
+      var st=el('shMsgState');
+      if(st) st.textContent=n?(n===1?'1 mensaje nuevo':n+' mensajes nuevos')
+        :(msgs.length?'Avisos del evento que has recibido':'Aún no hay mensajes');
+    }
+
+    function markAllMsgsRead(){
+      /* "now" outranks every past ts, so this also covers cached-only lists */
+      try{ localStorage.setItem('fc_msgs_read', new Date().toISOString()); }catch(e){}
+      renderMsgs(false); refreshMsgBadge();
+    }
+
+    function fetchMsgs(){
+      return fetch('/api/push',{method:'POST',headers:{'content-type':'application/json'},
+          body:JSON.stringify({action:'messages',groups:getGroups()})})
+        .then(function(r){ return r.json(); })
+        .then(function(j){
+          if(!j||!j.ok||!Array.isArray(j.messages)) return false;
+          msgs=j.messages; msgsCacheWrite(msgs); refreshMsgBadge(); return true;
+        })
+        .catch(function(){ return false; });
+    }
+
+    function fmtMsgTime(iso){
+      try{ var d=new Date(iso);
+        return d.toLocaleString('es',{weekday:'short',hour:'numeric',minute:'2-digit'});
+      }catch(e){ return ''; }
+    }
+
+    function renderMsgs(loading){
+      var list=el('shMsgList'); if(!list) return;
+      list.innerHTML='';
+      if(!msgs.length){
+        var em=document.createElement('div');
+        em.style.cssText='color:var(--sh-mut);font-size:13px;text-align:center;padding:38px 10px;line-height:1.6;';
+        em.textContent=loading?'Cargando…':'Aún no hay mensajes. Los avisos del evento aparecerán aquí.';
+        list.appendChild(em); return;
+      }
+      var last=msgsLastRead();
+      msgs.forEach(function(m){
+        var isNew=String(m.ts||'')>last;
+        var card=document.createElement('div');
+        card.style.cssText='background:var(--sh-card);border-radius:14px;padding:13px 15px;margin-bottom:10px;'
+          +(isNew?'border-left:3px solid var(--sh-org);':'border-left:3px solid transparent;');
+        var t=document.createElement('div');
+        t.style.cssText='font-weight:700;font-size:15px;color:#fff;';
+        t.textContent=m.title||'';
+        var b=document.createElement('div');
+        b.style.cssText='font-size:13.5px;color:var(--sh-lt);margin-top:4px;line-height:1.55;white-space:pre-wrap;';
+        b.textContent=m.body||'';
+        var meta=document.createElement('div');
+        meta.style.cssText='font-size:11px;color:var(--sh-dim);margin-top:9px;';
+        meta.textContent=fmtMsgTime(m.ts);
+        card.appendChild(t); card.appendChild(b); card.appendChild(meta);
+        if(m.url && m.url!=='/'){
+          var a=document.createElement('a');
+          var ext=false; try{ ext=new URL(m.url, location.origin).origin!==location.origin; }catch(e){}
+          a.href=m.url;
+          if(ext){ a.target='_blank'; a.rel='noopener'; }
+          a.style.cssText='display:inline-block;margin-top:11px;font-size:12.5px;font-weight:700;'
+            +'color:var(--sh-org);text-decoration:none;';
+          a.textContent=(ext?'Abrir enlace ↗':'Abrir →');
+          a.addEventListener('click', function(){ trackEvent('message_link',{url:m.url}); });
+          card.appendChild(a);
+        }
+        list.appendChild(card);
+      });
+    }
+
+    function openMessages(){
+      msgsOpen=true;
+      msgs=msgsCacheRead();
+      renderMsgs(!msgs.length);
+      el('shellMessages').classList.add('open');
+      track('/messages');
+      fetchMsgs().then(function(){
+        if(!msgsOpen) return;
+        renderMsgs(false);
+        /* read state is explicit: the "Mark all read" button clears it */
+      });
+    }
+    function closeMessages(){ msgsOpen=false; el('shellMessages').classList.remove('open'); refreshMsgBadge(); }
     function toggleAlerts(){
       if(!pushSupported()){
         if(isIOS()&&!isStandalone()) alert('Para recibir notificaciones:\n\n1. Toca el botón Compartir\n2. Toca "Agregar a la Pantalla de Inicio"\n3. Abre RIVER UNIVERSITY desde tu pantalla de inicio\n4. Activa las Notificaciones en el Menú');
@@ -3463,6 +3591,7 @@
     function showTab(name){
       if(menuOpen) closeMenu(true);
       if(alertsOpen) closeAlerts();
+      if(msgsOpen) closeMessages();
       tab=name;
       Object.keys(SCREENS).forEach(function(k){ el(SCREENS[k]).classList.toggle('on', k===name); });
       document.body.classList.toggle('shellMap', name==='map');
@@ -3562,10 +3691,15 @@
     el('shMenuAddendum').addEventListener('click', function(){ if(window.__openAddendum) window.__openAddendum(); });
     el('shMenuVendors').addEventListener('click', function(){ showTab('vendors'); });
     el('shMenuAlerts').addEventListener('click', function(){ openAlerts(); });
+    el('shMenuMessages').addEventListener('click', function(){ openMessages(); });
+    el('shMsgClose').addEventListener('click', function(){ closeMessages(); });
+    el('shMsgMarkAll').addEventListener('click', function(){ markAllMsgsRead(); });
     el('shAskGo').addEventListener('click', function(){ closeAsk(); toggleAlerts(); });
     el('shAlertsClose').addEventListener('click', function(){ closeAlerts(); });
     el('shMenuNews').addEventListener('click', function(){ if(window.__openHandbook) window.__openHandbook(); });
     refreshNewsRows();
+    // paint the unread badge from cache immediately, then reconcile with the server
+    msgs=msgsCacheRead(); refreshMsgBadge(); fetchMsgs();
     el('alMaster').addEventListener('click', function(){ toggleAlerts(); });
     el('alAdmin').addEventListener('click', function(){ setGroup('admin', !hasGroup('admin')); });
     el('shAskLater').addEventListener('click', function(){ closeAsk(); trackEvent('alerts_prompt_dismissed'); });
@@ -3613,6 +3747,12 @@
     showTab(urlTab||resumeTab||'today');
     /* deep link from the newspaper's Property Map section */
     if(/[?&]booth=1/.test(location.search)){ try{ openPavModal(); }catch(e){} }
+    /* cold start from a notification tap (no window was open): openWindow sent us
+       here. Must run AFTER the initial showTab above — showTab closes the sheet. */
+    if(/[?&]open=messages/.test(location.search)){
+      try{ history.replaceState(null,'',location.pathname); }catch(e){}
+      openMessages();
+    }
   })();
   </script>
 </body>

@@ -57,29 +57,37 @@ self.addEventListener('push', (e) => {
   let data = {};
   try { data = e.data ? e.data.json() : {}; } catch (err) { data = { title: 'RU HERE', body: e.data && e.data.text() }; }
   const title = data.title || 'RU HERE';
-  e.waitUntil(self.registration.showNotification(title, {
-    body: data.body || '',
-    icon: data.icon || '/icon-192.png',
-    badge: data.badge || '/icon-192.png',
-    data: { url: data.url || '/' },
-  }));
+  e.waitUntil(Promise.all([
+    self.registration.showNotification(title, {
+      body: data.body || '',
+      icon: data.icon || '/icon-192.png',
+      badge: data.badge || '/icon-192.png',
+      data: { url: data.url || '/' },
+    }),
+    // nudge any open window so the Messages unread badge updates without a reload
+    clients.matchAll({ type: 'window', includeUncontrolled: true })
+      .then((wins) => wins.forEach((w) => w.postMessage({ newMessage: true })))
+      .catch(() => {}),
+  ]));
 });
 
+/* Tapping a notification always lands on the Messages sheet rather than following
+   the payload URL. Two reasons: the message stays readable (a tap that jumps
+   straight out gives you nothing to come back to), and cross-origin targets are
+   unreachable from here anyway — WindowClient.navigate() rejects for other
+   origins and iOS blocks location.replace() out of a standalone PWA. The link
+   itself is rendered as a button inside the message card. */
 self.addEventListener('notificationclick', (e) => {
   e.notification.close();
-  const url = (e.notification.data && e.notification.data.url) || '/';
   e.waitUntil(
     clients.matchAll({ type: 'window', includeUncontrolled: true }).then((wins) => {
       for (const w of wins) {
         if ('focus' in w) {
-          // iOS does not implement WindowClient.navigate() — message the page
-          // so it navigates itself; keep navigate() for Android/desktop.
-          w.postMessage({ nav: url });
-          if (w.navigate) { try { w.navigate(url).catch(() => {}); } catch (err) {} }
+          w.postMessage({ openMessages: true });
           return w.focus();
         }
       }
-      return clients.openWindow(url);
+      return clients.openWindow('/?open=messages');
     })
   );
 });

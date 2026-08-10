@@ -124,6 +124,24 @@ async function listLog() {
   return { entries: [...memLog].reverse(), mode: 'memory' };
 }
 
+async function clearLog() {
+  if (hasBlob()) {
+    const { list, del } = require('@vercel/blob');
+    let cleared = 0;
+    let cursor;
+    do {
+      const page = await list({ prefix: LOG_PREFIX, cursor, limit: 1000 });
+      const paths = page.blobs.map((b) => b.pathname);
+      if (paths.length) { await del(paths); cleared += paths.length; }
+      cursor = page.cursor;
+    } while (cursor);
+    return { cleared, mode: 'blob' };
+  }
+  const cleared = memLog.length;
+  memLog.length = 0;
+  return { cleared, mode: 'memory' };
+}
+
 // Config is written as immutable versioned blobs (push-config/v-<ts>.json) because
 // overwriting a fixed path leaves reads stale for up to ~60s (origin propagation).
 // New blobs list and fetch instantly. Older versions are pruned on each write.
@@ -166,4 +184,4 @@ async function setConfig(patch) {
   return { config: memCfg, mode: 'memory' };
 }
 
-module.exports = { saveSub, removeSub, listSubs, pruneSub, logSend, listLog, getConfig, setConfig };
+module.exports = { saveSub, removeSub, listSubs, pruneSub, logSend, listLog, clearLog, getConfig, setConfig };
