@@ -1,9 +1,30 @@
 /* RIVER UNIVERSITY service worker: push notifications + light offline shell */
-const CACHE = 'ru-here-v2';
+const CACHE = 'ru-here-v3';
 const PRECACHE = ['/', '/manifest.webmanifest', '/icon-192.png', '/icon-512.png', '/apple-touch-icon.png'];
 
+/* Standalone pages that live outside the app shell — the Spanish shell, plus the
+   documents we open inside full-screen iframes. Each one caches itself and falls
+   back to itself. Falling back to '/' here would render the entire app shell
+   inside the iframe, which looks like the app opened itself in a window. */
+const PAGES = [
+  '/newspaper.html',
+  '/booklist.html',
+  '/handbook.html',
+  '/handbook-es.html',
+  '/index-es.html',
+];
+
 self.addEventListener('install', (e) => {
-  e.waitUntil(caches.open(CACHE).then((c) => c.addAll(PRECACHE)).then(() => self.skipWaiting()));
+  e.waitUntil(
+    caches.open(CACHE)
+      // PRECACHE is atomic on purpose: without these the app cannot boot offline.
+      .then((c) => c.addAll(PRECACHE).then(() =>
+        // PAGES is tolerant: a page that isn't deployed yet must not fail the
+        // whole install and kill the service worker.
+        Promise.all(PAGES.map((p) => c.add(p).catch(() => {})))
+      ))
+      .then(() => self.skipWaiting())
+  );
 });
 
 self.addEventListener('activate', (e) => {
@@ -19,22 +40,22 @@ self.addEventListener('activate', (e) => {
 self.addEventListener('fetch', (e) => {
   const url = new URL(e.request.url);
   if (e.request.mode === 'navigate') {
+    // A navigation is cached under its own path, and only if we recognise it.
+    // Caching every navigation poisoned the offline shell when users visited
+    // other pages (e.g. /admin.html) — their response became the '/' fallback.
+    const key = (url.pathname === '/' || url.pathname === '/index.html') ? '/'
+              : PAGES.indexOf(url.pathname) !== -1 ? url.pathname
+              : null;
     e.respondWith(
       fetch(e.request)
         .then((res) => {
-          // Only the app shell may refresh the '/' cache entry. Caching every
-          // navigation here poisoned the offline shell when users visited other
-          // pages (e.g. /admin.html) — their response became the '/' fallback.
-          if (url.pathname === '/' || url.pathname === '/index.html') {
+          if (key && res && res.ok) {
             const copy = res.clone();
-            caches.open(CACHE).then((c) => c.put('/', copy)).catch(() => {});
-          } else if (url.pathname === '/newspaper.html') {
-            const copy = res.clone();
-            caches.open(CACHE).then((c) => c.put('/newspaper.html', copy)).catch(() => {});
+            caches.open(CACHE).then((c) => c.put(key, copy)).catch(() => {});
           }
           return res;
         })
-        .catch(() => caches.match(url.pathname === '/newspaper.html' ? '/newspaper.html' : '/'))
+        .catch(() => caches.match(key || '/'))
     );
     return;
   }
