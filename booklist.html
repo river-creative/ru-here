@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>River University · Booklist · 1st Quarter 2026–2027</title>
+<meta name="theme-color" content="#0F3952">
+<meta name="description" content="Every book you need this quarter. Find your school, your year, and what to buy. 1st Quarter booklist for River University, 2026–2027.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#082A3D;
+    --navy:#0F3952;
+    --navy-2:#17516F;
+    --blue:#1A6B94;
+    --blue-wash:#E3EEF3;
+    --gold:#8F6712;
+    --gold-lite:#D6A329;
+    --yellow:#FFC72C;
+    --paper:#EFF3F9;
+    --card:#FFFFFF;
+    --line:#D3DCEA;
+    --line-soft:#E5EBF4;
+    --muted:#5B6C87;
+    --green:#1F6B4F;
+    --green-wash:#E2F0EA;
+
+    --display:"Archivo","Archivo Expanded","Helvetica Neue",Arial,sans-serif;
+    --body:"Source Sans 3","Segoe UI",system-ui,-apple-system,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+
+    --r:14px;
+    --shadow:0 1px 2px rgba(8,42,61,.07), 0 8px 24px -12px rgba(8,42,61,.28);
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:16px;
+    line-height:1.45;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  a{color:var(--blue)}
+
+  /* ---------- Masthead ---------- */
+  .masthead{
+    background:
+      radial-gradient(120% 140% at 88% -20%, rgba(255,199,44,.20) 0%, rgba(255,199,44,0) 55%),
+      linear-gradient(180deg,var(--navy) 0%, var(--ink) 100%);
+    color:#fff;
+    padding:22px 20px 20px;
+    border-bottom:3px solid var(--yellow);
+  }
+  .masthead-inner{max-width:1080px;margin:0 auto}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:11.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--yellow);
+    margin:0 0 8px;
+    display:flex;align-items:center;gap:9px;flex-wrap:wrap;
+  }
+  .eyebrow .dot{width:5px;height:5px;border-radius:50%;background:var(--yellow);opacity:.7}
+  h1{
+    font-family:var(--display);
+    font-variation-settings:"wdth" 118,"wght" 800;
+    font-size:clamp(27px,6.4vw,46px);
+    line-height:1.02;
+    letter-spacing:-.015em;
+    margin:0;
+    text-transform:uppercase;
+  }
+  h1 .year{color:var(--yellow);display:block}
+  .kicker{
+    margin:12px 0 0;
+    max-width:56ch;
+    color:#B7D2DE;
+    font-size:15px;
+  }
+
+  /* ---------- Search ---------- */
+  .searchwrap{
+    position:sticky;top:0;z-index:40;
+    background:rgba(239,243,249,.92);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    padding:12px 20px;
+  }
+  .searchbar{
+    max-width:1080px;margin:0 auto;
+    display:flex;align-items:center;gap:10px;
+    background:var(--card);
+    border:1.5px solid var(--line);
+    border-radius:999px;
+    padding:9px 14px;
+    box-shadow:var(--shadow);
+  }
+  .searchbar:focus-within{border-color:var(--blue);box-shadow:0 0 0 4px var(--blue-wash)}
+  .searchbar svg{flex:none;color:var(--muted)}
+  #q{
+    flex:1;min-width:0;border:0;outline:0;background:transparent;
+    font-family:var(--body);font-size:16px;color:var(--ink);
+  }
+  #q::placeholder{color:#8AA3B0}
+  .clearbtn{
+    border:0;background:var(--blue-wash);color:var(--navy);
+    font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+    padding:5px 10px;border-radius:999px;cursor:pointer;display:none;
+  }
+  .clearbtn.on{display:block}
+
+  /* ---------- Layout ---------- */
+  .shell{max-width:1080px;margin:0 auto;padding:20px 20px 56px}
+
+  .section-label{
+    font-family:var(--mono);
+    font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted);margin:0 0 10px;
+  }
+
+  /* ---------- School rail ---------- */
+  .rail{
+    display:flex;gap:9px;overflow-x:auto;padding:2px 20px 14px;
+    margin:0 -20px;scrollbar-width:none;
+  }
+  .rail::-webkit-scrollbar{display:none}
+  .school{
+    flex:none;cursor:pointer;text-align:left;
+    background:var(--card);border:1.5px solid var(--line);
+    border-radius:12px;padding:11px 15px;min-width:132px;
+    font-family:var(--body);color:var(--ink);
+    transition:border-color .15s, background .15s;
+  }
+  .school:hover{border-color:var(--gold-lite)}
+  .school .abbr{
+    display:block;font-family:var(--display);
+    font-variation-settings:"wdth" 112,"wght" 800;
+    font-size:19px;letter-spacing:.01em;
+  }
+  .school .full{display:block;font-size:12px;color:var(--muted);margin-top:2px;line-height:1.25}
+  .school[aria-selected="true"]{
+    background:var(--navy);border-color:var(--navy);color:#fff;
+  }
+  .school[aria-selected="true"] .full{color:#A6C4D2}
+  .school[aria-selected="true"] .abbr{color:var(--gold-lite)}
+
+  /* ---------- Year pills ---------- */
+  .years{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 20px}
+  .year-pill{
+    cursor:pointer;border:1.5px solid var(--line);background:var(--card);
+    color:var(--navy);border-radius:999px;padding:7px 15px;
+    font-family:var(--mono);font-size:12.5px;letter-spacing:.05em;
+  }
+  .year-pill:hover{border-color:var(--gold-lite)}
+  .year-pill[aria-selected="true"]{
+    background:var(--yellow);border-color:var(--gold-lite);color:var(--ink);font-weight:600;
+  }
+
+  /* ---------- Track head ---------- */
+  .track-head{
+    display:flex;align-items:flex-end;justify-content:space-between;
+    gap:16px;flex-wrap:wrap;margin:0 0 6px;
+  }
+  .track-head h2{
+    font-family:var(--display);
+    font-variation-settings:"wdth" 116,"wght" 800;
+    font-size:clamp(22px,4.6vw,32px);
+    text-transform:uppercase;letter-spacing:-.01em;margin:0;line-height:1.05;
+  }
+  .track-head .sub{color:var(--muted);font-size:14px;margin:3px 0 0}
+  .printbtn{
+    border:1.5px solid var(--line);background:var(--card);color:var(--navy);
+    border-radius:999px;padding:7px 14px;cursor:pointer;
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
+  }
+  .printbtn:hover{border-color:var(--blue);color:var(--blue)}
+
+  .notice{
+    display:flex;gap:11px;align-items:flex-start;
+    background:linear-gradient(90deg, rgba(255,199,44,.22), rgba(255,199,44,.07));
+    border-left:4px solid var(--yellow);
+    border-radius:8px;padding:11px 14px;margin:14px 0 18px;
+    font-size:14.5px;color:#3B3113;
+  }
+  .notice b{color:var(--ink)}
+
+  /* ---------- Tally strip (signature) ---------- */
+  .tally{
+    display:grid;grid-template-columns:auto 1fr;gap:0 18px;align-items:center;
+    background:var(--navy);color:#fff;border-radius:var(--r);
+    padding:15px 20px;margin:14px 0 22px;box-shadow:var(--shadow);
+  }
+  .tally .amount{
+    font-family:var(--display);
+    font-variation-settings:"wdth" 100,"wght" 800;
+    font-size:clamp(30px,7vw,40px);line-height:1;color:var(--yellow);
+    letter-spacing:-.02em;white-space:nowrap;
+  }
+  .tally .amount .tilde{font-size:.55em;vertical-align:.32em;margin-right:1px;opacity:.75}
+  .tally .breakdown{font-size:13.5px;color:#B7D2DE;line-height:1.5}
+  .tally .breakdown strong{color:#fff;font-weight:600}
+  .tally .caption{
+    grid-column:1 / -1;margin-top:11px;padding-top:11px;
+    border-top:1px solid rgba(255,255,255,.16);
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;
+    text-transform:uppercase;color:#8FB3C4;
+  }
+
+  /* ---------- Course blocks ---------- */
+  .course{
+    background:var(--card);border:1px solid var(--line);
+    border-radius:var(--r);box-shadow:var(--shadow);
+    overflow:hidden;margin-bottom:14px;
+  }
+  .course-head{
+    background:var(--navy);color:#fff;
+    padding:12px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .course-head .name{
+    font-family:var(--display);
+    font-variation-settings:"wdth" 112,"wght" 700;
+    font-size:16px;letter-spacing:.01em;line-height:1.2;
+  }
+  .course-head .count{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;
+    color:var(--gold-lite);text-transform:uppercase;white-space:nowrap;
+  }
+
+  .book{
+    display:grid;
+    grid-template-columns:1fr 118px;
+    gap:6px 16px;align-items:start;
+    padding:14px 18px;
+    border-top:1px solid var(--line-soft);
+  }
+  .book:first-of-type{border-top:0}
+  .book .title{
+    font-family:var(--body);font-weight:600;font-size:16.5px;line-height:1.28;color:var(--ink);
+    font-style:italic;
+  }
+  .book.plain .title{font-style:normal}
+  .book .by{font-size:14px;color:#2C4A5B;margin-top:2px;line-height:1.3}
+  .book .note{font-size:13px;color:var(--muted);margin-top:3px;line-height:1.35}
+  .book .isbn{
+    display:inline-block;margin-top:6px;
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.02em;
+    background:var(--blue-wash);color:var(--navy);
+    padding:4px 9px;border-radius:6px;border:0;cursor:pointer;
+    transition:background .15s, box-shadow .15s;
+  }
+  .book .isbn:hover,.book .isbn:focus-visible{background:var(--yellow);box-shadow:0 2px 8px rgba(143,103,18,.25);outline:none}
+  .book .isbn.copied{background:var(--green-wash);color:var(--green)}
+  .book .isbn .lbl{opacity:.62;margin-right:6px}
+
+  .book .right{justify-self:end;text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:5px}
+  .price{
+    font-family:var(--display);
+    font-variation-settings:"wdth" 100,"wght" 800;
+    font-size:19px;color:var(--navy);letter-spacing:-.01em;white-space:nowrap;
+  }
+  .price .tilde{font-size:.62em;vertical-align:.28em;opacity:.6;margin-right:1px}
+  .badge{
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+    padding:3px 7px;border-radius:5px;white-space:nowrap;
+  }
+  .badge.populi{background:var(--green-wash);color:var(--green)}
+  .badge.instructor{background:var(--blue-wash);color:var(--navy)}
+  .badge.reading{background:#F2E9D2;color:var(--gold)}
+  .badge.online{background:var(--blue-wash);color:var(--navy)}
+  .book a.src{font-family:var(--mono);font-size:10.5px;color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(26,107,148,.35)}
+  .book a.src:hover{border-bottom-color:var(--blue)}
+
+  /* ---------- Search results ---------- */
+  .result{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:13px 16px;margin-bottom:9px;cursor:pointer;
+    display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;
+    box-shadow:0 1px 2px rgba(8,42,61,.06);
+  }
+  .result:hover{border-color:var(--blue)}
+  .result .where{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--blue);margin-bottom:3px;
+  }
+  .result .rtitle{font-weight:600;font-size:16px;font-style:italic;line-height:1.25}
+  .result .rsub{font-size:13px;color:var(--muted);margin-top:2px}
+  .result .go{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap}
+  .empty{
+    text-align:center;padding:44px 20px;color:var(--muted);
+    background:var(--card);border:1px dashed var(--line);border-radius:var(--r);
+  }
+  .empty strong{display:block;color:var(--ink);font-size:18px;margin-bottom:5px;font-family:var(--display);font-variation-settings:"wdth" 112,"wght" 700}
+
+  mark{background:rgba(255,199,44,.55);color:inherit;border-radius:3px;padding:0 2px}
+
+  /* ---------- Legend ---------- */
+  .legend{
+    margin-top:32px;border-top:2px solid var(--line);padding-top:20px;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px;
+  }
+  .legend h3{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted);margin:0 0 9px;font-weight:500;
+  }
+  .legend ul{margin:0;padding:0;list-style:none;font-size:14px;color:#2C4A5B}
+  .legend li{padding:4px 0;display:flex;gap:10px;align-items:flex-start}
+  .legend li .badge{flex:none;margin-top:2px}
+  .colophon{
+    margin-top:26px;font-size:12.5px;color:var(--muted);
+    border-top:1px solid var(--line);padding-top:14px;
+  }
+
+  :focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:6px}
+
+  /* ---------- Mobile ---------- */
+  @media (max-width:720px){
+    .shell{padding:16px 16px 104px}
+    .masthead{padding:18px 16px 16px}
+    .searchwrap{padding:10px 16px}
+    .rail{padding:2px 16px 12px;margin:0 -16px}
+    .book{grid-template-columns:1fr;gap:4px}
+    .book .right{justify-self:start;align-items:flex-start;text-align:left;
+      flex-direction:row;align-items:center;gap:9px;margin-top:6px;flex-wrap:wrap}
+    .price{font-size:17px}
+    .course-head{padding:11px 16px}
+    .tally{grid-template-columns:1fr;gap:6px}
+    .result{grid-template-columns:1fr}
+    .result .go{display:none}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none !important;animation:none !important;scroll-behavior:auto !important}
+  }
+
+  /* ---------- Print ---------- */
+  @media print{
+    body{background:#fff;font-size:11pt}
+    .searchwrap,.rail,.years,.printbtn,.section-label,.masthead .kicker{display:none !important}
+    .masthead{background:#fff;color:#000;border-bottom:2px solid #000;padding:0 0 8px}
+    .masthead .eyebrow{color:#000}
+    h1{font-size:20pt;color:#000}
+    h1 .year{color:#000;display:inline}
+    .course{box-shadow:none;break-inside:avoid;border:1px solid #999}
+    .course-head{background:#eee;color:#000}
+    .course-head .count{color:#000}
+    .tally{background:#fff;color:#000;border:1px solid #999;box-shadow:none}
+    .tally .amount{color:#000}
+    .tally .breakdown{color:#000}
+    .tally .caption{color:#000;border-top-color:#999}
+    .book .isbn{background:#fff;border:1px solid #999}
+    .shell{padding:0}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <p class="eyebrow"><span>River University</span><span class="dot"></span><span>Booklist</span><span class="dot"></span><span>1st Quarter</span></p>
+    <h1>Required Reading<span class="year">2026 &ndash; 2027</span></h1>
+    <p class="kicker">Pick your school, then your year.<br>Every book you need this quarter &mdash; what to buy, what&rsquo;s already waiting for you in Populi.</p>
+  </div>
+</header>
+
+<div class="searchwrap">
+  <div class="searchbar">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="q" type="search" placeholder="Search a title, author, ISBN, or course" autocomplete="off" aria-label="Search the booklist">
+    <button class="clearbtn" id="clear" type="button">Clear</button>
+  </div>
+</div>
+
+<main class="shell">
+  <div id="browse">
+    <p class="section-label">Schools</p>
+    <div class="rail" id="rail" role="tablist" aria-label="Schools"></div>
+
+    <p class="section-label">Year</p>
+    <div class="years" id="years" role="tablist" aria-label="Year"></div>
+
+    <div id="track"></div>
+  </div>
+
+  <div id="results" hidden></div>
+
+  <section class="legend" id="legend">
+    <div>
+      <h3>What the labels mean</h3>
+      <ul>
+        <li><span class="badge populi">Populi</span><span>Already posted for you. Nothing to buy &mdash; log in and download it.</span></li>
+        <li><span class="badge instructor">Instructor</span><span>Your instructor hands this out. Wait for class.</span></li>
+        <li><span class="badge reading">Read</span><span>An assigned reading, not a purchase. Use the Bible you already have.</span></li>
+        <li><span class="badge online">Online</span><span>Free to read online. The link is on the card.</span></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Buying your books</h3>
+      <ul>
+        <li><span>Tap any ISBN to copy it, then paste it into your bookseller&rsquo;s search &mdash; it finds the exact edition.</span></li>
+        <li><span>Prices are estimates for a new copy. Used copies usually run less.</span></li>
+        <li><span>Third-year students carry the same Ministry Operations text across every school.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <p class="colophon">Titles and editions can change. Confirm with the Registrar&rsquo;s Office before you buy for the quarter.</p>
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  var RHB = "Dr. Rodney Howard-Browne";
+
+  /* ---------------- shared blocks ----------------
+     These courses repeat across schools. Defining them once keeps every
+     school's list identical to the printed booklist. */
+
+  function soulWinningII() {
+    return { name: "Soul Winning II", books: [
+      { t: "Foxes Book of Martyrs", a: "John Foxe", note: "Pages 1\u201396", isbn: "978-0882708751", price: 15 }
+    ]};
+  }
+  function vision() {
+    return { name: "Vision", books: [
+      { t: "\u201cFrom the Heart\u201d Articles", kind: "populi", plain: true }
+    ]};
+  }
+  function devilsAndDemons() {
+    return { name: "Devils and Demons \u2013 HTDWT", books: [
+      { t: "The Triumphant Church", a: "Kenneth E. Hagin", isbn: "0892765208", price: 15 },
+      { t: "Demons and How to Deal with Them", a: "Kenneth E. Hagin", isbn: "0892760117", kind: "populi" }
+    ]};
+  }
+  function ministryOps() {
+    return { name: "Ministry Operations", books: [
+      { t: "God\u2019s Armor Bearer Volumes 1&2", a: "Terry Nance", isbn: "978-0971919327", price: 14 }
+    ]};
+  }
+  /* The second-year core every school shares. */
+  function coreYearTwo() {
+    return [ soulWinningII(), vision(), devilsAndDemons() ];
+  }
+
+  var YEAR_ONE = {
+    id: "y1",
+    label: "Year 1",
+    name: "Foundation Year",
+    sub: "RBI 1 \u00b7 RSW 1 \u00b7 RSG 1 \u00b7 RCI 1 \u00b7 RSM 1 \u00b7 RAI 1 \u2014 one shared list",
+    courses: [
+      { name: "Christian Foundations I", books: [
+        { t: "Basic Bible Course: The Bible in the Light of our Redemption from Genesis through Revelation", a: "E.W. Kenyon", isbn: "1641233869", price: 14 },
+        { t: "Psalm 119, Mark, John, Acts, Galatians, Ephesians, Philippians, Colossians, and Romans", kind: "reading", plain: true, note: "Read these Bible texts alongside the course." }
+      ]},
+      { name: "Introduction to Revival Studies", books: [
+        { t: "Revival", a: RHB, isbn: "0958306621", price: 15 }
+      ]},
+      { name: "Academic Writing", books: [
+        { t: "MLA Handbook, 9th Edition", a: "Mary Isla", isbn: "979-8182429054", price: 13 }
+      ]},
+      { name: "Stewardship I", books: [
+        { t: "Thoughts on Stewardship \u2013 26 Keys to Breakthrough", a: RHB, isbn: "1642047589", price: 15 }
+      ]},
+      { name: "Submission & Authority", books: [
+        { t: "A Tale of Three Kings", a: "Gene Edwards", isbn: "9780842369084", price: 10 }
+      ]},
+      { name: "Soul Winning I", books: [
+        { t: "Soul Winning", a: "T.L. Osborn", note: "Chapters 1\u201310", isbn: "978-0879431334", price: 13 },
+        { t: "Power Evangelism Soul-Winning Packet", kind: "populi", plain: true },
+        { t: "What it Means to be Born Again", a: RHB, isbn: "978-0958306614", price: 15 },
+        { t: "The Reality of Life After Death", a: RHB, isbn: "978-1633154216", price: 8 },
+        { t: "Setting a Soul Goal", a: RHB, price: 5 }
+      ]}
+    ]
+  };
+
+  var SCHOOLS = [
+    {
+      id: "rbi", abbr: "RBI", name: "River Bible Institute",
+      tracks: [
+        YEAR_ONE,
+        {
+          id: "rbi2", label: "Year 2", name: "RBI 2",
+          courses: [
+            { name: "12 Pillars of Faith", books: [
+              { t: "Twelve Pillars of My Faith Study Guide", kind: "populi" }
+            ]},
+            { name: "Merchandizing & Trafficking the Anointing", books: [
+              { t: "Will you Pay the Price?", a: RHB, isbn: "979-8-89589-638-9", price: 5 }
+            ]},
+            { name: "Blood Covenant", books: [
+              { t: "The Miracle of the Scarlet Thread", a: "Richard Booker", isbn: "978-0914903260", price: 15 }
+            ]}
+          ].concat(coreYearTwo())
+        },
+        {
+          id: "rbi3", label: "Year 3", name: "RBI 3",
+          courses: [
+            { name: "Church History", books: [
+              { t: "The book of Acts", kind: "reading", plain: true, note: "Read this Bible text alongside the course." }
+            ]},
+            { name: "How to Hear the Voice of God", books: [
+              { t: "How to Hear the Voice of God", a: RHB, price: 15 }
+            ]},
+            { name: "Homiletics I", books: [
+              { t: "Keys to Better Preaching", a: "John Garlock", isbn: "9780892769612", price: 11 }
+            ]},
+            ministryOps()
+          ]
+        },
+        {
+          id: "rbi4", label: "Year 4", name: "RBI 4",
+          sub: "On Campus",
+          courses: [
+            { name: "Practical Ministry I", books: [
+              { t: "Think on These Things, Weekly Devotional", a: RHB, price: 12 }
+            ]},
+            { name: "Demonology and Deliverance", books: [
+              { t: "Demonology and Deliverance, Principalities and Powers, Foundational Studies, Vol. 1", a: "Dr. Lester Sumrall", kind: "populi" }
+            ]},
+            { name: "The Favor of God", books: [
+              { t: "The Favor of God", a: "Jerry Savelle", isbn: "978-0800797065", price: 18 },
+              { t: "The Favor of God Study Guide", a: "Jerry Savelle", kind: "populi" }
+            ]}
+          ]
+        }
+      ]
+    },
+    {
+      id: "rsw", abbr: "RSW", name: "River School of Worship",
+      tracks: [
+        YEAR_ONE,
+        {
+          id: "rsw2", label: "Year 2", name: "RSW 2",
+          courses: [
+            { name: "Vocal Lab I", books: [
+              { t: "Set Your Voice Free", a: "Roger Love", isbn: "978-0316311267", price: 30 }
+            ]}
+          ].concat(coreYearTwo())
+        },
+        {
+          id: "rsw3", label: "Year 3", name: "RSW 3",
+          courses: [
+            { name: "Music Theory II", books: [
+              { t: "Alfred\u2019s Essentials of Music Theory \u2013 Complete", a: "Andrew Surmani", isbn: "978-0882848976", price: 16 }
+            ]},
+            ministryOps()
+          ]
+        }
+      ]
+    },
+    {
+      id: "rsg", abbr: "RSG", name: "River School of Government",
+      tracks: [
+        YEAR_ONE,
+        {
+          id: "rsg2", label: "Year 2", name: "RSG 2",
+          courses: [
+            { name: "Research & Writing", books: [
+              { t: "The Constitution of the United States of America", kind: "reading", plain: true },
+              { t: "The Bill of Rights", kind: "reading", plain: true }
+            ]},
+            { name: "Christian Influence in Government", books: [
+              { t: "How Christianity Changed the World", a: "Alvin J. Schmidt", isbn: "0310264499", price: 12 }
+            ]}
+          ].concat(coreYearTwo())
+        },
+        {
+          id: "rsg3", label: "Year 3", name: "RSG 3",
+          courses: [
+            { name: "American Fundamental Liberties", books: [
+              { t: "Property", a: "James Madison", kind: "online", note: "Read online \u2014 no purchase needed." },
+              { t: "The First & Second Treatises of Government", a: "John Locke", isbn: "9781537524832", price: 10 },
+              { t: "Federalist & Anti-Federalist Papers", a: "Alexander Hamilton", isbn: "1495446697", price: 1 },
+              { t: "The Rights of Man", a: "Thomas Paine", isbn: "1420955454", price: 10 }
+            ]},
+            { name: "The Tower of Basel", books: [
+              { t: "Tower of Basel: The Shadowy History of the Secret Bank that Runs the World", a: "Adam LeBor", isbn: "9781610393812", price: 17 }
+            ]},
+            ministryOps()
+          ]
+        }
+      ]
+    },
+    {
+      id: "rbie", abbr: "RBIE", name: "RBI en Espa\u00f1ol",
+      tracks: [
+        {
+          id: "rbie1", label: "A\u00f1o 1", name: "RBIE 1",
+          courses: [
+            { name: "Introducci\u00f3n de Avivamiento", books: [
+              { t: "Aceite Fresco del Cielo", a: RHB, note: "Fresh Oil from Heaven", kind: "populi" },
+              { t: "C\u00f3mo Aumentar y Liberar la Unci\u00f3n", a: RHB, kind: "populi" }
+            ]},
+            { name: "Fundamentos Cristianos", books: [
+              { t: "La Biblia A La Luz De Nuestra Redencion", a: "E.W. Kenyon", kind: "populi" },
+              { t: "Salmos 119, Marcos, Juan, Hechos, G\u00e1latas, Efesios, Filipenses, Colosenses, y Romanos", kind: "reading", plain: true, note: "Leer estos libros b\u00edblicos junto con el curso." }
+            ]},
+            { name: "Escritura Acad\u00e9mica", books: [
+              { t: "Mejora Tu Ortograf\u00eda y Gram\u00e1tica En Tiempo R\u00e9cord", a: "Antonio Adames Abreu", isbn: "979-8854050036", price: 9 }
+            ]},
+            { name: "Mayordom\u00eda I", books: [
+              { t: "Pensamientos Sobre La Mayordom\u00eda \u2014 Volumen I", a: RHB, kind: "populi" }
+            ]},
+            { name: "Ganando Almas I", books: [
+              { t: "Ganando Almas", a: "T.L. Osborn", note: "Soul Winning, Spanish Edition \u00b7 cap\u00edtulos 1\u201310", isbn: "9589269567" },
+              { t: "Gu\u00eda Para Ganar Almas", plain: true },
+              { t: "Manual Para Ganar Almas y Evangelizar con Poder", plain: true }
+            ]},
+            { name: "Autoridad y Sumisi\u00f3n", books: [
+              { t: "Perfil de Tres Monarcas", a: "Gene Edwards", isbn: "0829743561", price: 13 }
+            ]}
+          ]
+        },
+        {
+          id: "rbie2", label: "A\u00f1o 2", name: "RBIE 2",
+          courses: [
+            { name: "Los 12 Pilares de Fe", books: [
+              { t: "Los 12 Pilares de mi Fe \u2014 Gu\u00eda de Estudio", kind: "populi" }
+            ]},
+            { name: "El Pacto de Sangre", books: [
+              { t: "N\u00fameros y Hebreos", kind: "reading", plain: true, note: "Leer estos textos b\u00edblicos junto con el curso." }
+            ]},
+            { name: "Doctrinas B\u00edblicas", books: [
+              { t: "Doctrinas b\u00edblicas", a: "P.C. Nelson", isbn: "0829705392", price: 9 }
+            ]},
+            { name: "Ganando Almas II", books: [
+              { t: "El Libro de los M\u00e1rtires", a: "John Foxe", isbn: "9788482673509", price: 13 }
+            ]},
+            { name: "Diablos y Demonios: C\u00f3mo Lidiar con Ellos", books: [
+              { t: "La iglesia triunfante", a: "Kenneth E. Hagin", isbn: "0892761172", price: 16 },
+              { t: "Demonios y c\u00f3mo tratar con ellos", a: "Kenneth E. Hagin", kind: "populi" }
+            ]}
+          ]
+        },
+        {
+          id: "rbie3", label: "A\u00f1o 3", name: "RBIE 3",
+          courses: [
+            { name: "La Historia de la Iglesia", books: [
+              { t: "El libro de Hechos", kind: "reading", plain: true, note: "Leer este texto b\u00edblico junto con el curso." }
+            ]},
+            { name: "C\u00f3mo O\u00edr La Voz de Dios", books: [
+              { t: "C\u00f3mo O\u00edr La Voz de Dios", a: RHB, kind: "populi" }
+            ]},
+            { name: "Homil\u00e9tica I", books: [
+              { t: "Claves Para Ense\u00f1ar Y Predicar Mejor", a: "John Garlock", kind: "populi" }
+            ]},
+            { name: "Operaciones Ministeriales I", books: [
+              { t: "El Escuerdo de Dios, libros 1&2", a: "Terry Nance", isbn: "9780789919304", price: 6 }
+            ]}
+          ]
+        }
+      ]
+    },
+    {
+      id: "rci", abbr: "RCI", name: "River Culinary Institute",
+      tracks: [
+        YEAR_ONE,
+        {
+          id: "rci2", label: "Year 2", name: "RCI 2",
+          courses: [
+            { name: "The Ministry of Hospitality", books: [
+              { t: "Setting the Table", a: "Danny Meyer", isbn: "0060742763", price: 11 }
+            ]},
+            { name: "Sanitation / ServSafe Certification", books: [
+              { t: "Culinary Institute of America handbook", isbn: "978-1-119-49095-1", kind: "instructor", note: "Provided by your instructor as needed." }
+            ]}
+          ].concat(coreYearTwo())
+        },
+        {
+          id: "rci3", label: "Year 3", name: "RCI 3",
+          courses: [
+            { name: "International Cuisine", books: [
+              { t: "International Cuisine", a: "Jeremy MacVeigh", isbn: "978-1418049652", kind: "instructor", note: "Copies provided by your instructor." }
+            ]},
+            { name: "Drink Pairings", books: [
+              { t: "The Flavor Thesaurus: A Compendium of Pairings, Recipes and Ideas for the Creative Cook", a: "Niki Segnit", isbn: "9781608198740", price: 21 }
+            ]},
+            { name: "Leadership: How to Lead a Team", books: [
+              { t: "A Leader in the Making", a: "Joyce Meyer", isbn: "978-0446532051", price: 17 }
+            ]},
+            ministryOps()
+          ]
+        }
+      ]
+    },
+    {
+      id: "rsm", abbr: "RSM", name: "River School of Media",
+      tracks: [
+        YEAR_ONE,
+        {
+          id: "rsm2", label: "Year 2", name: "RSM 2",
+          courses: coreYearTwo()
+        },
+        {
+          id: "rsm3", label: "Year 3", name: "RSM 3",
+          courses: [ ministryOps() ]
+        }
+      ]
+    },
+    {
+      id: "rai", abbr: "RAI", name: "River Automotive Institute",
+      tracks: [
+        YEAR_ONE,
+        {
+          id: "rai2", label: "Year 2", name: "RAI 2",
+          courses: [
+            { name: "Brakes I, Brakes II & Applied Automotive Training I", books: [
+              { t: "ASE Study Guide A5", a: "Motor Age Training", price: 31,
+                link: "https://motoragetraining.com/product/ase-studyguide-a5-brakes/", linkLabel: "motoragetraining.com" }
+            ]}
+          ].concat(coreYearTwo())
+        }
+      ]
+    }
+  ];
+
+  /* ---------------- rendering ---------------- */
+
+  var railEl = document.getElementById("rail");
+  var yearsEl = document.getElementById("years");
+  var trackEl = document.getElementById("track");
+  var browseEl = document.getElementById("browse");
+  var resultsEl = document.getElementById("results");
+  var legendEl = document.getElementById("legend");
+  var qEl = document.getElementById("q");
+  var clearEl = document.getElementById("clear");
+
+  var state = { school: 0, track: 0 };
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  var BADGE = {
+    populi: "Populi",
+    instructor: "Instructor",
+    reading: "Read",
+    online: "Online"
+  };
+
+  function bookHTML(b) {
+    var right = "";
+    if (typeof b.price === "number") {
+      right += '<span class="price"><span class="tilde">~</span>$' + b.price + "</span>";
+    }
+    if (b.kind && BADGE[b.kind]) {
+      right += '<span class="badge ' + b.kind + '">' + BADGE[b.kind] + "</span>";
+    }
+    if (b.link) {
+      right += '<a class="src" href="' + esc(b.link) + '" target="_blank" rel="noopener">' + esc(b.linkLabel || "Order") + " &nearr;</a>";
+    }
+
+    return '' +
+      '<div class="book' + (b.plain ? " plain" : "") + '">' +
+        '<div>' +
+          '<div class="title">' + esc(b.t) + '</div>' +
+          (b.a ? '<div class="by">' + esc(b.a) + '</div>' : '') +
+          (b.note ? '<div class="note">' + esc(b.note) + '</div>' : '') +
+          (b.isbn ? '<button class="isbn" type="button" data-isbn="' + esc(b.isbn) + '">' +
+                      '<span class="lbl">ISBN</span>' + esc(b.isbn) + '</button>' : '') +
+        '</div>' +
+        (right ? '<div class="right">' + right + '</div>' : '<div class="right"></div>') +
+      '</div>';
+  }
+
+  function courseHTML(c) {
+    var n = c.books.length;
+    return '<section class="course">' +
+      '<div class="course-head">' +
+        '<span class="name">' + esc(c.name) + '</span>' +
+        '<span class="count">' + n + (n === 1 ? " title" : " titles") + '</span>' +
+      '</div>' +
+      c.books.map(bookHTML).join("") +
+    '</section>';
+  }
+
+  /* The tally is the point of a booklist: what will this quarter cost? */
+  function tallyHTML(t) {
+    var buy = 0, total = 0, populi = 0, other = 0;
+    t.courses.forEach(function (c) {
+      c.books.forEach(function (b) {
+        if (typeof b.price === "number") { buy++; total += b.price; }
+        else if (b.kind === "populi") { populi++; }
+        else { other++; }
+      });
+    });
+
+    var parts = [];
+    parts.push("<strong>" + buy + "</strong> " + (buy === 1 ? "book" : "books") + " to buy");
+    if (populi) parts.push("<strong>" + populi + "</strong> waiting in Populi");
+    if (other) parts.push("<strong>" + other + "</strong> " + (other === 1 ? "reading" : "readings") + " with nothing to buy");
+
+    return '<div class="tally">' +
+      '<div class="amount"><span class="tilde">~</span>$' + total + '</div>' +
+      '<div class="breakdown">' + parts.join(" &middot; ") + '</div>' +
+      '<div class="caption">Estimated total for new copies</div>' +
+    '</div>';
+  }
+
+  function renderRail() {
+    railEl.innerHTML = SCHOOLS.map(function (s, i) {
+      return '<button class="school" role="tab" data-i="' + i + '" aria-selected="' + (i === state.school) + '">' +
+        '<span class="abbr">' + esc(s.abbr) + '</span>' +
+        '<span class="full">' + esc(s.name) + '</span>' +
+      '</button>';
+    }).join("");
+  }
+
+  function renderYears() {
+    var tracks = SCHOOLS[state.school].tracks;
+    yearsEl.innerHTML = tracks.map(function (t, i) {
+      return '<button class="year-pill" role="tab" data-i="' + i + '" aria-selected="' + (i === state.track) + '">' + esc(t.label) + '</button>';
+    }).join("");
+  }
+
+  function renderTrack() {
+    var school = SCHOOLS[state.school];
+    var t = school.tracks[state.track];
+
+    var html = '' +
+      '<div class="track-head">' +
+        '<div>' +
+          '<h2>' + esc(t.name) + '</h2>' +
+          '<p class="sub">' + esc(school.name) + (t.sub ? ' &middot; ' + esc(t.sub) : '') + '</p>' +
+        '</div>' +
+        '<button class="printbtn" type="button" id="printbtn">Print this list</button>' +
+      '</div>';
+
+    if (t.notice) {
+      html += '<div class="notice"><span aria-hidden="true">&#9733;</span><div>' + esc(t.notice) + '</div></div>';
+    }
+
+    html += tallyHTML(t);
+    html += t.courses.map(courseHTML).join("");
+
+    trackEl.innerHTML = html;
+
+    var pb = document.getElementById("printbtn");
+    if (pb) pb.addEventListener("click", function () { window.print(); });
+  }
+
+  function render() {
+    renderRail();
+    renderYears();
+    renderTrack();
+  }
+
+  /* ---------------- copy an ISBN ---------------- */
+
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest ? e.target.closest(".isbn") : null;
+    if (!btn) return;
+    var isbn = btn.getAttribute("data-isbn");
+    var restore = btn.innerHTML;
+
+    function done() {
+      btn.classList.add("copied");
+      btn.innerHTML = '<span class="lbl">ISBN</span>Copied';
+      setTimeout(function () {
+        btn.classList.remove("copied");
+        btn.innerHTML = restore;
+      }, 1400);
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(isbn).then(done, function () {});
+    } else {
+      var ta = document.createElement("textarea");
+      ta.value = isbn;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "absolute";
+      ta.style.left = "-9999px";
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand("copy"); done(); } catch (err) {}
+      document.body.removeChild(ta);
+    }
+  });
+
+  /* ---------------- search ---------------- */
+
+  var INDEX = [];
+  SCHOOLS.forEach(function (s, si) {
+    s.tracks.forEach(function (t, ti) {
+      t.courses.forEach(function (c) {
+        c.books.forEach(function (b) {
+          INDEX.push({
+            si: si, ti: ti, course: c, book: b, track: t, school: s,
+            hay: [b.t, b.a || "", b.note || "", b.isbn || "", (b.isbn || "").replace(/-/g, ""),
+                  c.name, t.name, t.label, s.name, s.abbr].join(" ").toLowerCase()
+          });
+        });
+      });
+    });
+  });
+
+  function highlight(text, term) {
+    var safe = esc(text);
+    if (!term) return safe;
+    var re = new RegExp("(" + term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "ig");
+    return safe.replace(re, "<mark>$1</mark>");
+  }
+
+  function search(term) {
+    var q = term.trim().toLowerCase();
+    if (!q) {
+      browseEl.hidden = false;
+      resultsEl.hidden = true;
+      legendEl.hidden = false;
+      clearEl.classList.remove("on");
+      return;
+    }
+    clearEl.classList.add("on");
+    browseEl.hidden = true;
+    legendEl.hidden = true;
+    resultsEl.hidden = false;
+
+    var seen = {};
+    var hits = INDEX.filter(function (x) {
+      if (x.hay.indexOf(q) === -1) return false;
+      var key = x.si + "|" + x.ti + "|" + x.course.name + "|" + x.book.t;
+      if (seen[key]) return false;
+      seen[key] = 1;
+      return true;
+    });
+
+    if (!hits.length) {
+      resultsEl.innerHTML = '<div class="empty"><strong>No books match that</strong>Try a title, an author&rsquo;s last name, an ISBN, or a course like Soul Winning.</div>';
+      return;
+    }
+
+    resultsEl.innerHTML = '<p class="section-label">' + hits.length + ' ' + (hits.length === 1 ? "book" : "books") + ' found</p>' +
+      hits.map(function (x) {
+        var b = x.book;
+        var bits = [];
+        if (b.a) bits.push(highlight(b.a, term));
+        if (typeof b.price === "number") bits.push("~$" + b.price);
+        else if (b.kind && BADGE[b.kind]) bits.push(BADGE[b.kind]);
+        if (b.isbn) bits.push(highlight(b.isbn, term));
+
+        return '<div class="result" data-si="' + x.si + '" data-ti="' + x.ti + '" tabindex="0" role="button">' +
+          '<div>' +
+            '<div class="where">' + highlight(x.school.abbr + " \u00b7 " + x.track.name + " \u00b7 " + x.course.name, term) + '</div>' +
+            '<div class="rtitle">' + highlight(b.t, term) + '</div>' +
+            (bits.length ? '<div class="rsub">' + bits.join(" &middot; ") + '</div>' : '') +
+          '</div>' +
+          '<div class="go">Open list &rarr;</div>' +
+        '</div>';
+      }).join("");
+  }
+
+  /* ---------------- events ---------------- */
+
+  railEl.addEventListener("click", function (e) {
+    var b = e.target.closest(".school");
+    if (!b) return;
+    state.school = Number(b.dataset.i);
+    state.track = 0;
+    render();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  yearsEl.addEventListener("click", function (e) {
+    var b = e.target.closest(".year-pill");
+    if (!b) return;
+    state.track = Number(b.dataset.i);
+    renderYears();
+    renderTrack();
+  });
+
+  resultsEl.addEventListener("click", openResult);
+  resultsEl.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openResult(e); }
+  });
+  function openResult(e) {
+    var c = e.target.closest(".result");
+    if (!c) return;
+    state.school = Number(c.dataset.si);
+    state.track = Number(c.dataset.ti);
+    qEl.value = "";
+    search("");
+    render();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  var timer;
+  qEl.addEventListener("input", function () {
+    clearTimeout(timer);
+    var v = qEl.value;
+    timer = setTimeout(function () { search(v); }, 120);
+  });
+  clearEl.addEventListener("click", function () {
+    qEl.value = "";
+    search("");
+    qEl.focus();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
