@@ -247,6 +247,10 @@
     font-style:italic;
   }
   .book.plain .title{font-style:normal}
+  .book .term{
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:4px;
+  }
   .book .by{font-size:14px;color:#2C4A5B;margin-top:2px;line-height:1.3}
   .book .note{font-size:13px;color:var(--muted);margin-top:3px;line-height:1.35}
   .book .isbn{
@@ -275,6 +279,7 @@
   .badge.instructor{background:var(--blue-wash);color:var(--navy)}
   .badge.reading{background:#F2E9D2;color:var(--gold)}
   .badge.online{background:var(--blue-wash);color:var(--navy)}
+  .badge.tbd{background:#EEF1F6;color:var(--muted)}
   .book a.src{font-family:var(--mono);font-size:10.5px;color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(26,107,148,.35)}
   .book a.src:hover{border-bottom-color:var(--blue)}
 
@@ -399,6 +404,7 @@
         <li><span class="badge instructor">Instructor</span><span>Your instructor hands this out. Wait for class.</span></li>
         <li><span class="badge reading">Read</span><span>An assigned reading, not a purchase. Use the Bible you already have.</span></li>
         <li><span class="badge online">Online</span><span>Free to read online. The link is on the card.</span></li>
+        <li><span class="badge tbd">No price listed</span><span>Still a required title — the booklist just doesn’t quote a price. Ask your instructor.</span></li>
       </ul>
     </div>
     <div>
@@ -440,9 +446,10 @@
       { t: "Demons and How to Deal with Them", a: "Kenneth E. Hagin", isbn: "0892760117", kind: "populi" }
     ]};
   }
-  function ministryOps() {
-    return { name: "Ministry Operations", books: [
-      { t: "God\u2019s Armor Bearer Volumes 1&2", a: "Terry Nance", isbn: "978-0971919327", price: 14 }
+  function ministryOps(name) {
+    return { name: name || "Ministry Operations", books: [
+      { term: "August term", t: "God\u2019s Armor Bearer Volumes 1&2", a: "Terry Nance", isbn: "978-0971919327", price: 14 },
+      { term: "January term", t: "How Can you Be Led by the Spirit of God", a: "Kenneth E. Hagin", price: 14 }
     ]};
   }
   /* The second-year core every school shares. */
@@ -473,7 +480,7 @@
         { t: "A Tale of Three Kings", a: "Gene Edwards", isbn: "9780842369084", price: 10 }
       ]},
       { name: "Soul Winning I", books: [
-        { t: "Soul Winning", a: "T.L. Osborn", note: "Chapters 1\u201310", isbn: "978-0879431334", price: 13 },
+        { t: "Soul Winning", a: "T.L. Osborn", note: "Chapters 1\u201315", isbn: "978-0879431334", price: 13 },
         { t: "Power Evangelism Soul-Winning Packet", kind: "populi", plain: true },
         { t: "What it Means to be Born Again", a: RHB, isbn: "978-0958306614", price: 15 },
         { t: "The Reality of Life After Death", a: RHB, isbn: "978-1633154216", price: 8 },
@@ -594,7 +601,7 @@
       id: "rbie", abbr: "RBIE", name: "RBI en Espa\u00f1ol",
       tracks: [
         {
-          id: "rbie1", label: "A\u00f1o 1", name: "RBIE 1",
+          id: "rbie1", lang: "es", label: "A\u00f1o 1", name: "RBIE 1",
           courses: [
             { name: "Introducci\u00f3n de Avivamiento", books: [
               { t: "Aceite Fresco del Cielo", a: RHB, note: "Fresh Oil from Heaven", kind: "populi" },
@@ -611,9 +618,11 @@
               { t: "Pensamientos Sobre La Mayordom\u00eda \u2014 Volumen I", a: RHB, kind: "populi" }
             ]},
             { name: "Ganando Almas I", books: [
-              { t: "Ganando Almas", a: "T.L. Osborn", note: "Soul Winning, Spanish Edition \u00b7 cap\u00edtulos 1\u201310", isbn: "9589269567" },
+              { t: "Ganando Almas", a: "T.L. Osborn", note: "Soul Winning, Spanish Edition \u00b7 cap\u00edtulos 1\u201315", isbn: "9589269567" },
               { t: "Gu\u00eda Para Ganar Almas", plain: true },
-              { t: "Manual Para Ganar Almas y Evangelizar con Poder", plain: true }
+              { t: "Manual Para Ganar Almas y Evangelizar con Poder", plain: true },
+              { t: "\u00bfQu\u00e9 Significa Nacer de Nuevo?", a: RHB },
+              { t: "Estableciendo Una Meta de Almas", a: RHB }
             ]},
             { name: "Autoridad y Sumisi\u00f3n", books: [
               { t: "Perfil de Tres Monarcas", a: "Gene Edwards", isbn: "0829743561", price: 13 }
@@ -621,13 +630,13 @@
           ]
         },
         {
-          id: "rbie2", label: "A\u00f1o 2", name: "RBIE 2",
+          id: "rbie2", lang: "es", label: "A\u00f1o 2", name: "RBIE 2",
           courses: [
             { name: "Los 12 Pilares de Fe", books: [
               { t: "Los 12 Pilares de mi Fe \u2014 Gu\u00eda de Estudio", kind: "populi" }
             ]},
             { name: "El Pacto de Sangre", books: [
-              { t: "N\u00fameros y Hebreos", kind: "reading", plain: true, note: "Leer estos textos b\u00edblicos junto con el curso." }
+              { t: "Lev\u00edtico y Hebreos", kind: "reading", plain: true, note: "Leer estos textos b\u00edblicos junto con el curso." }
             ]},
             { name: "Doctrinas B\u00edblicas", books: [
               { t: "Doctrinas b\u00edblicas", a: "P.C. Nelson", isbn: "0829705392", price: 9 }
@@ -642,7 +651,7 @@
           ]
         },
         {
-          id: "rbie3", label: "A\u00f1o 3", name: "RBIE 3",
+          id: "rbie3", lang: "es", label: "A\u00f1o 3", name: "RBIE 3",
           courses: [
             { name: "La Historia de la Iglesia", books: [
               { t: "El libro de Hechos", kind: "reading", plain: true, note: "Leer este texto b\u00edblico junto con el curso." }
@@ -685,9 +694,9 @@
               { t: "The Flavor Thesaurus: A Compendium of Pairings, Recipes and Ideas for the Creative Cook", a: "Niki Segnit", isbn: "9781608198740", price: 21 }
             ]},
             { name: "Leadership: How to Lead a Team", books: [
-              { t: "A Leader in the Making", a: "Joyce Meyer", isbn: "978-0446532051", price: 17 }
+              { t: "12 Qualifications and Responsibilities of Leadership", a: RHB, price: 5 }
             ]},
-            ministryOps()
+            ministryOps("Ministry Operations I")
           ]
         }
       ]
@@ -715,7 +724,7 @@
           courses: [
             { name: "Brakes I, Brakes II & Applied Automotive Training I", books: [
               { t: "ASE Study Guide A5", a: "Motor Age Training", price: 31,
-                link: "https://motoragetraining.com/product/ase-studyguide-a5-brakes/", linkLabel: "motoragetraining.com" }
+                link: "https://motoragetraining.com/product/ase-study-guide-a5-brakes/", linkLabel: "motoragetraining.com" }
             ]}
           ].concat(coreYearTwo())
         }
@@ -742,20 +751,41 @@
     });
   }
 
-  var BADGE = {
-    populi: "Populi",
-    instructor: "Instructor",
-    reading: "Read",
-    online: "Online"
+  /* Badge and tally copy follow the track's own language, so the Spanish tracks
+     don't mix "No price listed" into a page of Spanish titles. */
+  var STR = {
+    en: {
+      populi: "Populi", instructor: "Instructor", reading: "Read", online: "Online",
+      tbd: "No price listed",
+      buy: function (n) { return "<strong>" + n + "</strong> " + (n === 1 ? "book" : "books") + " to buy"; },
+      inPopuli: function (n) { return "<strong>" + n + "</strong> waiting in Populi"; },
+      free: function (n) { return "<strong>" + n + "</strong> with nothing to buy"; },
+      unpriced: function (n) { return "<strong>" + n + "</strong> not priced here"; },
+      caption: "Estimated total for new copies"
+    },
+    es: {
+      populi: "Populi", instructor: "Instructor", reading: "Leer", online: "En l\u00ednea",
+      tbd: "Sin precio indicado",
+      buy: function (n) { return "<strong>" + n + "</strong> " + (n === 1 ? "libro" : "libros") + " para comprar"; },
+      inPopuli: function (n) { return "<strong>" + n + "</strong> " + (n === 1 ? "disponible" : "disponibles") + " en Populi"; },
+      free: function (n) { return "<strong>" + n + "</strong> sin nada que comprar"; },
+      unpriced: function (n) { return "<strong>" + n + "</strong> sin precio indicado"; },
+      caption: "Costo estimado de copias nuevas"
+    }
   };
+  function str(lang) { return STR[lang] || STR.en; }
 
-  function bookHTML(b) {
+  function bookHTML(b, lang) {
+    var L = str(lang);
     var right = "";
     if (typeof b.price === "number") {
       right += '<span class="price"><span class="tilde">~</span>$' + b.price + "</span>";
     }
-    if (b.kind && BADGE[b.kind]) {
-      right += '<span class="badge ' + b.kind + '">' + BADGE[b.kind] + "</span>";
+    if (b.kind && L[b.kind]) {
+      right += '<span class="badge ' + b.kind + '">' + L[b.kind] + "</span>";
+    } else if (typeof b.price !== "number") {
+      // No price and no label. Don't let it read as free \u2014 it just isn't priced here.
+      right += '<span class="badge tbd">' + L.tbd + "</span>";
     }
     if (b.link) {
       right += '<a class="src" href="' + esc(b.link) + '" target="_blank" rel="noopener">' + esc(b.linkLabel || "Order") + " &nearr;</a>";
@@ -764,6 +794,7 @@
     return '' +
       '<div class="book' + (b.plain ? " plain" : "") + '">' +
         '<div>' +
+          (b.term ? '<div class="term">' + esc(b.term) + '</div>' : '') +
           '<div class="title">' + esc(b.t) + '</div>' +
           (b.a ? '<div class="by">' + esc(b.a) + '</div>' : '') +
           (b.note ? '<div class="note">' + esc(b.note) + '</div>' : '') +
@@ -774,37 +805,39 @@
       '</div>';
   }
 
-  function courseHTML(c) {
+  function courseHTML(c, lang) {
     var n = c.books.length;
     return '<section class="course">' +
       '<div class="course-head">' +
         '<span class="name">' + esc(c.name) + '</span>' +
         '<span class="count">' + n + (n === 1 ? " title" : " titles") + '</span>' +
       '</div>' +
-      c.books.map(bookHTML).join("") +
+      c.books.map(function (b) { return bookHTML(b, lang); }).join("") +
     '</section>';
   }
 
   /* The tally is the point of a booklist: what will this quarter cost? */
   function tallyHTML(t) {
-    var buy = 0, total = 0, populi = 0, other = 0;
+    var buy = 0, total = 0, populi = 0, free = 0, unpriced = 0;
     t.courses.forEach(function (c) {
       c.books.forEach(function (b) {
         if (typeof b.price === "number") { buy++; total += b.price; }
         else if (b.kind === "populi") { populi++; }
-        else { other++; }
+        else if (b.kind) { free++; }
+        else { unpriced++; }
       });
     });
 
-    var parts = [];
-    parts.push("<strong>" + buy + "</strong> " + (buy === 1 ? "book" : "books") + " to buy");
-    if (populi) parts.push("<strong>" + populi + "</strong> waiting in Populi");
-    if (other) parts.push("<strong>" + other + "</strong> " + (other === 1 ? "reading" : "readings") + " with nothing to buy");
+    var L = str(t.lang);
+    var parts = [L.buy(buy)];
+    if (populi) parts.push(L.inPopuli(populi));
+    if (free) parts.push(L.free(free));
+    if (unpriced) parts.push(L.unpriced(unpriced));
 
     return '<div class="tally">' +
       '<div class="amount"><span class="tilde">~</span>$' + total + '</div>' +
       '<div class="breakdown">' + parts.join(" &middot; ") + '</div>' +
-      '<div class="caption">Estimated total for new copies</div>' +
+      '<div class="caption">' + L.caption + '</div>' +
     '</div>';
   }
 
@@ -842,7 +875,7 @@
     }
 
     html += tallyHTML(t);
-    html += t.courses.map(courseHTML).join("");
+    html += t.courses.map(function (c) { return courseHTML(c, t.lang); }).join("");
 
     trackEl.innerHTML = html;
 
@@ -945,8 +978,10 @@
         var b = x.book;
         var bits = [];
         if (b.a) bits.push(highlight(b.a, term));
+        var L = str(x.track.lang);
         if (typeof b.price === "number") bits.push("~$" + b.price);
-        else if (b.kind && BADGE[b.kind]) bits.push(BADGE[b.kind]);
+        else if (b.kind && L[b.kind]) bits.push(L[b.kind]);
+        else bits.push(L.tbd);
         if (b.isbn) bits.push(highlight(b.isbn, term));
 
         return '<div class="result" data-si="' + x.si + '" data-ti="' + x.ti + '" tabindex="0" role="button">' +
