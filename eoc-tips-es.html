@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mejorar Nuestro Campus · River University</title>
+<meta name="theme-color" content="#0F3952">
+<meta name="description" content="Mejorar Nuestro Campus, viernes 16 de octubre, 8:15 AM a 1:00 PM — detalles y código de vestido.">
+<link rel="alternate" hreflang="en" href="eoc-tips.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#082A3D;
+    --navy:#0F3952;
+    --navy-2:#17516F;
+    --blue:#1A6B94;
+    --blue-wash:#E3EEF3;
+    --gold:#8F6712;
+    --gold-lite:#D6A329;
+    --yellow:#FFC72C;
+    --paper:#EFF3F9;
+    --card:#FFFFFF;
+    --line:#D3DCEA;
+    --line-soft:#E5EBF4;
+    --muted:#5B6C87;
+
+    --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+    --body:"Source Sans 3","Segoe UI",system-ui,-apple-system,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+
+    --r:14px;
+    --shadow:0 1px 2px rgba(8,42,61,.07), 0 8px 24px -12px rgba(8,42,61,.28);
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:16px;
+    line-height:1.45;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  a{color:var(--blue)}
+
+  /* ---------- Masthead ---------- */
+  .masthead{
+    background:
+      radial-gradient(120% 140% at 88% -20%, rgba(255,199,44,.20) 0%, rgba(255,199,44,0) 55%),
+      linear-gradient(180deg,var(--navy) 0%, var(--ink) 100%);
+    color:#fff;
+    padding:14px 20px 20px;
+    border-bottom:3px solid var(--yellow);
+  }
+  .masthead-inner{max-width:1080px;margin:0 auto}
+  .util{
+    display:flex;align-items:center;gap:9px;flex-wrap:wrap;
+    margin:0 0 16px;
+  }
+  .util .grow{flex:1}
+  .ubtn{
+    display:inline-flex;align-items:center;gap:6px;
+    border:1.5px solid rgba(255,255,255,.26);
+    background:rgba(255,255,255,.07);
+    color:#fff;text-decoration:none;cursor:pointer;
+    border-radius:999px;padding:6px 13px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  }
+  .ubtn:hover{background:rgba(214,163,41,.26);border-color:var(--gold-lite);color:#fff}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:11.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--gold-lite);
+    margin:0 0 8px;
+    display:flex;align-items:center;gap:9px;flex-wrap:wrap;
+  }
+  .eyebrow .dot{width:5px;height:5px;border-radius:50%;background:var(--gold-lite);opacity:.7}
+  h1{
+    font-family:var(--display);
+    font-variation-settings:"wdth" 118,"wght" 800;
+    font-size:clamp(26px,5.6vw,44px);
+    line-height:1.02;
+    letter-spacing:-.015em;
+    margin:0;
+    text-transform:uppercase;
+  }
+  h1 .hl{color:var(--yellow);display:block}
+  .kicker{
+    margin:12px 0 0;
+    max-width:60ch;
+    color:#B7D2DE;
+    font-size:15px;
+  }
+
+  /* ---------- Layout ---------- */
+  .shell{max-width:1080px;margin:0 auto;padding:22px 20px 56px}
+
+  .sec-label{
+    font-family:var(--mono);
+    font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted);margin:0 0 10px;
+  }
+  h2.sh{
+    font-family:var(--display);
+    font-variation-settings:"wdth" 114,"wght" 800;
+    font-size:clamp(19px,3.6vw,26px);
+    line-height:1.08;letter-spacing:-.005em;
+    color:var(--navy);text-transform:uppercase;
+    margin:34px 0 14px;padding-bottom:7px;
+    border-bottom:2px solid var(--gold-lite);
+  }
+  h2.sh:first-child{margin-top:0}
+
+  /* ---------- When plate (signature, EOC) ---------- */
+  .when{
+    display:grid;grid-template-columns:1fr 1fr;gap:0;
+    background:var(--card);border:1px solid var(--line);
+    border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;
+    margin:0 0 20px;
+  }
+  .when-cell{padding:18px 22px;position:relative}
+  .when-cell + .when-cell{border-left:1px solid var(--line-soft)}
+  .when-cell::before{
+    content:"";position:absolute;left:0;top:0;right:0;height:4px;background:var(--navy);
+  }
+  .when-cell + .when-cell::before{background:var(--gold-lite)}
+  .wl{
+    display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--muted);margin-bottom:5px;
+  }
+  .wv{
+    display:block;font-family:var(--display);
+    font-variation-settings:"wdth" 104,"wght" 800;
+    font-size:clamp(18px,3.1vw,26px);line-height:1.1;
+    color:var(--navy);letter-spacing:-.005em;
+  }
+  .when-cell + .when-cell .wv{font-family:var(--mono);font-weight:600;letter-spacing:-.01em}
+
+  /* ---------- Notice ---------- */
+  .notice{
+    display:flex;gap:11px;align-items:flex-start;
+    background:linear-gradient(90deg, rgba(255,199,44,.22), rgba(255,199,44,.07));
+    border-left:4px solid var(--yellow);
+    border-radius:0 8px 8px 0;padding:13px 16px;margin:0 0 22px;
+    font-size:15.5px;color:#3B3113;
+  }
+  .notice .star{color:var(--gold);flex:none;line-height:1.3}
+  .notice b{color:var(--ink)}
+
+  /* ---------- Fact cards ---------- */
+  .facts{
+    list-style:none;margin:0 0 4px;padding:0;
+    display:grid;gap:10px;
+  }
+  .facts li{
+    background:var(--card);border:1px solid var(--line);
+    border-radius:12px;padding:14px 17px 14px 44px;position:relative;
+    box-shadow:0 1px 2px rgba(8,42,61,.05);
+    font-size:16px;
+  }
+  .facts li::before{
+    content:"";position:absolute;left:18px;top:19px;
+    width:9px;height:9px;background:var(--gold-lite);
+  }
+
+  /* ---------- Rule cards (dress code) ---------- */
+  .rules{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+  .rules li{
+    background:var(--card);border:1px solid var(--line);border-left:4px solid var(--gold-lite);
+    border-radius:0 12px 12px 0;padding:14px 17px;
+    box-shadow:0 1px 2px rgba(8,42,61,.05);
+    font-size:16px;
+  }
+  .rules strong{color:var(--navy)}
+
+  /* ---------- Reminder rail (MLC) ---------- */
+  .rem{
+    background:var(--card);border:1px solid var(--line);
+    border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;
+  }
+  .rem-row{
+    display:grid;grid-template-columns:168px 1fr;gap:18px;
+    padding:15px 20px;border-top:1px solid var(--line-soft);align-items:start;
+  }
+  .rem-row:first-child{border-top:0}
+  .rem-row .tag{
+    font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.09em;
+    text-transform:uppercase;color:var(--gold);
+    padding-top:2px;
+  }
+  .rem-row .txt{font-size:16px;line-height:1.46;color:#2C4A5B}
+  .rem-row .txt b{color:var(--ink)}
+
+  /* ---------- Tips band (signature, MLC) ---------- */
+  .tips{
+    margin:34px 0 0;border-radius:var(--r);overflow:hidden;
+    background:
+      radial-gradient(120% 150% at 92% -10%, rgba(255,199,44,.18) 0%, rgba(255,199,44,0) 58%),
+      linear-gradient(180deg,var(--navy) 0%, var(--ink) 100%);
+    color:#fff;padding:24px clamp(20px,4vw,34px) 28px;
+  }
+  .tips-head{
+    font-family:var(--display);
+    font-variation-settings:"wdth" 116,"wght" 800;
+    font-size:clamp(17px,3vw,22px);letter-spacing:.06em;text-transform:uppercase;
+    color:var(--gold-lite);margin:0 0 10px;
+  }
+  .tips-lead{
+    font-family:var(--display);
+    font-variation-settings:"wdth" 100,"wght" 700;
+    font-size:clamp(19px,3.7vw,29px);line-height:1.15;
+    color:#fff;margin:0 0 20px;max-width:34ch;letter-spacing:-.01em;
+  }
+  .tips-list{
+    list-style:none;margin:0;padding:0;
+    display:grid;gap:9px;
+    border-top:1px solid rgba(255,255,255,.17);padding-top:18px;
+  }
+  .tips-list li{
+    position:relative;padding-left:26px;font-size:16px;color:#D5E6EF;
+  }
+  .tips-list li::before{
+    content:"";position:absolute;left:0;top:.52em;
+    width:10px;height:2px;background:var(--gold-lite);
+  }
+
+  .colophon{
+    margin-top:30px;font-size:12.5px;color:var(--muted);
+    border-top:1px solid var(--line);padding-top:14px;
+  }
+
+  :focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:6px}
+
+  /* ---------- Mobile ---------- */
+  @media screen and (max-width:720px){
+    .masthead{padding:12px 16px 16px}
+    .shell{padding:18px 16px 44px}
+    .when{grid-template-columns:1fr}
+    .when-cell + .when-cell{border-left:0;border-top:1px solid var(--line-soft)}
+    .rem-row{grid-template-columns:1fr;gap:5px;padding:14px 16px}
+    .rem-row .tag{padding-top:0}
+    .when-cell{padding:15px 17px}
+  }
+
+  /* The utility row must stay on one line on small phones. */
+  @media screen and (max-width:430px){
+    .ubtn{padding:6px 11px;font-size:10px}
+    .ubtn .back-label{display:none}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none !important;animation:none !important;scroll-behavior:auto !important}
+  }
+
+  /* ---------- Print ---------- */
+  @media print{
+    @page{margin:0.5in 0.55in}
+    body{background:#fff;font-size:9.4pt;line-height:1.26}
+    .util,.colophon{display:none !important}
+    .masthead{
+      background:#fff;color:#000;border-bottom:2.5pt solid #000;
+      padding:0 0 6pt;
+    }
+    .eyebrow{color:#000;margin-bottom:4pt;font-size:7.6pt}
+    .eyebrow .dot{background:#000}
+    h1{font-size:19pt;color:#000;line-height:1.04}
+    /* the hero stacks with display:block on screen; inline on paper needs
+       an explicit space or the last two words collide */
+    h1 .hl{color:#000;display:inline}
+    h1 .hl::before{content:" "}
+    .kicker{color:#333;margin-top:4pt;font-size:8.8pt;max-width:none}
+    .shell{padding:9pt 0 0;max-width:none}
+    h2.sh{font-size:11.5pt;margin:8pt 0 5pt;padding-bottom:3.5pt;break-after:avoid}
+    .when,.rem{box-shadow:none;border:0.8pt solid #999}
+    /* Letter width lands near the 720px breakpoint, so the two-column
+       layouts have to be restated here or they stack on paper. */
+    .when{grid-template-columns:1fr 1fr}
+    .when-cell{padding:8pt 11pt;border-left:0}
+    .when-cell + .when-cell{border-left:0.8pt solid #ccc;border-top:0}
+    .when-cell::before{background:#000 !important;height:2.5pt}
+    .wl{font-size:7.4pt;margin-bottom:2pt}
+    .wv{font-size:14pt}
+    .facts,.rules{gap:5pt}
+    .facts li,.rules li{
+      box-shadow:none;border:0.8pt solid #bbb;break-inside:avoid;
+      padding:6pt 9pt 6pt 21pt;border-radius:3pt;
+    }
+    .facts li::before{background:#000;top:9.5pt;left:9pt;width:6pt;height:6pt}
+    .rules li{border-left:2.5pt solid #000;padding-left:9pt;border-radius:0 3pt 3pt 0}
+    .rem-row{
+      grid-template-columns:112pt 1fr;gap:9pt;
+      break-inside:avoid;padding:3.4pt 9pt;
+    }
+    .rem-row .tag{font-size:7.8pt;padding-top:1pt}
+    .rem-row .txt{color:#000;line-height:1.24}
+    .notice{
+      background:none;border-left:2.5pt solid #000;break-inside:avoid;
+      padding:6pt 9pt;margin-bottom:11pt;font-size:10.4pt;
+    }
+    .tips{
+      background:#fff;color:#000;border:1.2pt solid #000;
+      padding:7pt 11pt 8pt;break-inside:avoid;margin-top:7pt;border-radius:4pt;
+    }
+    .tips-head{color:#000;font-size:10.5pt;margin-bottom:3pt}
+    .tips-lead{color:#000;font-size:12pt;margin-bottom:6pt;max-width:none}
+    .tips-list{border-top:0.8pt solid #999;padding-top:6pt;gap:2.5pt;
+      display:block;columns:2;column-gap:18pt}
+    .tips-list li{color:#000;padding-left:15pt;break-inside:avoid;margin-bottom:2.5pt}
+    .tips-list li::before{background:#000;width:7pt;top:.55em}
+  }
+
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="util">
+      <a class="ubtn" href="index-es.html" aria-label="River University">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span class="back-label">River University</span>
+      </a>
+      <span class="grow"></span>
+      <a class="ubtn" href="eoc-tips.html" lang="en">English</a>
+      <button class="ubtn" id="printbtn" type="button">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4v-6h16v6h-2M8 14h8v7H8z"/></svg>Imprimir
+      </button>
+    </div>
+    <p class="eyebrow"><span>River University</span><span class="dot"></span><span>Hoja Informativa</span><span class="dot"></span><span>Octubre 2026</span></p>
+    <h1>Mejorar<br>Nuestro<span class="hl">Campus</span></h1>
+  </div>
+</header>
+
+<main class="shell">
+  <section class="when">
+    <div class="when-cell"><span class="wl">Fecha</span><span class="wv">viernes 16 de octubre</span></div>
+    <div class="when-cell"><span class="wl">Hora</span><span class="wv">8:15 AM a 1:00 PM</span></div>
+  </section>
+  <div class="notice"><span class="star" aria-hidden="true">&#9733;</span><div>Mejorar Nuestro Campus ser&aacute; durante el horario regular de clases, as&iacute; que <b>todos los estudiantes de primer y segundo y 4o a&ntilde;o deben participar</b>.</div></div>
+  <h2 class="sh">Qu&eacute; esperar</h2>
+  <ul class="facts">
+    <li>Este es un d&iacute;a de trabajo, as&iacute; que por favor, venga preparado y vestido para trabajar. Algunos estudiantes ser&aacute;n asignados a la limpieza y otros ser&aacute;n asignados a trabajar afuera.</li>
+    <li>Su departamento asignado se publicar&aacute; en Populi con antelaci&oacute;n. Debes llegar sabiendo cu&aacute;l es tu departamento asignado.</li>
+    <li>Todos los estudiantes firmar&aacute;n su entrada este d&iacute;a.</li>
+  </ul>
+  <h2 class="sh">C&oacute;digo de vestido</h2>
+  <ul class="rules">
+    <li>Aseg&uacute;rese de usar ropa que no le importe ensuciarse o posiblemente arruinarse.</li>
+    <li>Aseg&uacute;rese de traer agua y una merienda si lo necesitas.</li>
+    <li>Se le permite usar vaqueros (jeans), zapatos de tenis, camisetas&hellip;no pantalones el&aacute;sticos/apretados para las damas&hellip;si los vaqueros (jeans) le quedan apretados, su trasero necesita estar <strong>TOTALMENTE</strong> cubierto.</li>
+    <li>Pantalones cortos est&aacute;n permitidos, pero <strong>NO</strong> deben ser muy cortos (hasta la rodilla tanto para hombres como para mujeres). <strong>NO CAMISAS SIN MANGAS O LICRAS.</strong></li>
+  </ul>
+
+  <p class="colophon">&iquest;Preguntas? Escriba a <a href="mailto:ruadmin@revival.com">ruadmin@revival.com</a> o llame al (813)&nbsp;849-6641.</p>
+</main>
+
+<script>
+document.getElementById("printbtn").addEventListener("click",function(){window.print();});
+</script>
+</body>
+</html>
