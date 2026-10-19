@@ -1,5 +1,5 @@
 /* RIVER UNIVERSITY service worker: push notifications + light offline shell */
-const CACHE = 'ru-here-v3';
+const CACHE = 'ru-here-v4';
 const PRECACHE = ['/', '/manifest.webmanifest', '/icon-192.png', '/icon-512.png', '/apple-touch-icon.png'];
 
 /* Standalone pages that live outside the app shell — the Spanish shell, plus the
@@ -12,6 +12,10 @@ const PAGES = [
   '/handbook.html',
   '/handbook-es.html',
   '/index-es.html',
+  '/curriculum.html',
+  '/calendar.html',
+  '/mlc-tips.html',
+  '/mlc-tips-es.html',
 ];
 
 self.addEventListener('install', (e) => {

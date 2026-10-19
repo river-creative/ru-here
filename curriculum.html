@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>River University · 2nd Quarter Curriculum 2026–2027</title>
+<meta name="theme-color" content="#0F3952">
+<meta name="description" content="Find your school, your year, and your week. 2nd Quarter class schedule for River University, 2026–2027.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#082A3D;
+    --navy:#0F3952;
+    --navy-2:#17516F;
+    --blue:#1A6B94;
+    --blue-wash:#E3EEF3;
+    --gold:#8F6712;
+    --gold-lite:#D6A329;
+    --yellow:#FFC72C;
+    --paper:#EFF3F9;
+    --card:#FFFFFF;
+    --line:#D3DCEA;
+    --line-soft:#E5EBF4;
+    --muted:#5B6C87;
+
+    --display:"Archivo","Archivo Expanded","Helvetica Neue",Arial,sans-serif;
+    --body:"Source Sans 3","Segoe UI",system-ui,-apple-system,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+
+    --r:14px;
+    --shadow:0 1px 2px rgba(8,42,61,.07), 0 8px 24px -12px rgba(8,42,61,.28);
+  }
+
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-size:16px;
+    line-height:1.45;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:env(safe-area-inset-bottom);
+  }
+  a{color:var(--blue)}
+
+  /* ---------- Masthead ---------- */
+  .masthead{
+    background:
+      radial-gradient(120% 140% at 88% -20%, rgba(255,199,44,.20) 0%, rgba(255,199,44,0) 55%),
+      linear-gradient(180deg,var(--navy) 0%, var(--ink) 100%);
+    color:#fff;
+    padding:22px 20px 20px;
+    border-bottom:3px solid var(--yellow);
+  }
+  .masthead-inner{max-width:1080px;margin:0 auto}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:11.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--yellow);
+    margin:0 0 8px;
+    display:flex;align-items:center;gap:9px;flex-wrap:wrap;
+  }
+  .eyebrow .dot{width:5px;height:5px;border-radius:50%;background:var(--yellow);opacity:.7}
+  h1{
+    font-family:var(--display);
+    font-variation-settings:"wdth" 118,"wght" 800;
+    font-size:clamp(27px,6.4vw,46px);
+    line-height:1.02;
+    letter-spacing:-.015em;
+    margin:0;
+    text-transform:uppercase;
+  }
+  h1 .year{color:var(--yellow);display:block}
+  .kicker{
+    margin:12px 0 0;
+    max-width:56ch;
+    color:#B7D2DE;
+    font-size:15px;
+  }
+
+  /* ---------- Search ---------- */
+  .searchwrap{
+    position:sticky;top:0;z-index:40;
+    background:rgba(239,243,249,.92);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    padding:12px 20px;
+  }
+  .searchbar{
+    max-width:1080px;margin:0 auto;
+    display:flex;align-items:center;gap:10px;
+    background:var(--card);
+    border:1.5px solid var(--line);
+    border-radius:999px;
+    padding:9px 14px;
+    box-shadow:var(--shadow);
+  }
+  .searchbar:focus-within{border-color:var(--blue);box-shadow:0 0 0 4px var(--blue-wash)}
+  .searchbar svg{flex:none;color:var(--muted)}
+  #q{
+    flex:1;min-width:0;border:0;outline:0;background:transparent;
+    font-family:var(--body);font-size:16px;color:var(--ink);
+  }
+  #q::placeholder{color:#8AA3B0}
+  .clearbtn{
+    border:0;background:var(--blue-wash);color:var(--navy);
+    font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+    padding:5px 10px;border-radius:999px;cursor:pointer;display:none;
+  }
+  .clearbtn.on{display:block}
+
+  /* ---------- Layout ---------- */
+  .shell{max-width:1080px;margin:0 auto;padding:20px 20px 56px}
+
+  .section-label{
+    font-family:var(--mono);
+    font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted);margin:0 0 10px;
+  }
+
+  /* ---------- School rail ---------- */
+  .rail{
+    display:flex;gap:9px;overflow-x:auto;padding:2px 20px 14px;
+    margin:0 -20px;scrollbar-width:none;
+  }
+  .rail::-webkit-scrollbar{display:none}
+  .school{
+    flex:none;cursor:pointer;text-align:left;
+    background:var(--card);border:1.5px solid var(--line);
+    border-radius:12px;padding:11px 15px;min-width:132px;
+    font-family:var(--body);color:var(--ink);
+    transition:border-color .15s, transform .15s, background .15s;
+  }
+  .school:hover{border-color:var(--gold-lite)}
+  .school .abbr{
+    display:block;font-family:var(--display);
+    font-variation-settings:"wdth" 112,"wght" 800;
+    font-size:19px;letter-spacing:.01em;
+  }
+  .school .full{display:block;font-size:12px;color:var(--muted);margin-top:2px;line-height:1.25}
+  .school[aria-selected="true"]{
+    background:var(--navy);border-color:var(--navy);color:#fff;
+  }
+  .school[aria-selected="true"] .full{color:#A6C4D2}
+  .school[aria-selected="true"] .abbr{color:var(--gold-lite)}
+
+  /* ---------- Year pills ---------- */
+  .years{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 20px}
+  .year-pill{
+    cursor:pointer;border:1.5px solid var(--line);background:var(--card);
+    color:var(--navy);border-radius:999px;padding:7px 15px;
+    font-family:var(--mono);font-size:12.5px;letter-spacing:.05em;
+  }
+  .year-pill:hover{border-color:var(--gold-lite)}
+  .year-pill[aria-selected="true"]{
+    background:var(--yellow);border-color:var(--gold-lite);color:var(--ink);font-weight:600;
+  }
+
+  /* ---------- Track head ---------- */
+  .track-head{
+    display:flex;align-items:flex-end;justify-content:space-between;
+    gap:16px;flex-wrap:wrap;margin:0 0 6px;
+  }
+  .track-head h2{
+    font-family:var(--display);
+    font-variation-settings:"wdth" 116,"wght" 800;
+    font-size:clamp(22px,4.6vw,32px);
+    text-transform:uppercase;letter-spacing:-.01em;margin:0;line-height:1.05;
+  }
+  .track-head .sub{color:var(--muted);font-size:14px;margin:3px 0 0}
+  .printbtn{
+    border:1.5px solid var(--line);background:var(--card);color:var(--navy);
+    border-radius:999px;padding:7px 14px;cursor:pointer;
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;
+  }
+  .printbtn:hover{border-color:var(--blue);color:var(--blue)}
+
+  .notice{
+    display:flex;gap:11px;align-items:flex-start;
+    background:linear-gradient(90deg, rgba(255,199,44,.22), rgba(255,199,44,.07));
+    border-left:4px solid var(--yellow);
+    border-radius:8px;padding:11px 14px;margin:14px 0 22px;
+    font-size:14.5px;color:#3B3113;
+  }
+  .notice b{color:var(--ink)}
+
+  /* ---------- Board ---------- */
+  .board{
+    background:var(--card);border:1px solid var(--line);
+    border-radius:var(--r);box-shadow:var(--shadow);
+    overflow:hidden;margin-bottom:20px;
+  }
+  .board-head{
+    background:var(--navy);color:#fff;
+    padding:13px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .board-head .days{
+    font-family:var(--display);
+    font-variation-settings:"wdth" 115,"wght" 800;
+    font-size:17px;letter-spacing:.06em;text-transform:uppercase;
+  }
+  .board-head .meta{
+    font-family:var(--mono);font-size:11px;letter-spacing:.12em;
+    color:var(--gold-lite);text-transform:uppercase;
+  }
+
+  .row{
+    display:grid;
+    grid-template-columns:78px 1fr 190px 108px;
+    gap:14px;align-items:center;
+    padding:13px 18px;
+    border-top:1px solid var(--line-soft);
+    position:relative;
+  }
+  .row:first-of-type{border-top:0}
+  .row .hour{
+    font-family:var(--mono);font-size:11px;color:var(--muted);
+    line-height:1.35;letter-spacing:.02em;
+  }
+  .row .hour strong{
+    display:block;font-family:var(--display);
+    font-variation-settings:"wdth" 100,"wght" 800;
+    font-size:15px;color:var(--navy);letter-spacing:.02em;
+  }
+  .row .code{
+    display:inline-block;font-family:var(--mono);font-size:11.5px;font-weight:600;
+    color:var(--gold);letter-spacing:.06em;margin-bottom:2px;
+  }
+  .row .title{
+    font-family:var(--body);font-weight:600;font-size:16.5px;line-height:1.25;color:var(--ink);
+  }
+  .row .subtitle{font-size:13px;color:var(--muted);margin-top:2px}
+  .tag{
+    display:inline-block;vertical-align:2px;margin-left:7px;
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;
+    background:var(--blue-wash);color:var(--navy);
+    padding:2px 6px;border-radius:4px;text-transform:uppercase;
+  }
+  .row .inst{font-size:14px;color:#2C4A5B;line-height:1.3}
+  .row .room{
+    justify-self:end;font-family:var(--mono);font-size:12.5px;font-weight:500;
+    background:var(--blue-wash);color:var(--navy);
+    padding:6px 11px;border-radius:8px;white-space:nowrap;
+  }
+  .row.now{background:linear-gradient(90deg, rgba(255,199,44,.16), rgba(255,199,44,0))}
+  .row.now::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--yellow);
+  }
+  .nowtag{
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;
+    background:var(--yellow);color:var(--ink);padding:2px 6px;border-radius:4px;
+    margin-left:7px;vertical-align:2px;
+  }
+  .row.wide{grid-template-columns:78px 1fr 190px 108px}
+
+  /* ---------- Search results ---------- */
+  .result{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:13px 16px;margin-bottom:9px;cursor:pointer;
+    display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;
+    box-shadow:0 1px 2px rgba(8,42,61,.06);
+  }
+  .result:hover{border-color:var(--blue)}
+  .result .where{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--blue);margin-bottom:3px;
+  }
+  .result .go{
+    font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap;
+  }
+  .empty{
+    text-align:center;padding:44px 20px;color:var(--muted);
+    background:var(--card);border:1px dashed var(--line);border-radius:var(--r);
+  }
+  .empty strong{display:block;color:var(--ink);font-size:18px;margin-bottom:5px;font-family:var(--display);font-variation-settings:"wdth" 112,"wght" 700}
+
+  mark{background:rgba(255,199,44,.55);color:inherit;border-radius:3px;padding:0 2px}
+
+  /* ---------- Legend ---------- */
+  .legend{
+    margin-top:32px;border-top:2px solid var(--line);padding-top:20px;
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:22px;
+  }
+  .legend h3{
+    font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted);margin:0 0 9px;font-weight:500;
+  }
+  .legend ul{margin:0;padding:0;list-style:none;font-size:14px;color:#2C4A5B}
+  .legend li{padding:3px 0;display:flex;gap:9px}
+  .legend li span:first-child{
+    font-family:var(--mono);font-size:12px;color:var(--navy);
+    min-width:58px;flex:none;font-weight:500;
+  }
+  .legend-wide{grid-column:1 / -1}
+  #roomlist{
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    column-gap:26px;
+  }
+  #roomlist li{
+    border-bottom:1px solid var(--line-soft);
+    padding:6px 0;justify-content:space-between;
+  }
+  #roomlist li span:last-child{color:var(--muted);font-size:13px;white-space:nowrap}
+  .colophon{
+    margin-top:26px;font-size:12.5px;color:var(--muted);
+    border-top:1px solid var(--line);padding-top:14px;
+  }
+
+  :focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:6px}
+
+  /* ---------- Mobile ---------- */
+  @media (max-width:720px){
+    .shell{padding:16px 16px 44px}
+    .masthead{padding:18px 16px 16px}
+    .searchwrap{padding:10px 16px}
+    .rail{padding:2px 16px 12px;margin:0 -16px}
+    .row{
+      grid-template-columns:56px 1fr;
+      grid-template-areas:"hour title" ". inst" ". room";
+      gap:4px 12px;padding:14px 16px;
+    }
+    .row .hour{grid-area:hour;align-self:start;padding-top:2px}
+    .row .titlecell{grid-area:title}
+    .row .inst{grid-area:inst;font-size:13.5px;color:var(--muted)}
+    .row .room{grid-area:room;justify-self:start;margin-top:4px;font-size:11.5px;padding:4px 9px}
+    .board-head{padding:11px 16px}
+    .result{grid-template-columns:1fr}
+    .result .go{display:none}
+    #roomlist{column-gap:12px}
+    #roomlist li{flex-direction:column;gap:1px}
+    #roomlist li span:first-child{min-width:0;font-size:11.5px}
+    #roomlist li span:last-child{font-size:11.5px}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none !important;animation:none !important;scroll-behavior:auto !important}
+  }
+
+  /* ---------- Print ---------- */
+  @media print{
+    body{background:#fff;font-size:11pt}
+    .searchwrap,.rail,.years,.printbtn,.section-label,.masthead .kicker{display:none !important}
+    .masthead{background:#fff;color:#000;border-bottom:2px solid #000;padding:0 0 8px}
+    .masthead .eyebrow{color:#000}
+    h1{font-size:20pt;color:#000}
+    h1 .year{color:#000;display:inline}
+    .board{box-shadow:none;break-inside:avoid;border:1px solid #999}
+    .board-head{background:#eee;color:#000}
+    .board-head .meta{color:#000}
+    .row.now{background:none}
+    .row.now::before{display:none}
+    .shell{padding:0}
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-inner">
+    <p class="eyebrow"><span>River University</span><span class="dot"></span><span>2nd Quarter</span><span class="dot"></span><span>Tampa Campus</span></p>
+    <h1>Master Curriculum<span class="year">2026 &ndash; 2027</span></h1>
+    <p class="kicker">Pick your school, then your year. Every class you have this quarter &mdash; hour by hour, with the room and who&rsquo;s teaching it.</p>
+  </div>
+</header>
+
+<div class="searchwrap">
+  <div class="searchbar">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="q" type="search" placeholder="Search a class, code, instructor, or room" autocomplete="off" aria-label="Search the curriculum">
+    <button class="clearbtn" id="clear" type="button">Clear</button>
+  </div>
+</div>
+
+<main class="shell">
+  <div id="browse">
+    <p class="section-label">Schools</p>
+    <div class="rail" id="rail" role="tablist" aria-label="Schools"></div>
+
+    <p class="section-label">Year</p>
+    <div class="years" id="years" role="tablist" aria-label="Year"></div>
+
+    <div id="track"></div>
+  </div>
+
+  <div id="results" hidden></div>
+
+  <section class="legend" id="legend">
+    <div>
+      <h3>Class hours</h3>
+      <ul>
+        <li><span>1st</span><span>8:40 &ndash; 9:45</span></li>
+        <li><span>2nd</span><span>9:50 &ndash; 10:55</span></li>
+        <li><span>3rd</span><span>11:00 &ndash; 12:05</span></li>
+        <li><span>4th</span><span>12:15 &ndash; 1:00</span></li>
+      </ul>
+    </div>
+    <div>
+      <h3>RBI 4 sessions</h3>
+      <ul>
+        <li><span>1st</span><span>9:00 &ndash; 1:00</span></li>
+        <li><span>2nd</span><span>2:15 &ndash; 3:15</span></li>
+        <li><span>3rd</span><span>3:30 &ndash; 4:30</span></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Day codes</h3>
+      <ul>
+        <li><span>M/W/F</span><span>Monday, Wednesday, Friday</span></li>
+        <li><span>T/R</span><span>Tuesday, Thursday</span></li>
+      </ul>
+    </div>
+    <div class="legend-wide">
+      <h3>Classrooms</h3>
+      <ul id="roomlist"></ul>
+    </div>
+  </section>
+
+  <p class="colophon">Schedules can change. Confirm with the Registrar&rsquo;s Office before the first day of class.</p>
+</main>
+
+<script>
+(function () {
+  "use strict";
+
+  var HOURS = {
+    1: { label: "1st", time: "8:40 – 9:45",   start: 520, end: 585 },
+    2: { label: "2nd", time: "9:50 – 10:55",  start: 590, end: 655 },
+    3: { label: "3rd", time: "11:00 – 12:05", start: 660, end: 725 },
+    4: { label: "4th", time: "12:15 – 1:00",  start: 735, end: 780 }
+  };
+  var SESSIONS = {
+    1: { label: "1st", time: "9:00 – 1:00",  start: 540, end: 780 },
+    2: { label: "2nd", time: "2:15 – 3:15",  start: 855, end: 915 },
+    3: { label: "3rd", time: "3:30 – 4:30",  start: 930, end: 990 }
+  };
+
+  var RHB = "Dr. Rodney Howard-Browne";
+
+  /* Shared Tuesday/Thursday core carried by every second-year track. */
+  function coreTR(room) {
+    room = room || "CR 4";
+    return [
+      { hr: 1, code: "PTH130", name: "Missions", inst: "Ps. Julian Sutton", room: room },
+      { hr: 2, code: "BIB253", name: "Shaking the Nations", inst: RHB, room: room },
+      { hr: 3, code: "THE251", name: "Women in Ministry", inst: "Dr. Debbie Rich", room: room },
+      { hr: 4, code: "BIB255", name: "Revival Studies Lab VI", inst: "Dr. Rodney Howard Browne", room: "ST B" }
+    ];
+  }
+  /* Shared third-year ministry operations block. */
+  function opsMWF(room) {
+    return { hr: 4, code: "MP372", name: "Ministry Operations Lab", inst: "Mr. Elijah Dominguez", room: room || "CR 1" };
+  }
+  function opsTR(name, code, room) {
+    return [{ hr: 0, code: code || "MIN302", name: name || "Ministry Operations II",
+              sub: "Runs across the day", inst: "Dr. Martha Cabrera", room: room || "CR 4" }];
+  }
+
+  var YEAR_ONE = {
+    id: "y1",
+    label: "Year 1",
+    name: "Foundation Year",
+    sub: "RBI 1 · RSW 1 · RSG 1 · RSM 1 — one shared classroom",
+    notice: "Every first-year student sits together. Whatever school you enrolled in, your first year is the same schedule in ST B.",
+    blocks: [
+      { days: "M/W/F", rows: [
+        { hr: 1, code: "PSY101", name: "Personal Development", inst: "Ps. Lois Williams", room: "ST B" },
+        { hr: 2, code: "BIB153", name: "The Anointing", inst: RHB, room: "ST B" },
+        { hr: 3, code: "THE110", name: "Bible Doctrines", inst: "Dr. Raymond Cilliers", room: "ST B" },
+        { hr: 4, code: "BIB155", name: "Revival Studies Lab II", inst: RHB, room: "ST B" }
+      ]},
+      { days: "T/R", rows: [
+        { hr: 1, code: "BIB111", name: "Godly Character", inst: "Drs. Eric & Jennifer Gonyon", room: "ST B" },
+        { hr: 2, code: "BIB241", name: "Heavenly Vision", inst: RHB, room: "ST B" },
+        { hr: 3, code: "THE170", name: "This Present Glory", inst: "Dr. Raymond Cilliers", room: "ST B" },
+        { hr: 4, code: "BIB155", name: "Revival Studies Lab II", inst: RHB, room: "ST B" }
+      ]}
+    ]
+  };
+
+  var SCHOOLS = [
+    {
+      id: "rbi", abbr: "RBI", name: "River Bible Institute",
+      tracks: [
+        YEAR_ONE,
+        {
+          id: "rbi2", label: "Year 2", name: "RBI 2", sub: "Home room CR 1",
+          blocks: [
+            { days: "M/W/F", rows: [
+              { hr: 1, code: "THE231", name: "Pauline Letters", inst: "Dr. Raymond Cilliers", room: "CR 1" },
+              { hr: 2, code: "THE252", name: "Call of God / Five Fold Ministry", inst: RHB, room: "CR 1" },
+              { hr: 3, code: "THE140", name: "Eschatology", inst: "Dr. Allen Hawes", room: "CR 1" },
+              { hr: 4, code: "BIB255", name: "Revival Studies Lab VI", inst: "Dr. Rodney Howard Browne", room: "ST B" }
+            ]},
+            { days: "T/R", rows: coreTR("CR 1") }
+          ]
+        },
+        {
+          id: "rbi3", label: "Year 3", name: "RBI 3", sub: "Home room CR 4",
+          blocks: [
+            { days: "M/W/F", rows: [
+              { hr: 1, code: "PTH310", name: "Pastoral Care & Counseling", inst: "Ps. Shannon & Deanna Gilbert", room: "CR 4" },
+              { hr: 2, code: "THE252", name: "Call of God / Five Fold Ministry", inst: RHB, room: "CR 1" },
+              { hr: 3, code: "PTH261", name: "Homiletics II", inst: "Rev. Adrian Garcia", room: "CR 4" },
+              opsMWF("CR 4")
+            ]},
+            { days: "T/R", rows: opsTR() }
+          ]
+        },
+        {
+          id: "rbi4", label: "Year 4 · Campus", name: "RBI 4 — On Campus", sub: "Quarter 2 · Longer sessions, five days a week",
+          notice: "Year 4 runs on its own clock: 1st session 9:00–1:00, 2nd 2:15–3:15, 3rd 3:30–4:30.",
+          sessions: true,
+          blocks: [
+            { days: "M/T/W/R/F", meta: "Quarter 2", rows: [
+              { hr: 1, code: "MIN4102", name: "Practical Ministry II", inst: RHB, room: "DEPT" },
+              { hr: 2, code: "THE4280", name: "Now Faith", inst: RHB, room: "CR 4" },
+              { hr: 3, code: "PTH4240", name: "Leadership in Ministry", inst: RHB, room: "CR 4" }
+            ]}
+          ]
+        },
+        {
+          id: "rbi4o", label: "Year 4 · Online", name: "RBI 4 — Online", sub: "Self-paced · Semester 3, August to December",
+          notice: "Coursework is self-paced through Populi. No fixed class hours.",
+          sessions: true, selfPaced: true,
+          blocks: [
+            { days: "Self-paced", meta: "3rd Qtr · Semester 3 · Aug–Dec", rows: [
+              { hr: 1, code: "MIN4101", name: "Practical Ministry I", inst: RHB, room: "POPULI" },
+              { hr: 2, code: "THE4600", name: "Demonology and Deliverance", inst: RHB, room: "POPULI" },
+              { hr: 3, code: "THE4700", name: "The Favor of God", inst: RHB, room: "POPULI" }
+            ]}
+          ]
+        }
+      ]
+    },
+    {
+      id: "rsw", abbr: "RSW", name: "River School of Worship",
+      tracks: [
+        YEAR_ONE,
+        {
+          id: "rsw2", label: "Year 2", name: "RSW 2", sub: "Home room CR 2",
+          blocks: [
+            { days: "M/W/F", rows: [
+              { hr: 1, code: "MUS222", name: "Vocal Lab II", inst: "Rev. Octavia Wilder", room: "CR 2" },
+              { hr: 2, code: "MUS232", name: "Songwriting II", inst: "Mr. Don Love", room: "CR 2" },
+              { hr: 3, code: "MUS164", name: "Psalmody I", inst: "Ps. Lois Williams", room: "CR 2" },
+              { hr: 4, code: "BIB255", name: "Revival Studies Lab VI", inst: "Dr. Rodney Howard Browne", room: "ST B" }
+            ]},
+            { days: "T/R", rows: coreTR("CR 4") }
+          ]
+        },
+        {
+          id: "rsw3", label: "Year 3", name: "RSW 3", sub: "Home room CR 3",
+          blocks: [
+            { days: "M/W/F", rows: [
+              { hr: 1, code: "MUS263", name: "Worship Team Administration", inst: "Ms. Keziah-Grace Lopes", room: "CR 3" },
+              { hr: 2, code: "MUS235", name: "Songwriting IV", inst: "Mr. George / Ms. Keziah-Grace", room: "CR 3" },
+              { hr: 3, code: "MUS322", name: "Vocal Lab III", inst: "Rev. Octavia Wilder", room: "CR 3" },
+              opsMWF("CR 1")
+            ]},
+            { days: "T/R", rows: opsTR(null, null, "CR 1") }
+          ]
+        }
+      ]
+    },
+    {
+      id: "rsg", abbr: "RSG", name: "River School of Government",
+      tracks: [
+        YEAR_ONE,
+        {
+          id: "rsg2", label: "Year 2", name: "RSG 2", sub: "Home room CR 5",
+          blocks: [
+            { days: "M/W/F", rows: [
+              { hr: 1, code: "POS2100", name: "The Creature from Jekyll Island", inst: "Dr. KrisAnne Hall", room: "CR 5" },
+              { hr: 2, code: "HIS3100", name: "The Killing of Uncle Sam", inst: "Rev. David Larson", room: "CR 5" },
+              { hr: 3, code: "HIS2100", name: "Constitution I", inst: "Dr. KrisAnne Hall", room: "CR 5" },
+              { hr: 4, code: "BIB255", name: "Revival Studies Lab VI", inst: "Dr. Rodney Howard Browne", room: "ST B" }
+            ]},
+            { days: "T/R", rows: coreTR("CR 4") }
+          ]
+        },
+        {
+          id: "rsg3", label: "Year 3", name: "RSG 3", sub: "Home room L - PIE",
+          blocks: [
+            { days: "M/W/F", rows: [
+              { hr: 1, code: "HIS3101", name: "Socialism Under the Microscope", inst: "Rev. Rachael Larson", room: "L - PIE" },
+              { hr: 2, code: "POS4100", name: "Contract and Constitutional Law", inst: "Dr. KrisAnne Hall", room: "L - PIE" },
+              { hr: 3, code: "POT2100", name: "Government and the Family", inst: "Ps. Shannon Gilbert", room: "L - PIE" },
+              opsMWF("CR 1")
+            ]},
+            { days: "T/R", rows: opsTR(null, null, "CR 1") }
+          ]
+        }
+      ]
+    },
+    {
+      id: "rbie", abbr: "RBIE", name: "RBI en Español",
+      tracks: [
+        {
+          id: "rbie1", label: "Año 1", name: "RBIE 1", sub: "Salón W BAL",
+          blocks: [
+            { days: "M/W/F", rows: [
+              { hr: 1, code: "PSY101-2", name: "Desarrollo Personal", inst: "Ps. Lois & Ps. Ismary Santana", room: "W BAL" },
+              { hr: 2, code: "BIB153-2", name: "La Unción", inst: "Dr. Mark Cabrera", room: "W BAL" },
+              { hr: 3, code: "THE110-2", name: "Doctrinas Biblicas", inst: "Ps. Joshua Santana", room: "W BAL" },
+              { hr: 4, code: "BIB155-2", name: "Laboratorio II — Estudios de Avivamiento", inst: RHB, room: "ST B" }
+            ]},
+            { days: "T/R", rows: [
+              { hr: 1, code: "BIB241-2", name: "Visión del Cielo", inst: "Ps. Joshua Santana", room: "W BAL" },
+              { hr: 2, code: "BIB111-2", name: "Carácter Piadoso", inst: "Sra. Carmen Morales", room: "W BAL" },
+              { hr: 3, code: "THE170-2", name: "La Presente Gloria", inst: "Ps. Joshua Santana", room: "W BAL" },
+              { hr: 4, code: "BIB155-2", name: "Laboratorio II — Estudios de Avivamiento", inst: RHB, room: "ST B" }
+            ]}
+          ]
+        },
+        {
+          id: "rbie2", label: "Año 2", name: "RBIE 2", sub: "Salón S BAL",
+          blocks: [
+            { days: "M/W/F", rows: [
+              { hr: 1, code: "THE231-2", name: "Epístolas Paulinas", inst: "Rev. Joshua Aldape", room: "S BAL" },
+              { hr: 2, code: "BIB153-2", name: "El Llamado de Dios / Ministerio Quíntuple", inst: "Ps. Joshua Santana", room: "S BAL" },
+              { hr: 3, code: "THE110-2", name: "Escatología", inst: "Dr. Mark Cabrera", room: "S BAL" },
+              { hr: 4, code: "BIB 255-2", name: "Laboratorio VI — Estudios de Avivamiento", inst: RHB, room: "ST B" }
+            ]},
+            { days: "T/R", rows: [
+              { hr: 1, code: "PTH130-2", name: "Misiones", inst: "Ev. Merlin Calero", room: "S BAL" },
+              { hr: 2, code: "BIB253-2", name: "Estremeciendo las Naciones", inst: "Ps. Joshua Santana", room: "S BAL" },
+              { hr: 3, code: "THE251-2", name: "Mujeres en el Ministerio", inst: "Ps. Ismary Santana", room: "S BAL" },
+              { hr: 4, code: "BIB255-2", name: "Laboratorio VI — Estudios de Avivamiento", inst: RHB, room: "ST B" }
+            ]}
+          ]
+        },
+        {
+          id: "rbie3", label: "Año 3", name: "RBIE 3", sub: "Salón N BAL",
+          blocks: [
+            { days: "M/W/F", rows: [
+              { hr: 1, code: "PTH310-2", name: "Cuidado Pastoral y Consejería", inst: "Ps. Joshua & Ismary Santana", room: "N BAL" },
+              { hr: 2, code: "BIB153-2", name: "El Llamado de Dios / Ministerio Quíntuple", inst: "Ps. Joshua Santana", room: "S BAL" },
+              { hr: 3, code: "THE152-2", name: "El Fruto del Espiritu", inst: "Rev. Osiel Martinez", room: "N BAL" },
+              { hr: 4, code: "MP372-2", name: "Ministry Operations Lab", inst: "Rev. Leslie Stone", room: "CR 1" }
+            ]},
+            { days: "T/R", rows: [
+              { hr: 0, code: "MIN302-2", name: "Operaciones Ministeriales II", sub: "Runs across the day",
+                inst: "Dr. Martha Cabrera", room: "CR 1" }
+            ]}
+          ]
+        }
+      ]
+    },
+    {
+      id: "rci", abbr: "RCI", name: "River Culinary Institute",
+      note: "The 2nd Quarter master curriculum lists RCI from Year 2 onward.",
+      tracks: [
+        {
+          id: "rci2", label: "Year 2", name: "RCI 2", sub: "Home kitchen SB K",
+          blocks: [
+            { days: "M/W/F", rows: [
+              { hr: 1, code: "CUL 102", name: "Knife Skills", inst: "Mr. Austin Helmer", room: "SB K" },
+              { hr: 2, code: "HOS101", name: "Spirit of Excellence in the Hospitality Industry", inst: "Dr. Raymond Cilliers", room: "SB K" },
+              { hr: 3, code: "CUL103", name: "Stock / Soups / Sauces", inst: "Dr. Charne Cilliers", room: "SB K" },
+              { hr: 4, code: "BIB255", name: "Revival Studies Lab VI", inst: "Dr. Rodney Howard Browne", room: "ST B" }
+            ]},
+            { days: "T/R", rows: coreTR("CR 4") }
+          ]
+        },
+        {
+          id: "rci3", label: "Year 3", name: "RCI 3", sub: "Home kitchen L’Adon",
+          blocks: [
+            { days: "M/W/F", rows: [
+              { hr: 1, code: "CUL201", name: "Cheese", inst: "Dr. Charne Cilliers", room: "L’Adon" },
+              { hr: 2, code: "BUS201", name: "Restaurant Business", inst: "Dr. Charne Cilliers", room: "L’Adon" },
+              { hr: 3, code: "CUL211", name: "Agriculture", inst: "Mr. Israel Prieto", room: "L’Adon" },
+              opsMWF("CR 1")
+            ]},
+            { days: "T/R", rows: opsTR(null, null, "CR 1") }
+          ]
+        }
+      ]
+    },
+    {
+      id: "rsm", abbr: "RSM", name: "River School of Media",
+      tracks: [
+        YEAR_ONE,
+        {
+          id: "rsm2", label: "Year 2", name: "RSM 2", sub: "Home room R PIE",
+          blocks: [
+            { days: "M/W/F", rows: [
+              { hr: 1, code: "PHT1101", name: "Photography 101", inst: "Ms. Crystal Seeger", room: "R PIE" },
+              { hr: 2, code: "MDS1100", name: "Media Team Systems & Operations", inst: "Ms. Zoriaya Saltos", room: "R PIE" },
+              { hr: 3, code: "FLM1101", name: "Film & Lighting 101", inst: "Rev. Ben Dickey", room: "R PIE" },
+              { hr: 4, code: "BIB255", name: "Revival Studies Lab VI", inst: RHB, room: "ST B" }
+            ]},
+            { days: "T/R", rows: coreTR("CR 4") }
+          ]
+        },
+        {
+          id: "rsm3", label: "Year 3", name: "RSM 3", sub: "Home room ST D",
+          blocks: [
+            { days: "M/W/F", rows: [
+              { hr: 1, code: "MDS2100", name: "Leadership in Ministry", inst: "Rev. Ben Dickey", room: "ST D" },
+              { hr: 2, code: "MDS2102", name: "Message to Media", inst: "Mrs. Maria Hightshoe", room: "ST D" },
+              { hr: 3, code: "CAP2102", name: "Capstone Production", inst: "Ms. Elizabeth Davenport", room: "ST D" },
+              opsMWF("CR 1")
+            ]},
+            { days: "T/R", rows: opsTR(null, null, "CR 1") }
+          ]
+        }
+      ]
+    }
+  ];
+
+  /* ---------------- rendering ---------------- */
+
+  var railEl = document.getElementById("rail");
+  var yearsEl = document.getElementById("years");
+  var trackEl = document.getElementById("track");
+  var browseEl = document.getElementById("browse");
+  var resultsEl = document.getElementById("results");
+  var legendEl = document.getElementById("legend");
+  var qEl = document.getElementById("q");
+  var clearEl = document.getElementById("clear");
+
+  var state = { school: 0, track: 0 };
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  function nowMinutes() {
+    var d = new Date();
+    return d.getHours() * 60 + d.getMinutes();
+  }
+  function todayLetters() {
+    // 0 Sun … 6 Sat
+    var d = new Date().getDay();
+    if (d === 1 || d === 3 || d === 5) return "M/W/F";
+    if (d === 2 || d === 4) return "T/R";
+    return null;
+  }
+
+  function isNow(block, row, track) {
+    var today = todayLetters();
+    if (!today) return false;
+    if (track.selfPaced) return false;
+    var days = block.days;
+    var match = days === today || (days === "M/T/W/R/F" && today !== null);
+    if (!match) return false;
+    var table = track.sessions ? SESSIONS : HOURS;
+    var h = table[row.hr];
+    if (!h) return false;
+    var m = nowMinutes();
+    return m >= h.start && m <= h.end;
+  }
+
+  function rowHTML(row, block, track) {
+    var table = track.sessions ? SESSIONS : HOURS;
+    var h = table[row.hr];
+    var hourCell = h
+      ? '<strong>' + h.label + '</strong>' + esc(h.time)
+      : '<strong>All</strong>day';
+    var live = isNow(block, row, track);
+    return '' +
+      '<div class="row' + (live ? " now" : "") + '">' +
+        '<div class="hour">' + hourCell + '</div>' +
+        '<div class="titlecell">' +
+          '<span class="code">' + esc(row.code) + '</span>' +
+          '<div class="title">' + esc(row.name) +
+            (row.tag ? '<span class="tag">' + esc(row.tag) + '</span>' : '') +
+            (live ? '<span class="nowtag">Now</span>' : '') +
+          '</div>' +
+          (row.sub ? '<div class="subtitle">' + esc(row.sub) + '</div>' : '') +
+        '</div>' +
+        '<div class="inst">' + esc(row.inst) + '</div>' +
+        '<div class="room">' + esc(row.room) + '</div>' +
+      '</div>';
+  }
+
+  function renderRail() {
+    railEl.innerHTML = SCHOOLS.map(function (s, i) {
+      return '<button class="school" role="tab" data-i="' + i + '" aria-selected="' + (i === state.school) + '">' +
+        '<span class="abbr">' + esc(s.abbr) + '</span>' +
+        '<span class="full">' + esc(s.name) + '</span>' +
+      '</button>';
+    }).join("");
+  }
+
+  function renderYears() {
+    var tracks = SCHOOLS[state.school].tracks;
+    yearsEl.innerHTML = tracks.map(function (t, i) {
+      return '<button class="year-pill" role="tab" data-i="' + i + '" aria-selected="' + (i === state.track) + '">' + esc(t.label) + '</button>';
+    }).join("");
+  }
+
+  function renderTrack() {
+    var school = SCHOOLS[state.school];
+    var t = school.tracks[state.track];
+    var html = '' +
+      '<div class="track-head">' +
+        '<div>' +
+          '<h2>' + esc(t.name) + '</h2>' +
+          '<p class="sub">' + esc(school.name) + (t.sub ? ' &middot; ' + esc(t.sub) : '') + '</p>' +
+        '</div>' +
+        '<button class="printbtn" id="printbtn" type="button">Print schedule</button>' +
+      '</div>';
+
+    var notice = t.notice || school.note;
+    if (notice) {
+      html += '<div class="notice"><span aria-hidden="true">★</span><div>' + esc(notice) + '</div></div>';
+    }
+
+    html += t.blocks.map(function (b) {
+      return '<section class="board">' +
+        '<div class="board-head">' +
+          '<span class="days">' + esc(b.days) + '</span>' +
+          '<span class="meta">' + esc(b.meta || (t.sessions ? "Sessions" : "4 hours")) + '</span>' +
+        '</div>' +
+        b.rows.map(function (r) { return rowHTML(r, b, t); }).join("") +
+      '</section>';
+    }).join("");
+
+    trackEl.innerHTML = html;
+    var pb = document.getElementById("printbtn");
+    if (pb) pb.addEventListener("click", function () { window.print(); });
+  }
+
+  function render() {
+    renderRail();
+    renderYears();
+    renderTrack();
+  }
+
+  /* ---------------- search ---------------- */
+
+  var INDEX = [];
+  SCHOOLS.forEach(function (s, si) {
+    s.tracks.forEach(function (t, ti) {
+      t.blocks.forEach(function (b) {
+        b.rows.forEach(function (r) {
+          INDEX.push({
+            si: si, ti: ti, days: b.days, row: r, track: t, school: s,
+            hay: [r.code, r.name, r.sub || "", r.inst, r.room, t.name, s.name, s.abbr, b.days].join(" ").toLowerCase()
+          });
+        });
+      });
+    });
+  });
+
+  function highlight(text, term) {
+    var safe = esc(text);
+    if (!term) return safe;
+    var re = new RegExp("(" + term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + ")", "ig");
+    return safe.replace(re, "<mark>$1</mark>");
+  }
+
+  function search(term) {
+    var q = term.trim().toLowerCase();
+    if (!q) {
+      browseEl.hidden = false;
+      resultsEl.hidden = true;
+      legendEl.hidden = false;
+      clearEl.classList.remove("on");
+      return;
+    }
+    clearEl.classList.add("on");
+    browseEl.hidden = true;
+    legendEl.hidden = true;
+    resultsEl.hidden = false;
+
+    var seen = {};
+    var hits = INDEX.filter(function (x) {
+      if (x.hay.indexOf(q) === -1) return false;
+      var key = x.si + "|" + x.ti + "|" + x.days + "|" + x.row.code;
+      if (seen[key]) return false;
+      seen[key] = 1;
+      return true;
+    });
+
+    if (!hits.length) {
+      resultsEl.innerHTML = '<div class="empty"><strong>No classes match that</strong>Try a course code like BIB254, an instructor&rsquo;s last name, or a room like CR 4.</div>';
+      return;
+    }
+
+    var table;
+    resultsEl.innerHTML = '<p class="section-label">' + hits.length + ' class' + (hits.length === 1 ? "" : "es") + ' found</p>' +
+      hits.map(function (x) {
+        table = x.track.sessions ? SESSIONS : HOURS;
+        var h = table[x.row.hr];
+        var when = x.days + (h ? " · " + h.label + " hour · " + h.time : "");
+        return '<div class="result" data-si="' + x.si + '" data-ti="' + x.ti + '" tabindex="0" role="button">' +
+          '<div>' +
+            '<div class="where">' + highlight(x.school.abbr + " · " + x.track.name, term) + '</div>' +
+            '<div class="title"><span class="code">' + highlight(x.row.code, term) + '</span> ' + highlight(x.row.name, term) + '</div>' +
+            '<div class="subtitle">' + esc(when) + ' &middot; ' + highlight(x.row.inst, term) + ' &middot; ' + highlight(x.row.room, term) + '</div>' +
+          '</div>' +
+          '<div class="go">Open schedule &rarr;</div>' +
+        '</div>';
+      }).join("");
+  }
+
+  /* ---------------- rooms legend ---------------- */
+
+  (function rooms() {
+    var set = {};
+    INDEX.forEach(function (x) { set[x.row.room] = 1; });
+    var list = Object.keys(set).sort();
+    document.getElementById("roomlist").innerHTML = list.map(function (r) {
+      var count = INDEX.filter(function (x) { return x.row.room === r; }).length;
+      return '<li><span>' + esc(r) + '</span><span>' + count + ' class' + (count === 1 ? "" : "es") + '</span></li>';
+    }).join("");
+  })();
+
+  /* ---------------- events ---------------- */
+
+  railEl.addEventListener("click", function (e) {
+    var b = e.target.closest(".school");
+    if (!b) return;
+    state.school = Number(b.dataset.i);
+    state.track = 0;
+    render();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  yearsEl.addEventListener("click", function (e) {
+    var b = e.target.closest(".year-pill");
+    if (!b) return;
+    state.track = Number(b.dataset.i);
+    renderYears();
+    renderTrack();
+  });
+
+  resultsEl.addEventListener("click", openResult);
+  resultsEl.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openResult(e); }
+  });
+  function openResult(e) {
+    var c = e.target.closest(".result");
+    if (!c) return;
+    state.school = Number(c.dataset.si);
+    state.track = Number(c.dataset.ti);
+    qEl.value = "";
+    search("");
+    render();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  var timer;
+  qEl.addEventListener("input", function () {
+    clearTimeout(timer);
+    var v = qEl.value;
+    timer = setTimeout(function () { search(v); }, 120);
+  });
+  clearEl.addEventListener("click", function () {
+    qEl.value = "";
+    search("");
+    qEl.focus();
+  });
+
+  render();
+  // Keep the "Now" marker honest through the day.
+  setInterval(function () { if (!resultsEl.hidden) return; renderTrack(); }, 60000);
+})();
+</script>
+</body>
+</html>
