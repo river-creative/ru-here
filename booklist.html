@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>River University · Booklist · 1st Quarter 2026–2027</title>
+<title>River University · Booklist · 2nd Quarter 2026–2027</title>
 <meta name="theme-color" content="#0F3952">
-<meta name="description" content="Every book you need this quarter. Find your school, your year, and what to buy. 1st Quarter booklist for River University, 2026–2027.">
+<meta name="description" content="Every book you need this quarter. Find your school, your year, and what to buy. 2nd Quarter booklist for River University, 2026–2027.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
@@ -369,7 +369,7 @@
 
 <header class="masthead">
   <div class="masthead-inner">
-    <p class="eyebrow"><span>River University</span><span class="dot"></span><span>Booklist</span><span class="dot"></span><span>1st Quarter</span></p>
+    <p class="eyebrow"><span>River University</span><span class="dot"></span><span>Booklist</span><span class="dot"></span><span>2nd Quarter</span></p>
     <h1>Required Reading<span class="year">2026 &ndash; 2027</span></h1>
     <p class="kicker">Pick your school, then your year.<br>Every book you need this quarter &mdash; what to buy, what&rsquo;s already waiting for you in Populi.</p>
   </div>
@@ -430,61 +430,84 @@
      These courses repeat across schools. Defining them once keeps every
      school's list identical to the printed booklist. */
 
-  function soulWinningII() {
-    return { name: "Soul Winning II", books: [
-      { t: "Foxes Book of Martyrs", a: "John Foxe", note: "Pages 1\u201396", isbn: "978-0882708751", price: 15 }
+  function missions() {
+    return { name: "Missions", books: [
+      { t: "The Book of Acts in the Bible", kind: "reading", plain: true,
+        note: "Read this Bible text alongside the course." }
     ]};
   }
-  function vision() {
-    return { name: "Vision", books: [
-      { t: "\u201cFrom the Heart\u201d Articles", kind: "populi", plain: true }
+  function misiones() {
+    return { name: "Misiones", books: [
+      { t: "El libro de Hechos en la Biblia", kind: "reading", plain: true,
+        note: "Lea este texto bíblico junto con el curso." }
     ]};
   }
-  function devilsAndDemons() {
-    return { name: "Devils and Demons \u2013 HTDWT", books: [
-      { t: "The Triumphant Church", a: "Kenneth E. Hagin", isbn: "0892765208", price: 15 },
-      { t: "Demons and How to Deal with Them", a: "Kenneth E. Hagin", isbn: "0892760117", kind: "populi" }
+  function shakingNations() {
+    return { name: "Shaking the Nations", books: [
+      { t: "“From the Heart” PDF’s", kind: "populi",
+        note: "Believing God to See the Nations Shaken; Asking God for Nations; Shaking the Nations; Jesus Has Sprinkled the Nations" },
+      { t: "Living in the Supernatural", a: RHB }
     ]};
   }
-  function ministryOps(name) {
-    return { name: name || "Ministry Operations", books: [
-      { term: "August term", t: "God\u2019s Armor Bearer Volumes 1&2", a: "Terry Nance", isbn: "978-0971919327", price: 14 },
-      { term: "January term", t: "How Can you Be Led by the Spirit of God", a: "Kenneth E. Hagin", price: 14 }
+  function estremeciendo() {
+    return { name: "Estremeciendo las Naciones", books: [
+      { t: "“Desde el corazón” PDF’s", kind: "populi",
+        note: "Creyéndole a Dios para ver a las naciones sacudidas; Pídele a Dios las naciones; Sacudiendo las naciones; Jesús ha rociado a las naciones" },
+      { t: "Viviendo en lo Sobrenatural", a: RHB }
+    ]};
+  }
+  function womenInMinistry(name) {
+    return { name: name || "Women in Ministry", books: [
+      { t: "Yes, She Can Preach! When God Calls a Woman, Who Has the Right to Silence her?",
+        a: "Debbie Rich", price: 22.99 },
+      { t: "Covenant Woman", a: "Dr. Adonica Howard-Browne", note: "Chapters 6–8", price: 19.99 }
     ]};
   }
   /* The second-year core every school shares. */
   function coreYearTwo() {
-    return [ soulWinningII(), vision(), devilsAndDemons() ];
+    return [ missions(), shakingNations(), womenInMinistry() ];
+  }
+  function ministryOps(name) {
+    return { name: name || "Ministry Operations", books: [
+      { t: "Following God’s Plan for Your Life", a: "Kenneth E. Hagin",
+        isbn: "978-0892765195", price: 12.95 }
+    ]};
+  }
+  function callOfGod(name) {
+    return { name: name || "Call of God / Fivefold Ministry", books: [
+      { t: "The Call of God Minibook", a: "Dr. Rodney Howard Browne", price: 7.99 }
+    ]};
   }
 
   var YEAR_ONE = {
     id: "y1",
     label: "Year 1",
     name: "Foundation Year",
-    sub: "RBI 1 \u00b7 RSW 1 \u00b7 RSG 1 \u00b7 RCI 1 \u00b7 RSM 1 \u00b7 RAI 1 \u2014 one shared list",
+    sub: "RBI 1 · RSW 1 · RSG 1 · RCI 1 · RSM 1 · RAI 1 — one shared list",
     courses: [
-      { name: "Christian Foundations I", books: [
-        { t: "Basic Bible Course: The Bible in the Light of our Redemption from Genesis through Revelation", a: "E.W. Kenyon", isbn: "1641233869", price: 14 },
-        { t: "Psalm 119, Mark, John, Acts, Galatians, Ephesians, Philippians, Colossians, and Romans", kind: "reading", plain: true, note: "Read these Bible texts alongside the course." }
+      { name: "Personal Development", books: [
+        { t: "Sowing in a Time of Famine", a: RHB, note: "Mini book", price: 2.49 },
+        { t: "God’s Top 10", a: RHB, note: "Mini book", price: 2.49 },
+        { t: "Online DISC© personality quiz", kind: "online", plain: true }
       ]},
-      { name: "Introduction to Revival Studies", books: [
-        { t: "Revival", a: RHB, isbn: "0958306621", price: 15 }
+      { name: "The Anointing", books: [
+        { t: "The Anointing", a: RHB, isbn: "B07JLH57VP", price: 24 }
       ]},
-      { name: "Academic Writing", books: [
-        { t: "MLA Handbook, 9th Edition", a: "Mary Isla", isbn: "979-8182429054", price: 13 }
+      { name: "Bible Doctrines", books: [
+        { t: "Bible Doctrines", a: "P.C. Nelson", isbn: "9780882438580", price: 6 }
       ]},
-      { name: "Stewardship I", books: [
-        { t: "Thoughts on Stewardship \u2013 26 Keys to Breakthrough", a: RHB, isbn: "1642047589", price: 15 }
+      { name: "Godly Character", books: [
+        { t: "The Vow", a: RHB, price: 9.99 },
+        { t: "Righteous", a: RHB, price: 12 }
       ]},
-      { name: "Submission & Authority", books: [
-        { t: "A Tale of Three Kings", a: "Gene Edwards", isbn: "9780842369084", price: 10 }
+      { name: "Heavenly Vision", books: [
+        { t: "Walking in the Perfect Will of God", a: RHB, note: "Mini book", price: 2.49 },
+        { t: "Vision 2019 PDF’s", kind: "populi",
+          note: "Fulfilling Your Eternal Purpose; The Grace to Fulfill the Assignment; Your Fulfillment is in Your Assignment; Your Assignment" },
+        { t: "The Book of Acts in the Bible — Chapter 26", kind: "reading", plain: true }
       ]},
-      { name: "Soul Winning I", books: [
-        { t: "Soul Winning", a: "T.L. Osborn", note: "Chapters 1\u201315", isbn: "978-0879431334", price: 13 },
-        { t: "Power Evangelism Soul-Winning Packet", kind: "populi", plain: true },
-        { t: "What it Means to be Born Again", a: RHB, isbn: "978-0958306614", price: 15 },
-        { t: "The Reality of Life After Death", a: RHB, isbn: "978-1633154216", price: 8 },
-        { t: "Setting a Soul Goal", a: RHB, price: 5 }
+      { name: "This Present Glory", books: [
+        { t: "This Present Glory", a: RHB, isbn: "9781633153769", price: 20 }
       ]}
     ]
   };
@@ -497,45 +520,45 @@
         {
           id: "rbi2", label: "Year 2", name: "RBI 2",
           courses: [
-            { name: "12 Pillars of Faith", books: [
-              { t: "Twelve Pillars of My Faith Study Guide", kind: "populi" }
+            { name: "Pauline Letters", books: [
+              { t: "Thessalonians, Galatians, Corinthians, Romans, Ephesians, Philippians, Colossians and Philemon in the Bible",
+                kind: "reading", plain: true }
             ]},
-            { name: "Merchandizing & Trafficking the Anointing", books: [
-              { t: "Will you Pay the Price?", a: RHB, isbn: "979-8-89589-638-9", price: 5 }
-            ]},
-            { name: "Blood Covenant", books: [
-              { t: "The Miracle of the Scarlet Thread", a: "Richard Booker", isbn: "978-0914903260", price: 15 }
+            callOfGod(),
+            { name: "Eschatology", books: [
+              { t: "The Book of Daniel in the Bible", kind: "reading", plain: true },
+              { t: "The Book of Revelation in the Bible", kind: "reading", plain: true }
             ]}
           ].concat(coreYearTwo())
         },
         {
           id: "rbi3", label: "Year 3", name: "RBI 3",
           courses: [
-            { name: "Church History", books: [
-              { t: "The book of Acts", kind: "reading", plain: true, note: "Read this Bible text alongside the course." }
+            { name: "Pastoral Care & Counseling", books: [
+              { t: "The Pastoral Ministry", a: "Rhema Publishing", kind: "populi",
+                note: "Sections 1–7 only" },
+              { t: "Communion the Table of the Lord", a: RHB, price: 9.99 }
             ]},
-            { name: "How to Hear the Voice of God", books: [
-              { t: "How to Hear the Voice of God", a: RHB, price: 15 }
-            ]},
-            { name: "Homiletics I", books: [
-              { t: "Keys to Better Preaching", a: "John Garlock", isbn: "9780892769612", price: 11 }
+            callOfGod(),
+            { name: "Homiletics II", books: [
+              { t: "Watch Your Mouth!", a: RHB, price: 5 }
             ]},
             ministryOps()
           ]
         },
         {
-          id: "rbi4", label: "Year 4", name: "RBI 4",
-          sub: "On Campus",
+          id: "rbi4", label: "Year 4", name: "RBI 4", sub: "On Campus",
           courses: [
-            { name: "Practical Ministry I", books: [
-              { t: "Think on These Things, Weekly Devotional", a: RHB, price: 12 }
+            { name: "Practical Ministry II", books: [
+              { t: "Think on These Things, Weekly Devotional", a: RHB, price: 11.99 }
             ]},
-            { name: "Demonology and Deliverance", books: [
-              { t: "Demonology and Deliverance, Principalities and Powers, Foundational Studies, Vol. 1", a: "Dr. Lester Sumrall", kind: "populi" }
+            { name: "Now Faith", books: [
+              { t: "Faith, Foolishness, or Presumption", a: "Dr. Frederick K.C. Price",
+                isbn: "978-188379862-8", kind: "populi" }
             ]},
-            { name: "The Favor of God", books: [
-              { t: "The Favor of God", a: "Jerry Savelle", isbn: "978-0800797065", price: 18 },
-              { t: "The Favor of God Study Guide", a: "Jerry Savelle", kind: "populi" }
+            { name: "Leadership in Ministry", books: [
+              { t: "Leadership Principles — One Year Inspirational Calendar", a: RHB },
+              { t: "Leadership — From the Heart", kind: "populi" }
             ]}
           ]
         }
@@ -548,19 +571,14 @@
         {
           id: "rsw2", label: "Year 2", name: "RSW 2",
           courses: [
-            { name: "Vocal Lab I", books: [
-              { t: "Set Your Voice Free", a: "Roger Love", isbn: "978-0316311267", price: 30 }
+            { name: "Songwriting I", books: [
+              { t: "Writing Better Lyrics", a: "Pat Pattison", isbn: "978-1582975771", price: 12 }
             ]}
           ].concat(coreYearTwo())
         },
         {
           id: "rsw3", label: "Year 3", name: "RSW 3",
-          courses: [
-            { name: "Music Theory II", books: [
-              { t: "Alfred\u2019s Essentials of Music Theory \u2013 Complete", a: "Andrew Surmani", isbn: "978-0882848976", price: 16 }
-            ]},
-            ministryOps()
-          ]
+          courses: [ ministryOps() ]
         }
       ]
     },
@@ -571,26 +589,33 @@
         {
           id: "rsg2", label: "Year 2", name: "RSG 2",
           courses: [
-            { name: "Research & Writing", books: [
-              { t: "The Constitution of the United States of America", kind: "reading", plain: true },
-              { t: "The Bill of Rights", kind: "reading", plain: true }
+            { name: "Killing of Uncle Sam", books: [
+              { t: "The Killing of Uncle Sam", a: "Dr. Rodney Howard-Browne and Dr. Paul L. Williams",
+                isbn: "978-1640070974", price: 26.95 }
             ]},
-            { name: "Christian Influence in Government", books: [
-              { t: "How Christianity Changed the World", a: "Alvin J. Schmidt", isbn: "0310264499", price: 12 }
+            { name: "Creature from Jekyll Island", books: [
+              { t: "The Creature from Jekyll Island", a: "G. Edward Griffin",
+                isbn: "978-0912986456", price: 23 }
             ]}
           ].concat(coreYearTwo())
         },
         {
           id: "rsg3", label: "Year 3", name: "RSG 3",
           courses: [
-            { name: "American Fundamental Liberties", books: [
-              { t: "Property", a: "James Madison", kind: "online", note: "Read online \u2014 no purchase needed." },
-              { t: "The First & Second Treatises of Government", a: "John Locke", isbn: "9781537524832", price: 10 },
-              { t: "Federalist & Anti-Federalist Papers", a: "Alexander Hamilton", isbn: "1495446697", price: 1 },
-              { t: "The Rights of Man", a: "Thomas Paine", isbn: "1420955454", price: 10 }
+            { name: "Socialism Under the Microscope", books: [
+              { t: "Socialism Under the Microscope", a: "Dr. Rodney Howard-Browne and Dr. Paul Williams",
+                isbn: "B083XVQLZ2", price: 14.95 },
+              { t: "Socialism Under the Microscope — Study Guide", note: "Purchase on revival.com",
+                price: 7.99, link: "https://revival.com", linkLabel: "revival.com" }
             ]},
-            { name: "The Tower of Basel", books: [
-              { t: "Tower of Basel: The Shadowy History of the Secret Bank that Runs the World", a: "Adam LeBor", isbn: "9781610393812", price: 17 }
+            { name: "Contract and Constitutional Law", books: [
+              { t: "Constitutional Law: Principles and Policies, 6th edition", a: "Erwin Chemerinsky", price: 25 },
+              { t: "Criminal Law and Its Processes: Cases and Materials (Aspen Casebook Series), 9th Edition",
+                a: "Kadish, et al.", price: 13 }
+            ]},
+            { name: "Government and the Family", books: [
+              { t: "Politics According to the Bible", a: "Wayne Grudem",
+                isbn: "978-1543604696", price: 22 }
             ]},
             ministryOps()
           ]
@@ -598,72 +623,69 @@
       ]
     },
     {
-      id: "rbie", abbr: "RBIE", name: "RBI en Espa\u00f1ol",
+      id: "rbie", abbr: "RBIE", name: "RBI en Español",
       tracks: [
         {
-          id: "rbie1", lang: "es", label: "A\u00f1o 1", name: "RBIE 1",
+          id: "rbie1", label: "Año 1", name: "RBIE 1",
           courses: [
-            { name: "Introducci\u00f3n de Avivamiento", books: [
-              { t: "Aceite Fresco del Cielo", a: RHB, note: "Fresh Oil from Heaven", kind: "populi" },
-              { t: "C\u00f3mo Aumentar y Liberar la Unci\u00f3n", a: RHB, kind: "populi" }
+            { name: "Desarrollo Personal", books: [
+              { t: "Sembrando en Tiempos de Escasez", a: RHB, note: "Mini libro", kind: "populi" },
+              { t: "Los 10 Mandamientos de Dios", a: RHB, note: "Mini libro", kind: "populi" }
             ]},
-            { name: "Fundamentos Cristianos", books: [
-              { t: "La Biblia A La Luz De Nuestra Redencion", a: "E.W. Kenyon", kind: "populi" },
-              { t: "Salmos 119, Marcos, Juan, Hechos, G\u00e1latas, Efesios, Filipenses, Colosenses, y Romanos", kind: "reading", plain: true, note: "Leer estos libros b\u00edblicos junto con el curso." }
+            { name: "La Unción", books: [
+              { t: "Cómo Aumentar y Transferir la Unción", a: RHB, kind: "populi" }
             ]},
-            { name: "Escritura Acad\u00e9mica", books: [
-              { t: "Mejora Tu Ortograf\u00eda y Gram\u00e1tica En Tiempo R\u00e9cord", a: "Antonio Adames Abreu", isbn: "979-8854050036", price: 9 }
+            { name: "Doctrinas Biblicas", books: [
+              { t: "Doctrinas Bíblicas", a: "P.C. Nelson", isbn: "978-0829705393", price: 8.90 }
             ]},
-            { name: "Mayordom\u00eda I", books: [
-              { t: "Pensamientos Sobre La Mayordom\u00eda \u2014 Volumen I", a: RHB, kind: "populi" }
+            { name: "Visión del Cielo", books: [
+              { t: "Visión 2019 PDF’s", kind: "populi",
+                note: "Cumpliendo tu Propósito Eterno; La Gracia para Cumplir la Asignación; Tu Cumplimiento está en tu Asignación" },
+              { t: "Hechos (en la Biblia) — Capítulo 26", kind: "reading", plain: true }
             ]},
-            { name: "Ganando Almas I", books: [
-              { t: "Ganando Almas", a: "T.L. Osborn", note: "Soul Winning, Spanish Edition \u00b7 cap\u00edtulos 1\u201315", isbn: "9589269567" },
-              { t: "Gu\u00eda Para Ganar Almas", plain: true },
-              { t: "Manual Para Ganar Almas y Evangelizar con Poder", plain: true },
-              { t: "\u00bfQu\u00e9 Significa Nacer de Nuevo?", a: RHB },
-              { t: "Estableciendo Una Meta de Almas", a: RHB }
+            { name: "Carácter Piadoso", books: [
+              { t: "Notas y publicaciones en Populi", kind: "populi", plain: true }
             ]},
-            { name: "Autoridad y Sumisi\u00f3n", books: [
-              { t: "Perfil de Tres Monarcas", a: "Gene Edwards", isbn: "0829743561", price: 13 }
+            { name: "La Presente Gloria", books: [
+              { t: "La Presente Gloria", a: RHB, kind: "populi" }
             ]}
           ]
         },
         {
-          id: "rbie2", lang: "es", label: "A\u00f1o 2", name: "RBIE 2",
+          id: "rbie2", label: "Año 2", name: "RBIE 2",
           courses: [
-            { name: "Los 12 Pilares de Fe", books: [
-              { t: "Los 12 Pilares de mi Fe \u2014 Gu\u00eda de Estudio", kind: "populi" }
+            { name: "Epístolas Paulinas", books: [
+              { t: "Tesalonicenses, Gálatas, Corintios, Romanos, Efesios, Filipenses, Colosenses y Filemón en la Biblia",
+                kind: "reading", plain: true }
             ]},
-            { name: "El Pacto de Sangre", books: [
-              { t: "Lev\u00edtico y Hebreos", kind: "reading", plain: true, note: "Leer estos textos b\u00edblicos junto con el curso." }
+            { name: "El Llamado de Dios / Ministerio Quíntuple", books: [
+              { t: "El Llamado de Dios", a: RHB, kind: "populi" }
             ]},
-            { name: "Doctrinas B\u00edblicas", books: [
-              { t: "Doctrinas b\u00edblicas", a: "P.C. Nelson", isbn: "0829705392", price: 9 }
+            { name: "Escatología", books: [
+              { t: "El libro de Daniel", kind: "reading", plain: true },
+              { t: "El libro de Apocalipsis (RVR1960)", kind: "reading", plain: true }
             ]},
-            { name: "Ganando Almas II", books: [
-              { t: "El Libro de los M\u00e1rtires", a: "John Foxe", isbn: "9788482673509", price: 13 }
-            ]},
-            { name: "Diablos y Demonios: C\u00f3mo Lidiar con Ellos", books: [
-              { t: "La iglesia triunfante", a: "Kenneth E. Hagin", isbn: "0892761172", price: 16 },
-              { t: "Demonios y c\u00f3mo tratar con ellos", a: "Kenneth E. Hagin", kind: "populi" }
+            misiones(),
+            estremeciendo(),
+            { name: "Mujeres en el Ministerio", books: [
+              { t: "Mujer del Pacto", a: "Dra. Adonica Howard-Browne", kind: "populi" }
             ]}
           ]
         },
         {
-          id: "rbie3", lang: "es", label: "A\u00f1o 3", name: "RBIE 3",
+          id: "rbie3", label: "Año 3", name: "RBIE 3",
           courses: [
-            { name: "La Historia de la Iglesia", books: [
-              { t: "El libro de Hechos", kind: "reading", plain: true, note: "Leer este texto b\u00edblico junto con el curso." }
+            { name: "Cuidado Pastoral y Consejería", books: [
+              { t: "El Ministerio Pastoral", a: "Rhema Publishing", kind: "populi",
+                note: "Solo secciones 1–8" },
+              { t: "Comunión La Mesa del Señor", a: RHB }
             ]},
-            { name: "C\u00f3mo O\u00edr La Voz de Dios", books: [
-              { t: "C\u00f3mo O\u00edr La Voz de Dios", a: RHB, kind: "populi" }
-            ]},
-            { name: "Homil\u00e9tica I", books: [
-              { t: "Claves Para Ense\u00f1ar Y Predicar Mejor", a: "John Garlock", kind: "populi" }
+            { name: "El Fruto del Espíritu", books: [
+              { t: "El Fruto del Espíritu", a: RHB, kind: "populi" }
             ]},
             { name: "Operaciones Ministeriales I", books: [
-              { t: "El Escuerdo de Dios, libros 1&2", a: "Terry Nance", isbn: "9780789919304", price: 6 }
+              { t: "Planes, Propósitos y Ejecuciones", a: "Kenneth E. Hagin",
+                isbn: "978-0892761326", price: 15.95 }
             ]}
           ]
         }
@@ -676,27 +698,30 @@
         {
           id: "rci2", label: "Year 2", name: "RCI 2",
           courses: [
-            { name: "The Ministry of Hospitality", books: [
-              { t: "Setting the Table", a: "Danny Meyer", isbn: "0060742763", price: 11 }
+            { name: "Spirit of Excellence in the Hospitality Industry", books: [
+              { t: "The New Gold Standard", a: "Joseph A Michelli", isbn: "B0015DTUSE", price: 12.98 }
             ]},
-            { name: "Sanitation / ServSafe Certification", books: [
-              { t: "Culinary Institute of America handbook", isbn: "978-1-119-49095-1", kind: "instructor", note: "Provided by your instructor as needed." }
+            { name: "Knife Skills 102", books: [
+              { t: "Culinary Institute of America handbook", isbn: "978-1-119-49095-1" }
+            ]},
+            { name: "Stock, Soups, Sauces", books: [
+              { t: "Culinary Institute of America handbook", isbn: "978-1-119-49095-1" }
             ]}
           ].concat(coreYearTwo())
         },
         {
           id: "rci3", label: "Year 3", name: "RCI 3",
           courses: [
-            { name: "International Cuisine", books: [
-              { t: "International Cuisine", a: "Jeremy MacVeigh", isbn: "978-1418049652", kind: "instructor", note: "Copies provided by your instructor." }
+            { name: "Cheese", books: [
+              { t: "The Oxford Companion to Cheese", a: "Dr. Catherine Donnelly", isbn: "978-0199330881" }
             ]},
-            { name: "Drink Pairings", books: [
-              { t: "The Flavor Thesaurus: A Compendium of Pairings, Recipes and Ideas for the Creative Cook", a: "Niki Segnit", isbn: "9781608198740", price: 21 }
+            { name: "Agriculture", books: [
+              { t: "Food, Farming, and Faith", a: "Gary Fick", isbn: "978-0791473849" }
             ]},
-            { name: "Leadership: How to Lead a Team", books: [
-              { t: "12 Qualifications and Responsibilities of Leadership", a: RHB, price: 5 }
+            { name: "Restaurant Business", books: [
+              { t: "The Restaurant Manager’s Handbook", a: "Douglas Robert Brown", isbn: "978-1620232637" }
             ]},
-            ministryOps("Ministry Operations I")
+            ministryOps()
           ]
         }
       ]
@@ -722,9 +747,10 @@
         {
           id: "rai2", label: "Year 2", name: "RAI 2",
           courses: [
-            { name: "Brakes I, Brakes II & Applied Automotive Training I", books: [
-              { t: "ASE Study Guide A5", a: "Motor Age Training", price: 31,
-                link: "https://motoragetraining.com/product/ase-study-guide-a5-brakes/", linkLabel: "motoragetraining.com" }
+            { name: "Steering & Suspension I, Steering & Suspension II, Applied Automotive Training II", books: [
+              { t: "ASE Study Guide A4 — Suspension and Steering", price: 30.95,
+                link: "https://motoragetraining.com/product/ase-study-guide-a4-suspension-and-steering/",
+                linkLabel: "motoragetraining.com" }
             ]}
           ].concat(coreYearTwo())
         }
@@ -775,11 +801,18 @@
   };
   function str(lang) { return STR[lang] || STR.en; }
 
+  /* Prices carry cents this quarter, so a raw sum prints 79.46000000000001.
+     Round to cents and drop a trailing .00 so whole dollars still read clean. */
+  function money(n) {
+    var v = Math.round(n * 100) / 100;
+    return (v % 1 === 0) ? String(v) : v.toFixed(2);
+  }
+
   function bookHTML(b, lang) {
     var L = str(lang);
     var right = "";
     if (typeof b.price === "number") {
-      right += '<span class="price"><span class="tilde">~</span>$' + b.price + "</span>";
+      right += '<span class="price"><span class="tilde">~</span>$' + money(b.price) + "</span>";
     }
     if (b.kind && L[b.kind]) {
       right += '<span class="badge ' + b.kind + '">' + L[b.kind] + "</span>";
@@ -835,7 +868,7 @@
     if (unpriced) parts.push(L.unpriced(unpriced));
 
     return '<div class="tally">' +
-      '<div class="amount"><span class="tilde">~</span>$' + total + '</div>' +
+      '<div class="amount"><span class="tilde">~</span>$' + money(total) + '</div>' +
       '<div class="breakdown">' + parts.join(" &middot; ") + '</div>' +
       '<div class="caption">' + L.caption + '</div>' +
     '</div>';
