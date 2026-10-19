@@ -13,7 +13,6 @@ const PAGES = [
   '/handbook-es.html',
   '/index-es.html',
   '/curriculum.html',
-  '/calendar.html',
   '/mlc-tips.html',
   '/mlc-tips-es.html',
 ];
