@@ -248,6 +248,10 @@
     background:var(--blue-wash);color:var(--navy);
     padding:6px 11px;border-radius:8px;white-space:nowrap;
   }
+  .row .room.room-tap{cursor:pointer;transition:background .15s ease, box-shadow .15s ease;}
+  .row .room.room-tap:hover,.row .room.room-tap:focus-visible{
+    background:var(--yellow);box-shadow:0 2px 8px rgba(143,103,18,.25);outline:none;
+  }
   .row.now{background:linear-gradient(90deg, rgba(255,199,44,.16), rgba(255,199,44,0))}
   .row.now::before{
     content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--yellow);
@@ -445,17 +449,17 @@
 
   /* Shared Tuesday/Thursday core carried by every second-year track. */
   function coreTR(room) {
-    room = room || "CR 4";
+    room = room || "CR 1";
     return [
-      { hr: 1, code: "PTH130", name: "Missions", inst: "Ps. Julian Sutton", room: room },
+      { hr: 1, code: "THE251", name: "Women in Ministry", inst: "Dr. Debbie Rich", room: room },
       { hr: 2, code: "BIB253", name: "Shaking the Nations", inst: RHB, room: room },
-      { hr: 3, code: "THE251", name: "Women in Ministry", inst: "Dr. Debbie Rich", room: room },
+      { hr: 3, code: "PTH130", name: "Missions", inst: "Ps. Julian Sutton", room: room },
       { hr: 4, code: "BIB255", name: "Revival Studies Lab VI", inst: "Dr. Rodney Howard Browne", room: "ST B" }
     ];
   }
   /* Shared third-year ministry operations block. */
   function opsMWF(room) {
-    return { hr: 4, code: "MP372", name: "Ministry Operations Lab", inst: "Mr. Elijah Dominguez", room: room || "CR 1" };
+    return { hr: 4, code: "MP372", name: "Ministry Operations Lab", inst: "Mr. Elijah Dominguez", room: room || "CR 4" };
   }
   function opsTR(name, code, room) {
     return [{ hr: 0, code: code || "MIN302", name: name || "Ministry Operations II",
@@ -466,7 +470,7 @@
     id: "y1",
     label: "Year 1",
     name: "Foundation Year",
-    sub: "RBI 1 · RSW 1 · RSG 1 · RSM 1 — one shared classroom",
+    sub: "RBI 1 · RSW 1 · RSG 1 · RCI 1 · RSM 1 · RAI 1 — one shared classroom",
     notice: "Every first-year student sits together. Whatever school you enrolled in, your first year is the same schedule in ST B.",
     blocks: [
       { days: "M/W/F", rows: [
@@ -552,7 +556,7 @@
               { hr: 3, code: "MUS164", name: "Psalmody I", inst: "Ps. Lois Williams", room: "CR 2" },
               { hr: 4, code: "BIB255", name: "Revival Studies Lab VI", inst: "Dr. Rodney Howard Browne", room: "ST B" }
             ]},
-            { days: "T/R", rows: coreTR("CR 4") }
+            { days: "T/R", rows: coreTR("CR 1") }
           ]
         },
         {
@@ -562,9 +566,9 @@
               { hr: 1, code: "MUS263", name: "Worship Team Administration", inst: "Ms. Keziah-Grace Lopes", room: "CR 3" },
               { hr: 2, code: "MUS235", name: "Songwriting IV", inst: "Mr. George / Ms. Keziah-Grace", room: "CR 3" },
               { hr: 3, code: "MUS322", name: "Vocal Lab III", inst: "Rev. Octavia Wilder", room: "CR 3" },
-              opsMWF("CR 1")
+              opsMWF("CR 4")
             ]},
-            { days: "T/R", rows: opsTR(null, null, "CR 1") }
+            { days: "T/R", rows: opsTR() }
           ]
         }
       ]
@@ -582,7 +586,7 @@
               { hr: 3, code: "HIS2100", name: "Constitution I", inst: "Dr. KrisAnne Hall", room: "CR 5" },
               { hr: 4, code: "BIB255", name: "Revival Studies Lab VI", inst: "Dr. Rodney Howard Browne", room: "ST B" }
             ]},
-            { days: "T/R", rows: coreTR("CR 4") }
+            { days: "T/R", rows: coreTR("CR 1") }
           ]
         },
         {
@@ -592,9 +596,9 @@
               { hr: 1, code: "HIS3101", name: "Socialism Under the Microscope", inst: "Rev. Rachael Larson", room: "L - PIE" },
               { hr: 2, code: "POS4100", name: "Contract and Constitutional Law", inst: "Dr. KrisAnne Hall", room: "L - PIE" },
               { hr: 3, code: "POT2100", name: "Government and the Family", inst: "Ps. Shannon Gilbert", room: "L - PIE" },
-              opsMWF("CR 1")
+              opsMWF("CR 4")
             ]},
-            { days: "T/R", rows: opsTR(null, null, "CR 1") }
+            { days: "T/R", rows: opsTR() }
           ]
         }
       ]
@@ -606,7 +610,7 @@
           id: "rbie1", label: "Año 1", name: "RBIE 1", sub: "Salón W BAL",
           blocks: [
             { days: "M/W/F", rows: [
-              { hr: 1, code: "PSY101-2", name: "Desarrollo Personal", inst: "Ps. Lois & Ps. Ismary Santana", room: "W BAL" },
+              { hr: 1, code: "PSY101-2", name: "Desarrollo Personal", inst: "Ps. Lois & Ps. Ismary Santana", room: "ST B" },
               { hr: 2, code: "BIB153-2", name: "La Unción", inst: "Dr. Mark Cabrera", room: "W BAL" },
               { hr: 3, code: "THE110-2", name: "Doctrinas Biblicas", inst: "Ps. Joshua Santana", room: "W BAL" },
               { hr: 4, code: "BIB155-2", name: "Laboratorio II — Estudios de Avivamiento", inst: RHB, room: "ST B" }
@@ -624,8 +628,8 @@
           blocks: [
             { days: "M/W/F", rows: [
               { hr: 1, code: "THE231-2", name: "Epístolas Paulinas", inst: "Rev. Joshua Aldape", room: "S BAL" },
-              { hr: 2, code: "BIB153-2", name: "El Llamado de Dios / Ministerio Quíntuple", inst: "Ps. Joshua Santana", room: "S BAL" },
-              { hr: 3, code: "THE110-2", name: "Escatología", inst: "Dr. Mark Cabrera", room: "S BAL" },
+              { hr: 2, code: "BIB252-2", name: "El Llamado de Dios / Ministerio Quíntuple", inst: "Ps. Ismary Santana", room: "S BAL" },
+              { hr: 3, code: "THE140-2", name: "Escatología", inst: "Dr. Mark Cabrera", room: "S BAL" },
               { hr: 4, code: "BIB 255-2", name: "Laboratorio VI — Estudios de Avivamiento", inst: RHB, room: "ST B" }
             ]},
             { days: "T/R", rows: [
@@ -640,14 +644,14 @@
           id: "rbie3", label: "Año 3", name: "RBIE 3", sub: "Salón N BAL",
           blocks: [
             { days: "M/W/F", rows: [
-              { hr: 1, code: "PTH310-2", name: "Cuidado Pastoral y Consejería", inst: "Ps. Joshua & Ismary Santana", room: "N BAL" },
-              { hr: 2, code: "BIB153-2", name: "El Llamado de Dios / Ministerio Quíntuple", inst: "Ps. Joshua Santana", room: "S BAL" },
-              { hr: 3, code: "THE152-2", name: "El Fruto del Espiritu", inst: "Rev. Osiel Martinez", room: "N BAL" },
-              { hr: 4, code: "MP372-2", name: "Ministry Operations Lab", inst: "Rev. Leslie Stone", room: "CR 1" }
+              { hr: 1, code: "THE152-2", name: "El Fruto del Espiritu", inst: "Rev. Osiel Martinez", room: "N BAL" },
+              { hr: 2, code: "BIB252-2", name: "El Llamado de Dios / Ministerio Quíntuple", inst: "Ps. Ismary Santana", room: "S BAL" },
+              { hr: 3, code: "PTH310-2", name: "Cuidado Pastoral y Consejería", inst: "Ps. Joshua & Ismary Santana", room: "N BAL" },
+              { hr: 4, code: "MP372-2", name: "Ministry Operations Lab", inst: "Rev. Leslie Stone", room: "CR 4" }
             ]},
             { days: "T/R", rows: [
               { hr: 0, code: "MIN302-2", name: "Operaciones Ministeriales II", sub: "Runs across the day",
-                inst: "Dr. Martha Cabrera", room: "CR 1" }
+                inst: "Dr. Martha Cabrera", room: "CR 4" }
             ]}
           ]
         }
@@ -655,8 +659,8 @@
     },
     {
       id: "rci", abbr: "RCI", name: "River Culinary Institute",
-      note: "The 2nd Quarter master curriculum lists RCI from Year 2 onward.",
       tracks: [
+        YEAR_ONE,
         {
           id: "rci2", label: "Year 2", name: "RCI 2", sub: "Home kitchen SB K",
           blocks: [
@@ -666,7 +670,7 @@
               { hr: 3, code: "CUL103", name: "Stock / Soups / Sauces", inst: "Dr. Charne Cilliers", room: "SB K" },
               { hr: 4, code: "BIB255", name: "Revival Studies Lab VI", inst: "Dr. Rodney Howard Browne", room: "ST B" }
             ]},
-            { days: "T/R", rows: coreTR("CR 4") }
+            { days: "T/R", rows: coreTR("CR 1") }
           ]
         },
         {
@@ -676,9 +680,9 @@
               { hr: 1, code: "CUL201", name: "Cheese", inst: "Dr. Charne Cilliers", room: "L’Adon" },
               { hr: 2, code: "BUS201", name: "Restaurant Business", inst: "Dr. Charne Cilliers", room: "L’Adon" },
               { hr: 3, code: "CUL211", name: "Agriculture", inst: "Mr. Israel Prieto", room: "L’Adon" },
-              opsMWF("CR 1")
+              opsMWF("CR 4")
             ]},
-            { days: "T/R", rows: opsTR(null, null, "CR 1") }
+            { days: "T/R", rows: opsTR() }
           ]
         }
       ]
@@ -696,7 +700,7 @@
               { hr: 3, code: "FLM1101", name: "Film & Lighting 101", inst: "Rev. Ben Dickey", room: "R PIE" },
               { hr: 4, code: "BIB255", name: "Revival Studies Lab VI", inst: RHB, room: "ST B" }
             ]},
-            { days: "T/R", rows: coreTR("CR 4") }
+            { days: "T/R", rows: coreTR("CR 1") }
           ]
         },
         {
@@ -706,9 +710,27 @@
               { hr: 1, code: "MDS2100", name: "Leadership in Ministry", inst: "Rev. Ben Dickey", room: "ST D" },
               { hr: 2, code: "MDS2102", name: "Message to Media", inst: "Mrs. Maria Hightshoe", room: "ST D" },
               { hr: 3, code: "CAP2102", name: "Capstone Production", inst: "Ms. Elizabeth Davenport", room: "ST D" },
-              opsMWF("CR 1")
+              opsMWF("CR 4")
             ]},
-            { days: "T/R", rows: opsTR(null, null, "CR 1") }
+            { days: "T/R", rows: opsTR() }
+          ]
+        }
+      ]
+    },
+    {
+      id: "rai", abbr: "RAI", name: "River Automotive Institute",
+      tracks: [
+        YEAR_ONE,
+        {
+          id: "rai2", label: "Year 2", name: "RAI 2", sub: "Home shop AUTO CR",
+          blocks: [
+            { days: "M/W/F", rows: [
+              { hr: 1, code: "AER0201", name: "Steering & Suspension I", inst: "Mr. Jeff Klein", room: "AUTO CR" },
+              { hr: 2, code: "AER0202", name: "Steering & Suspension II", inst: "Ps. Joshua Santana", room: "AUTO CR" },
+              { hr: 3, code: "AER0200", name: "Applied Automotive Training II", inst: "Mr. Jeff Klein / Ps. Joshua", room: "AUTO CR" },
+              { hr: 4, code: "BIB255", name: "Revival Studies Lab VI", inst: RHB, room: "ST B" }
+            ]},
+            { days: "T/R", rows: coreTR("CR 1") }
           ]
         }
       ]
@@ -760,6 +782,29 @@
     return m >= h.start && m <= h.end;
   }
 
+  /* Rooms the campus map can route to. Tapping one asks the parent app for
+     directions; anything not listed here renders as a plain label.
+     "R PIE" and "R - PIE" are the same room, spelled differently across
+     quarters, so both are listed. */
+  var ROOM_ROUTABLE = {
+    "ST B":1,"SB K":1,"ST D":1,"CR 1":1,"CR 2":1,"CR 3":1,"CR 4":1,"CR 5":1,
+    "N BAL":1,"W BAL":1,"S BAL":1,"L - PIE":1,"R - PIE":1,"R PIE":1
+  };
+  function requestRoom(room){
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ type: "ru-room", room: room }, "*");
+    }
+  }
+  document.addEventListener("click", function (e) {
+    var el = e.target.closest ? e.target.closest(".room-tap") : null;
+    if (el && el.getAttribute("data-room")) { requestRoom(el.getAttribute("data-room")); }
+  });
+  document.addEventListener("keydown", function (e) {
+    if ((e.key === "Enter" || e.key === " ") && e.target.classList && e.target.classList.contains("room-tap")) {
+      e.preventDefault(); requestRoom(e.target.getAttribute("data-room"));
+    }
+  });
+
   function rowHTML(row, block, track) {
     var table = track.sessions ? SESSIONS : HOURS;
     var h = table[row.hr];
@@ -779,7 +824,9 @@
           (row.sub ? '<div class="subtitle">' + esc(row.sub) + '</div>' : '') +
         '</div>' +
         '<div class="inst">' + esc(row.inst) + '</div>' +
-        '<div class="room">' + esc(row.room) + '</div>' +
+        '<div class="room' + (ROOM_ROUTABLE[row.room] ? ' room-tap' : '') + '"' +
+          (ROOM_ROUTABLE[row.room] ? ' role="button" tabindex="0" data-room="' + esc(row.room) + '"' : '') +
+          '>' + esc(row.room) + '</div>' +
       '</div>';
   }
 
